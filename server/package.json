@@ -1,0 +1,33 @@
+{
+  "name": "habittracker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+      "express":"4.17.1",
+      "mongodb":"^3.6.0",
+      "mongoose":"^5.10.2",
+      "body-parser":"^1.19.0",
+      "connect-mongodb-session": "2.3.3",
+      "express-session": "^1.17.1",
+      "bcrypt":"^5.0.0",
+      "@awaitjs/express":"^0.6.1"
+  },
+  "devDependencies": {
+      "nodemon":"^2.0.4"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start":"nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SreejeshSaya/HabitTracker.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SreejeshSaya/HabitTracker/issues"
+  },
+  "homepage": "https://github.com/SreejeshSaya/HabitTracker#readme"
+}
