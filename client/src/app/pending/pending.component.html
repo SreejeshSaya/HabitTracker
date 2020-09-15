@@ -1,0 +1,35 @@
+<div *ngIf="this.authService.isLoading$ | async">
+   <h1>Loading</h1>
+</div>
+
+<div *ngIf="!(this.authService.isLoading$ | async)" class="container">
+   <div class="pending">
+      <h1>Pending Habits</h1>
+      <a routerLink="/add-habit" class="btn">+</a>
+   </div>
+
+   <div *ngIf="this.habitService.isLoading$ | async">Loading</div>
+   <div *ngIf="!(this.habitService.isLoading$ | async)" class="habits">
+      <div
+         *ngIf="
+            this.habitService.userHabits.length;
+            then listHabits;
+            else noHabits
+         "
+      ></div>
+      <ng-template #listHabits>
+         <app-habit-small
+            *ngFor="let habit of this.habitService.userHabits; let i = index"
+            [text]="habit.text"
+            (remove)="removeHabit($event)"
+            [index]="i"
+         ></app-habit-small>
+         <!-- <div *ngFor="let habit of this.habitService.userHabits">
+            {{ habit.text }}
+         </div> -->
+      </ng-template>
+      <ng-template #noHabits>
+        <h1>Empty</h1>
+      </ng-template>
+   </div>
+</div>

@@ -1,0 +1,24 @@
+{
+   "name": "habittracker",
+   "version": "1.0.0",
+   "description": "",
+   "main": "app.js",
+   "dependencies": {},
+   "devDependencies": {},
+   "scripts": {
+      "ng": "ng",
+      "build": "cd client && npm run ng build --prod",
+      "start": "cd server && NODE_ENV=production node app.js",
+      "postinstall": "cd client && npm install && cd ../server && npm install"
+   },
+   "repository": {
+      "type": "git",
+      "url": "git+https://github.com/SreejeshSaya/HabitTracker.git"
+   },
+   "author": "",
+   "license": "ISC",
+   "bugs": {
+      "url": "https://github.com/SreejeshSaya/HabitTracker/issues"
+   },
+   "homepage": "https://github.com/SreejeshSaya/HabitTracker#readme"
+}

@@ -15,6 +15,7 @@ exports.requireAuth = async (req,res,next)=>{
 }
 
 exports.isLoggedIn =async (req,res,next)=>{
+    res.setHeader('Content-Type', 'text/plain');
     if (req.session.userId){
         res.send("Yes")
     }
@@ -51,6 +52,7 @@ exports.login =  async (req,res,next)=>{
         email:email
     })
     if (user){
+        console.log(user)
         if (await bcrypt.compare(password,user.password)){
             req.session.userId = user._id
             res.send("Ok")

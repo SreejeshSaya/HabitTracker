@@ -1,0 +1,12 @@
+<nav>
+   <a class="logo" routerLink="/">Habit Tracker</a>
+   <ng-template [ngIf]="!(authService.isLoading$|async)">
+      <div *ngIf="authService.userDetails; then thenBlock else elseBlock"></div>
+      <ng-template #thenBlock>
+         <button (click)="this.authService.logOut()" class="btn">Logout</button>
+      </ng-template>
+      <ng-template #elseBlock>
+         <a routerLink="/login" class="btn">Login</a>
+      </ng-template>
+   </ng-template>
+</nav>

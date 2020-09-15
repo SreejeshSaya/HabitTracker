@@ -1,0 +1,23 @@
+.pending {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   width: 100%;
+}
+
+.pending .btn {
+   height: initial;
+   border-radius: 0.7rem;
+}
+
+.container {
+   width: 40rem;
+}
+
+.habits {
+   margin-top: 3.5rem;
+   display: flex;
+   flex-direction: column;
+   width: 100%;
+}
+

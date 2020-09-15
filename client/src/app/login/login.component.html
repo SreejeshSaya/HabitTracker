@@ -1,0 +1,20 @@
+<div class="container">
+   <h1>Log in to Habit Tracker</h1>
+   <div class="form">
+      <div class="input">
+         <label for="">Email</label>
+         <input [(ngModel)]="email" type="email" value="" />
+      </div>
+      <div class="input">
+         <label for="">Password</label>
+         <input [(ngModel)]="password" type="password" value="" />
+      </div>
+      <div class="submit">
+         <button (click)="onSubmit()" class="btn">Login</button>
+         <a routerLink="/signup" class="btn">New User?</a>
+      </div>
+   </div>
+   <div *ngIf="isLoading" class="loading">
+        Loading
+   </div>
+</div>

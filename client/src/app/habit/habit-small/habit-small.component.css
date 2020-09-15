@@ -1,0 +1,22 @@
+.habit {
+   padding: 2rem;
+   /* text-align: center; */
+   border-bottom: 0.1px solid grey;
+   width: 100%;
+   position: relative;
+   align-items: center;
+   display: flex;
+}
+
+.habit i {
+   position: absolute;
+   vertical-align: middle;
+   right: 0;
+   padding: 0 1rem;
+   font-size: 2rem;
+   color: green;
+}
+
+.habit i:hover{
+   cursor: pointer;
+}

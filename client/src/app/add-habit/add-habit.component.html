@@ -1,0 +1,11 @@
+<div class="add-habit">
+   <h1>Add Habit</h1>
+   <div class="input">
+      <label for="text">Text</label>
+      <input [(ngModel)]="habitText" type="text" #text />
+   </div>
+   <button (click)="addHabit()" class="btn">Add</button>
+</div>
+<div *ngIf="loading">
+   <h1>Loading</h1>
+</div>
