@@ -14,6 +14,10 @@ const User = new Schema({
       required: true,
    },
    age: Number,
+   createdAt: {
+      type: Date,
+      default: ()=>new Date(),
+   },
 });
 
 module.exports = model("user", User);
