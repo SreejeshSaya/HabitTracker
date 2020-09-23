@@ -4,7 +4,20 @@
       <label for="text">Text</label>
       <input [(ngModel)]="habitText" type="text" #text />
    </div>
-   <button (click)="addHabit()" class="btn">Add</button>
+   <div class="input">
+    <label for="text">Ending Date</label>
+    <input [(ngModel)]="endDate" type="date" #text />
+ </div>
+ <div class="input">
+    <label for="text">Color</label>
+    <app-color-picker
+    [colors]="colors"
+    (colorChange)="colorChange($event)">
+
+    </app-color-picker>
+
+ </div>
+   <button [ngStyle]="{'background-color':selectedColor}" (click)="addHabit()" class="btn">Add</button>
 </div>
 <div *ngIf="loading">
    <h1>Loading</h1>

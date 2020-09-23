@@ -1,0 +1,23 @@
+.habit-large {
+   margin: auto;
+   width: 25%;
+}
+
+.habit-large > h1 {
+   text-align: center;
+   margin-bottom: 2rem;
+}
+
+.habit-details {
+   
+   margin: auto;
+}
+
+.btn-red {
+   background-color: red;
+}
+
+.habit-history{
+   margin-top: 2rem;
+}
+

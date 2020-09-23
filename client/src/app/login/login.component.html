@@ -1,4 +1,6 @@
-<div class="container">
+
+<div *ngIf="this.isLoading" >Loading</div>
+<div *ngIf="!this.isLoading"  class="container">
    <h1>Log in to Habit Tracker</h1>
    <div class="form">
       <div class="input">

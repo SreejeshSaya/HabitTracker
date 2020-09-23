@@ -1,0 +1,8 @@
+<div class="color-select">
+    <div 
+    [class.active]="selectedColor==color" 
+    (click)="onColorClick(color)" 
+    *ngFor="let color of colors"
+    class="color-circle" 
+    [ngStyle]="{'background-color':color}"></div>
+</div>

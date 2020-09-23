@@ -1,5 +1,5 @@
-
-<div class="container">
+<div *ngIf="this.isLoading" >Loading</div>
+<div *ngIf="!this.isLoading"  class="container">
     <h1>Create an Account</h1>
     <div class="form">
         <div class="input">

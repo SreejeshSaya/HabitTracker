@@ -1,0 +1,48 @@
+<div *ngIf="!habit" >
+    <h1>Loading</h1>
+</div>
+
+<div class="habit-large" *ngIf="habit" >
+    <h1 [ngStyle]="{'border-top':'0.2rem solid '+selectedColor,'padding-top':'0.5rem'   }" >Manage Habit</h1>
+    <div class="habit-details">
+        <div class="input">
+            <label for="">Name</label>
+            <input type="text" [(ngModel)]="text">
+        </div>
+        <div class="input">
+            <label for="">End Date</label>
+            <input type="date" [(ngModel)]="endDate">
+        </div>
+        <div class="input">
+            <label for="">Color</label>
+            <app-color-picker
+            [colors]="colors"
+            (colorChange)="colorChange($event)"
+            [default]="selectedColor">
+            </app-color-picker>
+        </div>
+        <div class="submit">
+            <button (click)="updateHabit()" class="btn">Update</button>
+            <button  (click)="deleteHabit(habit.index)" class="btn btn-red">Remove Habit</button>
+        </div>
+    </div>
+
+    <div class="habit-history">
+        <h1>History</h1>
+        <div *ngIf="habit.history.length==0" >
+            <h2>No History</h2>
+        </div>
+        <div *ngIf="habit.history.length" >
+            <div *ngFor="let h of history">
+                <div class="history">
+                    Completed {{ h.completed }} on {{h.date}}
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    
+</div>
+
+
+

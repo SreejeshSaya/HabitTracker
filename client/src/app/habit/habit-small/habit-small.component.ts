@@ -6,12 +6,17 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
    styleUrls: ['./habit-small.component.css'],
 })
 export class HabitSmallComponent implements OnInit {
-   @Input() text: string;
-   @Input() index: number;
-   @Output() remove: EventEmitter<any> = new EventEmitter()
-   constructor() {}
+   @Input() habit;
+   @Output() complete: EventEmitter<any> = new EventEmitter()
+   style
+   constructor() {
+      
+   }
 
    ngOnInit(): void {
-      console.log("small",this.index)
+      this.style={'box-shadow': `-4px 0 ${this.habit.color},0 0px 2px rgba(128, 128, 128, 0.349)`}
+      console.log("style",this.style)
+      console.log(this.habit.streak)
+      console.log("small",this.habit.daysLeft)
    }
 }

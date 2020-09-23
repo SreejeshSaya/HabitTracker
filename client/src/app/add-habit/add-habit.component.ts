@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { HabitService } from '../habit.service';
+import { HabitService } from 'src/app/habit.service';
+import {colors} from 'src/app/colors'
 
 @Component({
    selector: 'app-add-habit',
@@ -9,12 +10,16 @@ import { HabitService } from '../habit.service';
 })
 export class AddHabitComponent implements OnInit {
    habitText: string;
+   endDate:string;
+   selectedColor:string;
    loading: boolean = false;
    routeSub;
+   colors;
    constructor(public habitService: HabitService,private router:Router, private route:ActivatedRoute) {
       this.routeSub = route.params.subscribe(data=>{
          this.loading =false;
       })
+      this.colors = colors
    }
 
    ngOnInit(): void {}
@@ -22,7 +27,7 @@ export class AddHabitComponent implements OnInit {
    addHabit() {
       if (this.habitText) {
          this.loading =true;
-         this.habitService.addHabit(this.habitText)
+         this.habitService.addHabit(this.habitText,this.selectedColor,this.endDate)
          .subscribe(data=>{
             this.loading =false;
             this.router.navigateByUrl("/")
@@ -32,5 +37,9 @@ export class AddHabitComponent implements OnInit {
 
    ngOnDestroy(){
       this.routeSub.unsubscribe()
+   }
+
+   colorChange(color){
+      this.selectedColor = this.selectedColor==color?"":color;
    }
 }

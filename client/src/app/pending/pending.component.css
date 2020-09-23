@@ -3,11 +3,22 @@
    justify-content: space-between;
    align-items: center;
    width: 100%;
+   padding: 0.5rem 0.5rem;
+   border-radius: 2rem;
 }
 
-.pending .btn {
-   height: initial;
-   border-radius: 0.7rem;
+
+.pending .tab {
+   background-color: white;
+   border-radius: 0px;
+   border-bottom: 3px solid white;
+   padding-bottom: 0.5rem;
+   font-size: 1.5rem;
+   color: black;
+}
+.pending .tab.active {
+   color: maroon;
+   border-color: maroon;
 }
 
 .container {

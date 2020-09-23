@@ -1,3 +1,15 @@
-<div class="habit">
-    {{text}} <i (click)="remove.emit(index)" class="fa fa-check"></i>
+<div routerLink="/habits/{{habit.index}}" class="habit" [ngStyle]="style">
+    <div class="habit-sample">
+        <p>{{habit.text}}</p>
+        <span>Current streak {{habit.streak}}</span>
+    </div>
+    <div class="habit-stats">
+        <div class="time-left" [ngStyle]="{'background-color':habit.color}">
+            {{habit.daysLeft}} Days left
+        </div>
+        <div  *ngIf="habit.state=='PENDING'" 
+        (click)="complete.emit({ev:$event,index:habit.index})" class="complete-habit">
+            <i class="fa fa-check" [ngStyle]="{color:habit.color}" ></i>
+        </div>
+    </div> 
 </div>

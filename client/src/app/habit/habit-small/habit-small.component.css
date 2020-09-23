@@ -1,20 +1,50 @@
 .habit {
-   padding: 2rem;
+   padding: 0.5rem 2rem;
    /* text-align: center; */
-   border-bottom: 0.1px solid grey;
+   margin: 0.5rem;
    width: 100%;
-   position: relative;
    align-items: center;
    display: flex;
+   justify-content: space-between;
+   
+   transition: transform 0.1s;
+   padding-right: 0;
+}
+.habit:hover {
+   cursor: pointer;
+   transform: translateX(0.1rem);
+}
+
+.habit p {
+   font-weight: bold;
+   font-size: 1.2rem;
+   margin: 0;
+}
+
+.habit span {
+   font-size: 0.9rem;
+}
+
+.habit-stats {
+   display: flex;
+   justify-content: space-between;
+   
+}
+
+.habit .time-left{
+   padding: 0.4rem 1rem;
+   font-size: 1.2rem;
+   color: white;
+   border-radius: 2rem;
+   margin-right: 2rem;
 }
 
 .habit i {
-   position: absolute;
-   vertical-align: middle;
+   /* position: absolute;
+   vertical-align: middle; */
    right: 0;
    padding: 0 1rem;
    font-size: 2rem;
-   color: green;
 }
 
 .habit i:hover{

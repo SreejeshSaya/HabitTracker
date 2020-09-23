@@ -11,9 +11,12 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
-import { PendingComponent } from './pending/pending.component';
+import { HabitFilter,PendingComponent } from './pending/pending.component';
 import { HabitSmallComponent } from './habit/habit-small/habit-small.component';
 import { AddHabitComponent } from './add-habit/add-habit.component';
+import { HabitManageComponent } from './habit/habit-manage/habit-manage.component';
+import * as dateManager from './dateManager';
+import { ColorPickerComponent } from './color-picker/color-picker.component'
 
 @NgModule({
    declarations: [
@@ -23,7 +26,10 @@ import { AddHabitComponent } from './add-habit/add-habit.component';
       SignupComponent,
       PendingComponent,
       HabitSmallComponent,
-      AddHabitComponent
+      AddHabitComponent,
+      HabitManageComponent,
+      HabitFilter,
+      ColorPickerComponent,
    ],
    imports: [
       CommonModule,

@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, Pipe } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -11,9 +11,27 @@ export class SignupComponent implements OnInit {
    username;
    email;
    password;
-   constructor(private authService: AuthService, private router: Router) {}
+   routeSub;
+   authSub;
+   isLoading=true;
+   constructor(private authService: AuthService, private router: Router,private route: ActivatedRoute) {
+      this.routeSub = route.params.subscribe(val => {
+         if (!this.authService.userDetails) {
+            this.authService.getUserDetails();
+         }
+      });
+   }
 
-   ngOnInit(): void {}
+   ngOnInit(): void {
+      this.authSub = this.authService.isLoading$.subscribe(l => {
+         if (!l && this.authService.userDetails) {
+            this.router.navigateByUrl("/")
+         }
+         else if (!l){
+            this.isLoading=false
+         }
+      })
+   }
 
    onSubmit() {
       this.authService
@@ -29,5 +47,10 @@ export class SignupComponent implements OnInit {
                alert(err);
             }
          );
+   }
+
+   ngOnDestroy(){
+      this.routeSub.unsubscribe()
+      this.authSub.unsubscribe()
    }
 }

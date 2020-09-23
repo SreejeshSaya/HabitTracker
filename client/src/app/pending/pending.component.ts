@@ -1,8 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Pipe, PipeTransform } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import {concatMap } from 'rxjs/operators';
+import {concatMap,map,filter,switchMap } from 'rxjs/operators';
 import { HabitService } from '../habit.service';
+
+@Pipe({
+   name:"HabitFilter",
+   pure:false
+})
+export class HabitFilter implements PipeTransform{
+   transform(habits:Array<any>,state:string):Array<any> {
+      return habits.filter(h=>h.state==state)
+   }
+}
+
 
 @Component({
    selector: 'app-pending',
@@ -13,6 +24,8 @@ export class PendingComponent implements OnInit {
    addText;
    authSub;
    routeSub;
+   currentTab='PENDING';
+   userHabits;
    constructor(public authService: AuthService, private router: Router, public habitService: HabitService, route: ActivatedRoute) {
       this.routeSub = route.params.subscribe(val => {
          if (!this.authService.userDetails) {
@@ -22,30 +35,52 @@ export class PendingComponent implements OnInit {
    }
 
    ngOnInit(): void {
-      console.log('calling init');
-      this.authSub = this.authService.isLoading$
-      .subscribe(l => {
-         console.log('pending', l, this.authService.userDetails);
-         if (!l && !this.authService.userDetails){
-            console.log('going back');
+      this.authSub = this.authService.isLoading$.pipe(map(l => {
+         if (!l && this.authService.userDetails) {
+            return true
+         } else if (!l) {
             this.router.navigateByUrl('/login');
+         }
+         else {
+            return false;
+         }
+      }),filter(l=>l),switchMap(_=>{
+         return this.habitService.isLoading$
+      }))
+      .subscribe(l=>{
+         if (!l && this.habitService.userHabits) {
+            this.userHabits = this.habitService.userHabits
+            console.log(this.habitService.userHabits)
+         } else if (!l) {
+            this.router.navigateByUrl('/');
          }
       });
    }
 
-   addHabit(){
-      this.habitService.addHabit(this.addText).subscribe(a => {
-         console.log(a);
-      });
+
+   switchTab(){
+      if (this.currentTab=="PENDING"){
+         this.currentTab = "COMPLETED"
+      }
+      else {
+         this.currentTab="PENDING";
+      }
    }
 
-   removeHabit(i){
-      this.habitService.removeHabit(i).subscribe(data => {
 
-      });
-   }
    ngOnDestroy(){
       this.authSub.unsubscribe();
       this.routeSub.unsubscribe();
+   }
+
+   completeHabitToday({ev,index}){
+      ev.stopPropagation()
+      console.log("commmmmmmmm",index) 
+      this.habitService.completeToday(index)
+      .subscribe(data=>{
+      },
+      err=>{
+         console.log("complete error",err)
+      })
    }
 }
