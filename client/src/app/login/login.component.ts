@@ -10,8 +10,10 @@ import { map } from 'rxjs/operators';
    styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-   email;
-   password;
+   email = '';
+   emailWarning = false;
+   password = '';
+   passwordWarning= false;
    isLoading = true;
    routeSub;
    authSub;
@@ -35,22 +37,38 @@ export class LoginComponent implements OnInit {
    }
 
    onSubmit() {
-      this.isLoading = true;
-      this.authService.logIn(this.email, this.password).subscribe(
-         (data) => {
-            console.log(data);
-            if (data == 'Ok') {
-               console.log('login will redirect');
-               this.router.navigateByUrl('/');
-            }
-         },
+      if(this.email === '') {
+         this.emailWarning = true;
+      }
+      else if (this.password === '') {
+         this.passwordWarning = true;
+      }
+      else {
+         this.isLoading = true;
+         this.emailWarning = false;
+         this.passwordWarning = false;
+         this.authService.logIn(this.email, this.password).subscribe(
+            (data) => {
+               console.log(data);
+               if (data == 'Ok') {
+                  console.log('login will redirect');
+                  this.router.navigateByUrl('/');
+               }
+            },
 
-         (err) => {
-            console.log(err);
-            alert(err);
-         }
-      );
+            (err) => {
+               console.log(err);
+               alert(err);
+            }
+         );
+      }
    }
+
+   // loginDisabled() {
+   //    if(this.email === '' || this.password === '')
+   //       return false;
+   //    return true;
+   // }
 
    ngOnDestroy(){
       this.routeSub.unsubscribe()

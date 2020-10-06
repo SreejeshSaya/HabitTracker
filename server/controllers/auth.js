@@ -5,6 +5,22 @@ const bcrypt = require("bcrypt");
 // TODO Validation
 // TODO Error Handling
 
+exports.usernameValidation = async(req, res, next) => {
+    const user = await User.findOne({ username: req.body.username });
+    if(user)
+        res.send(false)
+    else
+        res.send(true)
+}
+
+exports.emailValidation = async(req, res, next) => {
+    const user = await User.findOne({ email: req.body.email });
+    if(user)
+        res.send(false)
+    else
+        res.send(true)
+}
+
 exports.requireAuth = async (req,res,next)=>{
     if (req.session.userId){
         next()
@@ -17,10 +33,12 @@ exports.requireAuth = async (req,res,next)=>{
 exports.isLoggedIn =async (req,res,next)=>{
     res.setHeader('Content-Type', 'text/plain');
     if (req.session.userId){
-        res.send("Yes")
+        res.status(401)
+        .send("Yes");
     }
     else {
-        res.send("No")
+        res.status(401)
+        .send("No");
     }
 }
 
@@ -48,7 +66,7 @@ exports.signup =  async (req,res,next)=>{
 exports.login =  async (req,res,next)=>{
     const email = req.body.email
     const password = req.body.password
-    const user  =await User.findOne({
+    const user = await User.findOne({
         email:email
     })
     if (user){

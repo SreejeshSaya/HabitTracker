@@ -5,10 +5,12 @@
    <div class="form">
       <div class="input">
          <label for="">Email</label>
+         <p *ngIf="this.emailWarning">Email Field Required</p>
          <input [(ngModel)]="email" type="email" value="" />
       </div>
       <div class="input">
          <label for="">Password</label>
+         <p *ngIf="this.passwordWarning">Password Field Required {{ this.passwordWarning }}</p>
          <input [(ngModel)]="password" type="password" value="" />
       </div>
       <div class="submit">
