@@ -1,37 +1,32 @@
 .habit {
-   padding: 0.5rem 2rem;
-   /* text-align: center; */
+   padding: 0.1rem 1rem;
    margin: 0.5rem;
    width: 100%;
    align-items: center;
-   display: flex;
-   justify-content: space-between;
-   
-   transition: transform 0.1s;
-   padding-right: 0;
-}
-.habit:hover {
-   cursor: pointer;
-   transform: translateX(0.1rem);
+   display: grid;
+   grid-template-columns: 5% auto 30%;
+   /* transition: transform 0.1s; */
 }
 
-.habit p {
-   font-weight: bold;
-   font-size: 1.2rem;
-   margin: 0;
+/* Insert CSS for checkbox here*/
+
+.habit-content {
+   display: grid;
+   padding-left: 10px;
+   grid-template-columns: auto auto;
+   justify-content: left;
+   /* align-content: center; */
 }
 
-.habit span {
-   font-size: 0.9rem;
-}
-
-.habit-stats {
-   display: flex;
-   justify-content: space-between;
-   
+.streakImg {
+   width: 25%;
+   justify-self: left;
+   /* padding-left: 10px; */
+   margin-left: 10px;
 }
 
 .habit .time-left{
+   justify-self: center;
    padding: 0.4rem 1rem;
    font-size: 1.2rem;
    color: white;
@@ -39,14 +34,14 @@
    margin-right: 2rem;
 }
 
-.habit i {
-   /* position: absolute;
-   vertical-align: middle; */
-   right: 0;
-   padding: 0 1rem;
-   font-size: 2rem;
+.habit-check {
+   margin: 10px;
 }
 
-.habit i:hover{
-   cursor: pointer;
+.habit-content p {
+   font-size: 1.2rem;
+   margin: 0;
+}
+.habit-content span {
+   font-size: 0.8rem;
 }
