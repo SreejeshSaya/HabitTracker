@@ -36,6 +36,9 @@
             <div *ngFor="let h of history">
                 <div class="history">
                     Completed {{ h.completed }} on {{h.date}}
+                    <div>
+                        {{ h.dateTime }}
+                    </div>
                 </div>
             </div>
         </div>

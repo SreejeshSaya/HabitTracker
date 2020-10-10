@@ -16,7 +16,8 @@ import { HabitSmallComponent } from './habit/habit-small/habit-small.component';
 import { AddHabitComponent } from './add-habit/add-habit.component';
 import { HabitManageComponent } from './habit/habit-manage/habit-manage.component';
 import * as dateManager from './dateManager';
-import { ColorPickerComponent } from './color-picker/color-picker.component'
+import { ColorPickerComponent } from './color-picker/color-picker.component';
+import { UserDetailsComponent } from './user-details/user-details.component'
 
 @NgModule({
    declarations: [
@@ -30,6 +31,7 @@ import { ColorPickerComponent } from './color-picker/color-picker.component'
       HabitManageComponent,
       HabitFilter,
       ColorPickerComponent,
+      UserDetailsComponent,
    ],
    imports: [
       CommonModule,

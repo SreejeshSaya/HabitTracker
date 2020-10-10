@@ -1,24 +1,63 @@
 const User = require("../models/user")
 const Habit = require("../models/habit")
-
+const validator = require('validator')
 const bcrypt = require("bcrypt");
 // TODO Validation
 // TODO Error Handling
 
+// Username normal function
 exports.usernameValidation = async(req, res, next) => {
-    const user = await User.findOne({ username: req.body.username });
-    if(user)
-        res.send(false)
+    message = '';
+    charLimit = 25;
+    username = req.body.username
+    if(validator.isEmpty(username)) {
+        message = "Username Required"
+    }
+    else if(username.length > charLimit) {
+        message = "Username greater than {charLimit} characters!"
+
+    }
+    else if(validator.matches(username, '^[a-zA-Z0-9]*\_?[a-zA-Z0-9]+$')) {
+        const user = await User.findOne({ username: username });
+        if(user) {
+            // Middleware function or a normal function?
+            message = 'UserName Exists!'
+
+        }
+        else {
+            next();
+        }
+    }
+    if(message.length > 0)
+        res.status(401).send(message)
     else
-        res.send(true)
+        next()
+    // res.send(message)
 }
 
 exports.emailValidation = async(req, res, next) => {
-    const user = await User.findOne({ email: req.body.email });
-    if(user)
-        res.send(false)
-    else
-        res.send(true)
+    message = ''
+    emailID = req.body.email
+    if(validator.isEmpty(email)) {
+        message = "Field must not be left Empty!"
+        res.status(401)
+    }
+    else if(validator.isEmail(email)) {
+        const user = await User.findOne({ email: email });
+        if(user) {
+            message = 'An account already exists with this email ID'
+            res.status(401)
+        }
+        else {
+            message = 'Available'
+            res.status(200)
+        }
+    }
+    else {
+        message = "Email ID invalid"
+        res.status(401)
+    }
+    res.send(message)
 }
 
 exports.requireAuth = async (req,res,next)=>{
@@ -26,11 +65,11 @@ exports.requireAuth = async (req,res,next)=>{
         next()
     }
     else {
-        res.status(403).send("Require Authentication")
+        res.status(401).send("Require Authentication")
     }
 }
 
-exports.isLoggedIn =async (req,res,next)=>{
+exports.isLoggedIn = async (req,res,next)=>{
     res.setHeader('Content-Type', 'text/plain');
     if (req.session.userId){
         res.status(401)
@@ -47,8 +86,7 @@ exports.getUserDetails = async (req,res,next)=>{
     res.send({ username:user.name,email: user.email,userId:user._id })
 }
 
-
-exports.signup =  async (req,res,next)=>{
+exports.signup = async (req,res,next)=>{
     const username = req.body.username
     const password = req.body.password
     const email = req.body.email
@@ -63,7 +101,7 @@ exports.signup =  async (req,res,next)=>{
     res.send("Ok") 
 }
 
-exports.login =  async (req,res,next)=>{
+exports.login = async (req,res,next)=>{
     const email = req.body.email
     const password = req.body.password
     const user = await User.findOne({
@@ -76,11 +114,11 @@ exports.login =  async (req,res,next)=>{
             res.send("Ok")
         }
         else {
-            res.status(403).send("Invalid Password ")
+            res.status(401).send("Invalid Password")
         }
     }
     else{
-        res.status(403).send("Email Not Found")
+        res.status(401).send("Email Not Found")
     }
 }
 

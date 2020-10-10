@@ -5,7 +5,7 @@
             <p>{{habit.text}}</p>
             <span *ngIf="habit.streak">Current streak {{habit.streak}}</span>
         </div>
-        <img src="../../../assets/fire_1f525.png" alt="You're on a Streak!" class="streakImg" *ngIf="habit.streak"/>
+        <img src="../../../assets/habitStreak.png" alt="You're on a Streak!" class="streakImg" *ngIf="habit.streak >= 2"/>
     </div>
         <div class="time-left" [ngStyle]="{'background-color':habit.color}">{{habit.daysLeft}} Days left</div>
 </div>

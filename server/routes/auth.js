@@ -13,4 +13,4 @@ router.postAsync("/signup",authControllers.signup)
 router.postAsync("/login",authControllers.login)
 router.postAsync("/logout",authControllers.logout)
 
-module.exports =router
+module.exports = router

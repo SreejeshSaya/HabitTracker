@@ -4,6 +4,8 @@ const habitControllers = require("../controllers/habit")
 
 const router = Router()
 
+
+// requireAuth for all http methods. Just use router.use?
 router.postAsync("/add-habit",requireAuth,habitControllers.addHabit)
 router.postAsync("/update-habit",requireAuth,habitControllers.updateHabit)
 router.getAsync("/get-user-habits",requireAuth,habitControllers.getUserHabits)

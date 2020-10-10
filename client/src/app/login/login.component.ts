@@ -11,8 +11,10 @@ import { map } from 'rxjs/operators';
 })
 export class LoginComponent implements OnInit {
    email = '';
+   emailMessage = '';
    emailWarning = false;
    password = '';
+   passwordMessage = '';
    passwordWarning= false;
    isLoading = true;
    routeSub;
@@ -38,9 +40,11 @@ export class LoginComponent implements OnInit {
 
    onSubmit() {
       if(this.email === '') {
+         this.emailMessage = 'Email Field Required';
          this.emailWarning = true;
       }
       else if (this.password === '') {
+         this.passwordMessage = 'Password Field Required';
          this.passwordWarning = true;
       }
       else {
@@ -50,13 +54,25 @@ export class LoginComponent implements OnInit {
          this.authService.logIn(this.email, this.password).subscribe(
             (data) => {
                console.log(data);
-               if (data == 'Ok') {
+               if (data === 'Ok') {
                   console.log('login will redirect');
                   this.router.navigateByUrl('/');
+               }
+               else {
+                  // invalid login
+                  if(data === 'Invalid Password') {
+                     this.passwordMessage = 'Invalid Password';
+                     this.passwordWarning = true;
+                  }
+                  else if(data === 'Email Not Found') {
+                     this.emailMessage = 'Invalid email';
+                     this.emailWarning = true;
+                  }
                }
             },
 
             (err) => {
+               console.log('Loggin Error')
                console.log(err);
                alert(err);
             }
