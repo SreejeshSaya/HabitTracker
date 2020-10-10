@@ -1,1 +1,7 @@
-<p>user-details works!</p>
+<div *ngIf="(this.authService.isLoading$ | async) || (this.habitService.isLoading$ | async) ">
+    <h1>Loading</h1>
+</div>
+
+<div *ngIf="!(this.authService.isLoading$ | async) && !(this.habitService.isLoading$ | async) ">
+    <h1>User {{this.authService.userDetails.username}} </h1>
+</div>

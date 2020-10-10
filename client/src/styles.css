@@ -1,50 +1,52 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 * {
-    box-sizing: border-box;
-    font-family: 'Roboto',sans-serif;
+   box-sizing: border-box;
+   font-family: "Roboto", sans-serif;
 }
-body,html {
-    margin: 0;
-    padding: 0;
-    font-family: 'Roboto',sans-serif;
+body,
+html {
+   margin: 0;
+   padding: 0;
+   font-family: "Roboto", sans-serif;
 }
-
 
 .btn {
-    border: none;
-    background: none;
-    background-color: orange;
-    border-radius: 1rem;
-    padding: 0.5rem 1rem;
-    color: white;
-    font-weight: bold;
-    text-decoration: none;
-    font-size: 1rem;
+   border: none;
+   background: none;
+   background-color: orange;
+   border-radius: 1rem;
+   padding: 0.5rem 1rem;
+   color: white;
+   font-weight: bold;
+   text-decoration: none;
+   font-size: 1rem;
+   display: inline-block;
 }
+
 .btn:hover {
-    cursor: pointer;
+   cursor: pointer;
 }
 
 .container {
-    width: 50vw;
-    height: 100vh;
-    margin: 2rem auto;
-    display:flex;
-    align-items: center;
-    flex-direction: column;
+   width: 50vw;
+   height: 100vh;
+   margin: 2rem auto;
+   display: flex;
+   align-items: center;
+   flex-direction: column;
 }
 .input {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 1rem;
+   display: flex;
+   flex-direction: column;
+   margin-bottom: 1rem;
 }
 .input input {
-    height: 1.5rem;
+   height: 1.5rem;
 }
-.submit{
-    display: flex;
-    justify-content: space-between;
+.submit {
+   display: flex;
+   justify-content: space-between;
 }
 .form {
-    width: 23rem;
+   width: 23rem;
 }
