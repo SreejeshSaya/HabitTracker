@@ -14,7 +14,7 @@ export class HabitSmallComponent implements OnInit {
    }
 
    ngOnInit(): void {
-      this.style={'box-shadow': `-4px 0 ${this.habit.color},0 0px 2px rgba(128, 128, 128, 0.349)`}
+      this.style={'box-shadow': `-4px 0 ${this.habit.color},0 2px 20px rgba(128, 128, 128, 0.349)`} //not used
       console.log("style",this.style)
       console.log(this.habit.streak)
       console.log("small",this.habit.daysLeft)

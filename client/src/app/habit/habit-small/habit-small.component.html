@@ -1,11 +1,25 @@
-<div class="habit"> 
-    <input class="habit-check" type="checkbox" [checked]="habit.state!='PENDING'" (click)="complete.emit({ev:$event,index:habit.index})"/>
-    <div class = "habit-content" routerLink="/habits/{{habit.index}}">
-        <div class="habit-name">
-            <p>{{habit.text}}</p>
-            <span *ngIf="habit.streak">Current streak {{habit.streak}}</span>
-        </div>
-        <img src="../../../assets/habitStreak.png" alt="You're on a Streak!" class="streakImg" *ngIf="habit.streak >= 2"/>
-    </div>
-        <div class="time-left" [ngStyle]="{'background-color':habit.color}">{{habit.daysLeft}} Days left</div>
+<div class="habit">
+   <input
+      class="habit-check"
+      type="checkbox"
+      [checked]="habit.state != 'PENDING'"
+      (click)="complete.emit({ ev: $event, index: habit.index })"
+   />
+   <div class="habit-content">
+      <div class="habit-name">
+         <p routerLink="/habits/{{ habit.index }}">
+            {{ habit.text }}
+         </p>
+         <span *ngIf="habit.streak">Current streak {{ habit.streak }}</span>
+      </div>
+      <img
+         src="../../../assets/habitStreak.png"
+         alt="You're on a Streak!"
+         class="streakImg"
+         *ngIf="habit.streak >= 2"
+      />
+   </div>
+   <div class="time-left" [ngStyle]="{ 'background-color': habit.color }">
+      {{ habit.daysLeft }} Days left
+   </div>
 </div>
