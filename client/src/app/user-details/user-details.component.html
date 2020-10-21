@@ -13,8 +13,8 @@
             
         </div>
         <div class="profile-actions">
-            <button class="btn edit-profile">Edit Profile</button>
-            <button class="btn btn-red">Logout</button>
+            <button class="btn edit-profile" [routerLink]="" >Edit Profile</button>
+            <button class="btn btn-red" (click)="this.authService.logOut()">Logout</button>
         </div>
     </div>
     <div class="block">
