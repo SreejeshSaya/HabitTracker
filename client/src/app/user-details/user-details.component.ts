@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { filter, map, switchMap } from 'rxjs/operators';
+import { threadId } from 'worker_threads';
 import { AuthService } from '../auth.service';
 import { HabitService } from '../habit.service';
 
@@ -14,6 +15,8 @@ export class UserDetailsComponent implements OnInit {
    authSub;
    bestStreak=0;
    habitScore=0;
+   dateJoined
+   dateJoinedYear;
    constructor(public authService: AuthService, private router: Router, public habitService: HabitService, route: ActivatedRoute) {
       this.routeSub = route.params.subscribe(val => {
          if (!this.authService.userDetails) {
@@ -52,7 +55,8 @@ export class UserDetailsComponent implements OnInit {
          }
          this.habitScore+=h.streak;//needs improvement
       }
-
+      this.dateJoined = new Date(this.authService.userDetails.createdAt)
+      this.dateJoinedYear = this.dateJoined.getFullYear()
    }
    ngOnDestroy(){
       this.authSub.unsubscribe();

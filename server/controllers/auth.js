@@ -83,7 +83,7 @@ exports.isLoggedIn = async (req,res,next)=>{
 
 exports.getUserDetails = async (req,res,next)=>{
     const user = await User.findById(req.session.userId)
-    res.send({ username:user.username,email: user.email,userId:user._id })
+    res.send({ username:user.username,email: user.email,userId:user._id,createdAt:user.createdAt })
 }
 
 exports.signup = async (req,res,next)=>{
