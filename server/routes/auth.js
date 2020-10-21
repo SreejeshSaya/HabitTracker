@@ -9,6 +9,7 @@ const authControllers = require("../controllers/auth")
 
 router.getAsync("/is-logged-in",authControllers.isLoggedIn)
 router.getAsync("/get-user-details",authControllers.requireAuth,authControllers.getUserDetails)
+router.postAsync("/update-user-details",authControllers.requireAuth,authControllers.updateUserDetails)
 router.postAsync("/signup",authControllers.signup)
 router.postAsync("/login",authControllers.login)
 router.postAsync("/logout",authControllers.logout)

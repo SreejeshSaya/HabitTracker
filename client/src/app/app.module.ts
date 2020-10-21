@@ -17,7 +17,8 @@ import { AddHabitComponent } from './add-habit/add-habit.component';
 import { HabitManageComponent } from './habit/habit-manage/habit-manage.component';
 import * as dateManager from './dateManager';
 import { ColorPickerComponent } from './color-picker/color-picker.component';
-import { UserDetailsComponent } from './user-details/user-details.component'
+import { UserDetailsComponent } from './user-details/user-details.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component'
 
 @NgModule({
    declarations: [
@@ -32,6 +33,7 @@ import { UserDetailsComponent } from './user-details/user-details.component'
       HabitFilter,
       ColorPickerComponent,
       UserDetailsComponent,
+      EditProfileComponent,
    ],
    imports: [
       CommonModule,

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of, throwError, Subject, BehaviorSubject } from 'rxjs';
-import { catchError, retry, switchMap, tap } from 'rxjs/operators';
+import { catchError, retry, switchMap, tap,map } from 'rxjs/operators';
 
 
 
@@ -27,7 +27,20 @@ export class AuthService {
          this.isLoading$.next(false);
       });
    }
-
+   updateUserDetails(username){
+      console.log("reeevccvv",username)
+      return this.http.post('/api/auth/update-user-details',{
+         username
+      }).pipe(
+         map(d=>{
+            this.userDetails = d
+            return "Success"
+         }),
+         catchError(d=>{
+            return d.error
+         })
+      )
+   }
    signUp(username, password, email) {
       return this.http.post(
          '/api/auth/signup',

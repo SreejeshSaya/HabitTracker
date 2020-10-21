@@ -1,0 +1,41 @@
+
+
+<div *ngIf="(this.authService.isLoading$ | async) || (this.habitService.isLoading$ | async) ">
+    <h1>Loading</h1>
+</div>
+
+<div *ngIf="!(this.authService.isLoading$ | async) && !(this.habitService.isLoading$ | async) ">
+    <h1 style="text-align: center"  >Edit Profile</h1>
+    <div class="block">
+        <div class="form">
+            <h2>User Details</h2>
+            <div class="input">
+               <label for="">Username</label>
+               <input [(ngModel)]="username" type="text" value="" />
+            </div>
+            <div class="submit">
+               <button (click)="this.updateDetails()" class="btn">Update Details</button>
+            </div>
+         </div>
+    </div>
+    <div class="block">
+        <div class="form">
+            <h2>Password</h2>
+            <div class="input">
+               <label for="">Old Password</label>
+               <input [(ngModel)]="oldPassword" type="password" value="" />
+            </div>
+            <div class="input">
+                <label for="">New Password</label>
+                <input [(ngModel)]="newPassword" type="password" value="" />
+             </div>
+             <div class="input">
+                <label for="">Repeat New Password</label>
+                <input [(ngModel)]="newPasswordC" type="password" value="" />
+             </div>
+            <div class="submit">
+               <button (click)="this.updatePassword()" class="btn btn-red">Update Password</button>
+            </div>
+         </div>
+    </div>
+</div>

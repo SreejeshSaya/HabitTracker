@@ -1,11 +1,3 @@
-.block {
-
-   padding: 1.5rem;
-   border-radius: 0.5rem;
-   box-shadow: 0 0 2px rgba(17, 17, 17, 0.24);
-   margin: 2rem;
-}
-
 .profile{
    display: flex;
    margin-bottom: 1rem;
