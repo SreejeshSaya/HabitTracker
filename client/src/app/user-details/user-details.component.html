@@ -3,5 +3,25 @@
 </div>
 
 <div *ngIf="!(this.authService.isLoading$ | async) && !(this.habitService.isLoading$ | async) ">
-    <h1>User {{this.authService.userDetails.username}} </h1>
+    <div class="block">
+        <div class="profile">
+            <img src="https://www.eurogeosurveys.org/wp-content/uploads/2014/02/default_profile_pic.jpg" alt="default">
+            <div class="user-details">
+                <h2>{{ this.authService.userDetails.username }}</h2>
+                <h4>Joined {{2014}} </h4>
+            </div>
+            
+        </div>
+        <div class="profile-actions">
+            <button class="btn edit-profile">Edit Profile</button>
+            <button class="btn btn-red">Logout</button>
+        </div>
+    </div>
+    <div class="block">
+        <h1>Stats</h1>
+        <div class="stats">
+           <p>Best Streak: {{this.bestStreak}}</p>
+            <p>Habit Score: {{this.habitScore}}</p>
+        </div>
+    </div>
 </div>

@@ -12,6 +12,8 @@ import { HabitService } from '../habit.service';
 export class UserDetailsComponent implements OnInit {
    routeSub;
    authSub;
+   bestStreak=0;
+   habitScore=0;
    constructor(public authService: AuthService, private router: Router, public habitService: HabitService, route: ActivatedRoute) {
       this.routeSub = route.params.subscribe(val => {
          if (!this.authService.userDetails) {
@@ -37,12 +39,21 @@ export class UserDetailsComponent implements OnInit {
          if (!l && this.habitService.userHabits) {
             // this.userHabits = this.habitService.userHabits
             console.log(this.habitService.userHabits)
+            this.updateStats()
          } else if (!l) {
             this.router.navigateByUrl('/');
          }
       });
    }
-   
+   updateStats(){
+      for (let h of this.habitService.userHabits){
+         if (h.streak>this.bestStreak){
+            this.bestStreak = h.streak
+         }
+         this.habitScore+=h.streak;//needs improvement
+      }
+
+   }
    ngOnDestroy(){
       this.authSub.unsubscribe();
       this.routeSub.unsubscribe();
