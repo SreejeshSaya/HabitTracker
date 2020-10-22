@@ -83,7 +83,24 @@ exports.isLoggedIn = async (req,res,next)=>{
 
 exports.getUserDetails = async (req,res,next)=>{
     const user = await User.findById(req.session.userId)
-    res.send({ username:user.name,email: user.email,userId:user._id })
+    res.send({ username:user.username,email: user.email,userId:user._id,createdAt:user.createdAt })
+}
+
+exports.updateUserDetails = async (req,res,next)=>{
+    const user = await User.findById(req.session.userId)
+    if (!user){
+        return {
+            error: 'User not found'
+        }
+    }
+    else {
+        console.log("recvvvv",req.body.username)
+        if (req.body.username){
+            user.username = req.body.username
+        }
+    }
+    await user.save()
+    res.send({ username:user.username,email: user.email,userId:user._id,createdAt:user.createdAt })
 }
 
 exports.signup = async (req,res,next)=>{

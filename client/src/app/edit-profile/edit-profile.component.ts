@@ -5,17 +5,17 @@ import { AuthService } from '../auth.service';
 import { HabitService } from '../habit.service';
 
 @Component({
-  selector: 'app-user-details',
-  templateUrl: './user-details.component.html',
-  styleUrls: ['./user-details.component.css']
+  selector: 'app-edit-profile',
+  templateUrl: './edit-profile.component.html',
+  styleUrls: ['./edit-profile.component.css']
 })
-export class UserDetailsComponent implements OnInit {
+export class EditProfileComponent implements OnInit {
    routeSub;
    authSub;
-   bestStreak=0;
-   habitScore=0;
-   dateJoined
-   dateJoinedYear;
+   username;
+   oldPassword;
+   newPassword;
+   newPasswordC;
    constructor(public authService: AuthService, private router: Router, public habitService: HabitService, route: ActivatedRoute) {
       this.routeSub = route.params.subscribe(val => {
          if (!this.authService.userDetails) {
@@ -41,22 +41,30 @@ export class UserDetailsComponent implements OnInit {
          if (!l && this.habitService.userHabits) {
             // this.userHabits = this.habitService.userHabits
             console.log(this.habitService.userHabits)
-            this.updateStats()
+            this.username = this.authService.userDetails.username
          } else if (!l) {
             this.router.navigateByUrl('/');
          }
       });
    }
-   updateStats(){
-      for (let h of this.habitService.userHabits){
-         if (h.streak>this.bestStreak){
-            this.bestStreak = h.streak
+
+   updateDetails(){
+      this.authService.updateUserDetails(this.username)
+      .subscribe(res=>{
+         if (res=='Success'){
+            console.log("Update success")
+            this.router.navigateByUrl("/")
          }
-         this.habitScore+=h.streak;//needs improvement
-      }
-      this.dateJoined = new Date(this.authService.userDetails.createdAt)
-      this.dateJoinedYear = this.dateJoined.getFullYear()
+         else {
+            console.log("Update error: ",res)
+         }
+      })
    }
+
+   updatePassword(){
+
+   }
+
    ngOnDestroy(){
       this.authSub.unsubscribe();
       this.routeSub.unsubscribe();
