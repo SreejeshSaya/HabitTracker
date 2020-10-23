@@ -33,6 +33,7 @@ exports.usernameValidation = async (req, res, next) => {
 };
 
 exports.emailValidation = async (req, res, next) => {
+   // throw new Error("Test Sign up Error");
    message = "";
    emailId = req.body.email;
    if (validator.isEmpty(emailId)) {
@@ -66,14 +67,6 @@ exports.loginValidation = async (req, res, next) => {
    } else if (validator.isEmail(emailId)) {
       console.log("Email Valid");
       next();
-      // const user = await User.findOne({ email: email })
-      // if (user) {
-      // 	message = "An account already exists with this email ID"
-      // 	res.status(401)
-      // } else {
-      // 	message = "Available"
-      // 	res.status(200)
-      // }
    } else {
       message = "Email ID invalid";
       console.log(message);
@@ -160,7 +153,6 @@ exports.login = async (req, res) => {
       email: email,
    });
    if (user) {
-      // console.log(user);
       console.log(`${user.username} exists`)
       if (await bcrypt.compare(password, user.password)) {
          console.log('Password Valid')

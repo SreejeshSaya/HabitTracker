@@ -56,7 +56,10 @@ if (process.env.NODE_ENV == "production") {
       });
    });
 }
-// app.use()
+
+app.use((err, req, res, next) => {
+	res.send(err.message);
+})
 
 //Connect to database and start server
 mongoose

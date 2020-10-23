@@ -1,5 +1,5 @@
 const { Router } = require("@awaitjs/express")
-const {uploadHandler} = require("../controllers/firebase-sync")
+const { uploadHandler } = require("../controllers/firebase-sync")
 
 const router = Router()
 const authControllers = require("../controllers/auth")
