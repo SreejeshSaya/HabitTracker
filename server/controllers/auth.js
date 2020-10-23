@@ -23,7 +23,10 @@ exports.usernameValidation = async (req, res, next) => {
    } else {
       message = "Username Invalid";
    }
-   res.send(message);
+   if(message) {
+      res.status(401);
+      res.send(message);
+   }
    // if (message.length > 0) res.status(401).send(message)
    // else next()
    // res.send(message)
@@ -37,18 +40,21 @@ exports.emailValidation = async (req, res, next) => {
    } else if (validator.isEmail(emailId)) {
       console.log("Email Valid");
       // next()
-      const user = await User.findOne({ email: email });
+      const user = await User.findOne({ email: emailId });
       if (user) {
-         message = "An account already exists with this email ID";
-         res.status(401);
+         // console.log(user)
+         message = `An account already exists with this email ${emailId} `;
+         console.log(message);
       } else {
          next();
       }
    } else {
       message = "Email ID invalid";
    }
-   res.status(401);
-   res.send(message);
+   if(message) {
+      res.status(401);
+      res.send(message);
+   }
 };
 
 exports.loginValidation = async (req, res, next) => {
@@ -72,8 +78,10 @@ exports.loginValidation = async (req, res, next) => {
       message = "Email ID invalid";
       console.log(message);
    }
-   res.status(401);
-   res.send(message);
+   if(message) {
+      res.status(401);
+      res.send(message);
+   }
 };
 
 exports.requireAuth = async (req, res, next) => {
@@ -152,15 +160,20 @@ exports.login = async (req, res) => {
       email: email,
    });
    if (user) {
-      console.log(user);
+      // console.log(user);
+      console.log(`${user.username} exists`)
       if (await bcrypt.compare(password, user.password)) {
+         console.log('Password Valid')
          req.session.userId = user._id;
+         res.status(200);
          res.send("Ok");
       } else {
          res.status(401).send("Invalid Password");
       }
    } else {
-      res.status(401).send("Email Not Found");
+      console.log("User does not exist")
+      res.status(401)
+      res.send("Email Not Found");
    }
 };
 
