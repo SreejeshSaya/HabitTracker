@@ -4,7 +4,7 @@ import { Observable, throwError, of, BehaviorSubject } from 'rxjs';
 import { catchError, retry, switchMap, tap,map,filter } from 'rxjs/operators';
 import { AuthService } from './auth.service';
 
-import  {removeTime,habitEnded,getStreak} from './dateManager'
+import  {removeTime,habitEnded,getStreak,getMaxStreak} from './dateManager'
 
 @Injectable({
    providedIn: 'root',
@@ -43,6 +43,7 @@ export class HabitService {
          return {...d,date:new Date(d.date)}
       })
       habit.streak = getStreak(habit.history)
+      habit.maxStreak = getMaxStreak(habit.history)
       habit.daysLeft = Math.floor((removeTime(habit.endDate).valueOf() - Date.now().valueOf())/(1000*60*60*24))+1
       if (habitEnded(habit.endDate)){
          habit.state="ENDED"
