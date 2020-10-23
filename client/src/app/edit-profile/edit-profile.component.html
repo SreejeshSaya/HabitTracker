@@ -21,17 +21,20 @@
    <div class="block">
       <div class="form">
          <h2>Password</h2>
+         <div class="submit-status" [ngStyle]="passwordStatusStyle" >
+            {{this.passwordStatusText}}
+         </div>
          <div class="input">
             <label for="">Old Password</label>
-            <input [(ngModel)]="oldPassword" type="password" value="" />
+            <input  [(ngModel)]="oldPassword" type="password" value="" />
          </div>
          <div class="input">
             <label for="">New Password</label>
-            <input [(ngModel)]="newPassword" type="password" value="" />
+            <input  [(ngModel)]="newPassword" type="password" value="" />
          </div>
          <div class="input">
             <label for="">Repeat New Password</label>
-            <input [(ngModel)]="newPasswordC" type="password" value="" />
+            <input  [(ngModel)]="newPasswordC" type="password" value="" />
          </div>
          <div class="submit">
             <button (click)="this.updatePassword()" class="btn btn-red">Update Password</button>

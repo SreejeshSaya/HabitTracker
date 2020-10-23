@@ -58,7 +58,9 @@ if (process.env.NODE_ENV == "production") {
 }
 
 app.use((err, req, res, next) => {
-	res.send(err.message);
+	res.status(503).send({
+        error:err
+    });
 })
 
 //Connect to database and start server
