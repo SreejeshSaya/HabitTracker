@@ -9,31 +9,20 @@ export function removeTime(date:Date):Date{
 }
 
 export function getStreak(history){
+   console.log("check history",history)
    let streak = 0;
-   let prev;
-   let maxStreak=0;
-   for (let i=0;i<history.length;i++){
+   let prev = removeTime(new Date()).valueOf()
+   for (let i=history.length-1;i>=0;i--){
       const h  = removeTime(history[i].date).valueOf()
-      if (!prev){
-         streak+=1;
+      if (h!=prev){
+         return streak
       }
       else {
-         const delta = h - prev;
-         if ( delta<=(1000*60*60*24)){
-            streak+=1
-            
-         }
-         else {
-            streak=1;
-           
-         }
+         prev = prev  - 1000*60*60*24
+         streak+=1
       }
-      if (streak>maxStreak){
-         maxStreak = streak
-      }
-      prev = h
    }
-   return maxStreak;
+   return streak;
 }
 
 export function datesEqual(d1,d2){
