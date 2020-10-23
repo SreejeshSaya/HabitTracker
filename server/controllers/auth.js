@@ -33,7 +33,6 @@ exports.usernameValidation = async (req, res, next) => {
 };
 
 exports.emailValidation = async (req, res, next) => {
-   // throw new Error("Test Sign up Error");
    message = "";
    emailId = req.body.email;
    if (validator.isEmpty(emailId)) {
