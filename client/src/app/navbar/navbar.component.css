@@ -6,7 +6,8 @@ nav {
    width: 100%;
    padding: 0.8rem 0.5rem;
    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.363);
-   position: relative;
+   position: sticky;
+   top: 0;
 }
 
 nav .logo {
@@ -32,8 +33,12 @@ nav .btn:last-child {
    margin-right: 1rem;
    font-weight: bold;
    text-decoration: none;
+   display: flex;
+   align-items: center; 
 }
-
+.username span {
+   margin-left: 0.3rem;
+}
 .username:hover {
    cursor: pointer;
 }

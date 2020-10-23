@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { filter, map, switchMap } from 'rxjs/operators';
 import { AuthService } from '../auth.service';
@@ -16,6 +16,7 @@ export class EditProfileComponent implements OnInit {
    oldPassword;
    newPassword;
    newPasswordC;
+   profileImageUrl;
    constructor(public authService: AuthService, private router: Router, public habitService: HabitService, route: ActivatedRoute) {
       this.routeSub = route.params.subscribe(val => {
          if (!this.authService.userDetails) {
@@ -42,6 +43,7 @@ export class EditProfileComponent implements OnInit {
             // this.userHabits = this.habitService.userHabits
             console.log(this.habitService.userHabits)
             this.username = this.authService.userDetails.username
+            this.profileImageUrl = this.authService.userDetails.profileImageUrl
          } else if (!l) {
             this.router.navigateByUrl('/');
          }
@@ -49,7 +51,7 @@ export class EditProfileComponent implements OnInit {
    }
 
    updateDetails(){
-      this.authService.updateUserDetails(this.username)
+      this.authService.updateUserDetails(this.username,this.profileImageUrl)
       .subscribe(res=>{
          if (res=='Success'){
             console.log("Update success")
@@ -68,6 +70,10 @@ export class EditProfileComponent implements OnInit {
    ngOnDestroy(){
       this.authSub.unsubscribe();
       this.routeSub.unsubscribe();
+   }
+
+   onUploadImage(url: string){
+      this.profileImageUrl = url 
    }
 
 }

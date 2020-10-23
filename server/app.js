@@ -16,6 +16,9 @@ const store = new MongoDBStore({
 const authRoutes = require("./routes/auth");
 const habitRoutes = require("./routes/habit");
 
+//Additional Middleware
+const {uploadParser} = require("./middleware/upload-parser")
+
 const app = express();
 
 app.use(
@@ -28,11 +31,19 @@ app.use(
       cookie: { maxAge: 14 * 24 * 60 * 60 * 1000 }, // 2 weeks
    })
 );
+
+//Content parsers
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(uploadParser)
+
+
+app.use((req,res,next)=>{
+   console.log(req.originalUrl,req.headers,req.body)
+   next()
+})
 
 //Routes
-
 app.use("/api/auth", authRoutes);
 app.use("/api", habitRoutes);
 

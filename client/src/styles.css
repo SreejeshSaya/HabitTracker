@@ -29,7 +29,6 @@ html {
 
 .container {
    width: 50vw;
-   height: 100vh;
    margin: 2rem auto;
    display: flex;
    align-items: center;
@@ -62,4 +61,23 @@ html {
 .btn-red {
    background-color: red;
 }
+
+.profile-photo {
+   width: 10rem;
+   height: 10rem;
+   background-size: cover;
+   background-position: center;
+   background-repeat: no-repeat;
+}
+
+.profile-photo-small {
+   width: 2rem;
+   height: 2rem;
+   background-size: cover;
+   background-position: center;
+   background-repeat: no-repeat;
+   border-radius: 50%;
+   display: inline-block;
+}
+
 

@@ -1,0 +1,7 @@
+<div class="group profile-upload">
+   <div class="profile-photo" [ngStyle]="{'background-image':'url('+imageUrl+')'}" >
+
+   </div>
+   <button (click)="this.input.nativeElement.click()" class="btn btn-choose">Choose New Image</button>
+   <input (change)="fileSelect($event)" type="file" value="" #file [ngStyle]="{display:'none'}" />
+</div>

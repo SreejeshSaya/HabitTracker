@@ -18,7 +18,8 @@ import { HabitManageComponent } from './habit/habit-manage/habit-manage.componen
 import * as dateManager from './dateManager';
 import { ColorPickerComponent } from './color-picker/color-picker.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
-import { EditProfileComponent } from './edit-profile/edit-profile.component'
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { ProfileUploadComponent } from './profile-upload/profile-upload.component'
 
 @NgModule({
    declarations: [
@@ -34,6 +35,7 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component'
       ColorPickerComponent,
       UserDetailsComponent,
       EditProfileComponent,
+      ProfileUploadComponent,
    ],
    imports: [
       CommonModule,

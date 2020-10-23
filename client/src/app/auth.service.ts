@@ -27,10 +27,10 @@ export class AuthService {
          this.isLoading$.next(false);
       });
    }
-   updateUserDetails(username){
+   updateUserDetails(username,profileImageUrl){
       console.log("reeevccvv",username)
       return this.http.post('/api/auth/update-user-details',{
-         username
+         username,profileImageUrl
       }).pipe(
          map(d=>{
             this.userDetails = d
@@ -78,5 +78,11 @@ export class AuthService {
             this.isLoading$.next(false);
          });
       }
+   }
+
+   uploadImage(file){
+      const data =  new FormData()
+      data.append("file",file)
+      return this.http.post('/api/auth/upload-image',data)
    }
 }

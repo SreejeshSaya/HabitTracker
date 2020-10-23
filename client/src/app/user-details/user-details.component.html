@@ -1,27 +1,30 @@
 <div *ngIf="(this.authService.isLoading$ | async) || (this.habitService.isLoading$ | async) ">
-    <h1>Loading</h1>
+   <h1>Loading</h1>
 </div>
 
 <div *ngIf="!(this.authService.isLoading$ | async) && !(this.habitService.isLoading$ | async) ">
-    <div class="block">
-        <div class="profile">
-            <img src="https://www.eurogeosurveys.org/wp-content/uploads/2014/02/default_profile_pic.jpg" alt="default">
-            <div class="user-details">
-                <h2>{{ this.authService.userDetails.username }}</h2>
-                <h4>Joined {{this.dateJoinedYear}} </h4>
-            </div>
-            
-        </div>
-        <div class="profile-actions">
-            <button class="btn edit-profile" routerLink="/edit" >Edit Profile</button>
-            <button class="btn btn-red" (click)="this.authService.logOut()">Logout</button>
-        </div>
-    </div>
-    <div class="block">
-        <h1>Stats</h1>
-        <div class="stats">
-           <p>Best Streak: {{this.bestStreak}}</p>
-            <p>Habit Score: {{this.habitScore}}</p>
-        </div>
-    </div>
+   <div class="block">
+      <div class="profile">
+         <div class="profile-photo"
+            [ngStyle]="{'background-image':'url('+this.authService.userDetails.profileImageUrl+')'}">
+
+         </div>
+         <div class="user-details">
+            <h2>{{ this.authService.userDetails.username }}</h2>
+            <h4>Joined {{this.dateJoinedYear}} </h4>
+         </div>
+
+      </div>
+      <div class="profile-actions">
+         <button class="btn edit-profile" routerLink="/edit">Edit Profile</button>
+         <button class="btn btn-red" (click)="this.authService.logOut()">Logout</button>
+      </div>
+   </div>
+   <div class="block">
+      <h1>Stats</h1>
+      <div class="stats">
+         <p>Best Streak: {{this.bestStreak}}</p>
+         <p>Habit Score: {{this.habitScore}}</p>
+      </div>
+   </div>
 </div>

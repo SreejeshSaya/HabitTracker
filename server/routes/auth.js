@@ -1,4 +1,5 @@
 const { Router } = require("@awaitjs/express")
+const {uploadHandler} = require("../controllers/firebase-sync")
 
 const router = Router()
 const authControllers = require("../controllers/auth")
@@ -35,5 +36,7 @@ router.postAsync(
 )
 
 router.postAsync("/logout", authControllers.logout)
+
+router.postAsync("/upload-image",uploadHandler)
 
 module.exports = router
