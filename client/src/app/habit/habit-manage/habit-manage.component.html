@@ -3,7 +3,7 @@
 </div>
 
 <div class="habit-large" *ngIf="habit" >
-    <h1 [ngStyle]="{'border-top':'0.2rem solid '+selectedColor,'padding-top':'0.5rem'   }" >Manage Habit</h1>
+    <h1 [ngStyle]="{'border-top':'0.2rem solid '+selectedColor,'padding-top':'0.5rem'}">Manage Habit</h1>
     <div class="habit-details">
         <div class="input">
             <label for="">Name</label>
@@ -26,8 +26,9 @@
             <button  (click)="deleteHabit(habit.index)" class="btn btn-red">Remove Habit</button>
         </div>
     </div>
+</div>
 
-    <div class="habit-history">
+    <!-- <div class="habit-history">
         <h1>History</h1>
         <div *ngIf="habit.history.length==0" >
             <h2>No History</h2>
@@ -44,8 +45,11 @@
         </div>
         
     </div>
-    
+</div> -->
+
+<div class="streak-history" >
+    <!-- <div *ngFor="let streakMonth of histStreak;">
+        <app-streak-calendar [monthlyStreak]="streakMonth"></app-streak-calendar>
+    </div> -->
+    <app-streak-calendar [monthlyStreak]="message"></app-streak-calendar>
 </div>
-
-
-

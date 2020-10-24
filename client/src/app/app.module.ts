@@ -19,7 +19,8 @@ import * as dateManager from './dateManager';
 import { ColorPickerComponent } from './color-picker/color-picker.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
-import { ProfileUploadComponent } from './profile-upload/profile-upload.component'
+import { ProfileUploadComponent } from './profile-upload/profile-upload.component';
+import { StreakCalendarComponent } from './streak-calendar/streak-calendar.component'
 
 @NgModule({
    declarations: [
@@ -36,6 +37,7 @@ import { ProfileUploadComponent } from './profile-upload/profile-upload.componen
       UserDetailsComponent,
       EditProfileComponent,
       ProfileUploadComponent,
+      StreakCalendarComponent,
    ],
    imports: [
       CommonModule,

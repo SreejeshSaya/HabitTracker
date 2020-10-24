@@ -28,9 +28,9 @@ export class HabitService {
 
    parseUserHabits(){
       this.userHabits.forEach((habit,index)=>{
-         console.log("fffff",habit)
+         // console.log("fffff",habit)
          this.populateHabit(habit,index)
-         console.log("fffff",habit)
+         // console.log("fffff",habit)
       })
    }
 
@@ -39,7 +39,7 @@ export class HabitService {
       habit.createdAt = new Date(habit.createdAt)
       habit.endDate = new Date(habit.endDate)
       habit.history = habit.history.map((d)=>{
-         console.log(d)
+         // console.log(d)
          return {...d,date:new Date(d.date)}
       })
       habit.streak = getStreak(habit.history)
@@ -52,7 +52,7 @@ export class HabitService {
       }
       else{
          const lastDate = habit.history[habit.history.length-1].date
-         console.log(habit,lastDate)
+         // console.log(habit,lastDate)
          if (removeTime(lastDate)>=removeTime(new Date()) ){
             habit.state= "COMPLETED"
          }

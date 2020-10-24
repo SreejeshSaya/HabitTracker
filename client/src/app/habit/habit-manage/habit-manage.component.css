@@ -21,3 +21,10 @@
    margin-top: 2rem;
 }
 
+.streak-history {
+   margin-left: 20%;
+   margin-right: 20%;
+   display: grid;
+   grid-template-columns: auto auto auto;
+   justify-items: center;
+}

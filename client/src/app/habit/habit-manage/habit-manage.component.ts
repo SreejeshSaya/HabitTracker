@@ -2,9 +2,10 @@ import { Component, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/auth.service';
 import { HabitService } from 'src/app/habit.service';
+import { StreakCalendarComponent } from 'src/app/streak-calendar/streak-calendar.component';
 import { concatMap, tap, map, filter, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { getDateString,getHistory } from 'src/app/dateManager'
+import { getDateString,getHistory, removeTime } from 'src/app/dateManager'
 import {colors} from 'src/app/colors'
 
 @Component({
@@ -22,6 +23,8 @@ export class HabitManageComponent implements OnInit {
    endDate;
    selectedColor;
    colors;
+   histStreak = [];
+   message = "test";
    constructor(
       public router: Router,
       public route: ActivatedRoute,
@@ -57,6 +60,7 @@ export class HabitManageComponent implements OnInit {
             this.endDate = getDateString(this.habit.endDate)
             this.history = getHistory(this.habit.createdAt,this.habit.history)
             this.selectedColor = this.habit.color
+            this.createStreakCalendar();
          } else if (!l) {
             this.router.navigateByUrl('/');
          }
@@ -68,6 +72,39 @@ export class HabitManageComponent implements OnInit {
       .subscribe(d=>{
          this.router.navigateByUrl("/")
       })
+   }
+
+   createStreakCalendar() {
+      let monthStreak = [];
+      const l = this.history.length-1;
+      // console.log(history);
+      const d = removeTime(new Date());
+      let month = d.getUTCMonth();
+      let j=1;
+      let k 
+      while(j<=3) {
+         for(let i=l-1; i>=0 && i>=(l-(32*j)); i--) {
+            if(this.history[i].date.getUTCMonth() === month) {
+               monthStreak.push(this.history[i])
+               // console.log(this.history[i].date)
+            }
+            else {
+               break;
+            }
+         }
+         // console.log("MonthStreak" + monthStreak.length);
+         // monthStreak.push("Bleh")
+         this.histStreak.push({month: month, monthStreak: monthStreak});
+         monthStreak = [];
+         j++;
+         // console.log("Month" + month);
+         month = new Date(d.setMonth(month-1)).getMonth();        
+      }
+
+      // this.histStreak.forEach((streak) => {
+      //    console.log("Month" + streak.month)
+      //    console.log("monthStreak" + streak.monthStreak)
+      // })
    }
 
    ngOnDestroy() {

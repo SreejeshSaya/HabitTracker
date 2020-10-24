@@ -9,7 +9,7 @@ export function removeTime(date:Date):Date{
 }
 
 export function getStreak(history){
-   console.log("check history",history)
+   // console.log("check history",history)
    let streak = 0;
    let prev = removeTime(new Date()).valueOf()
    for (let i=history.length-1;i>=0;i--){
@@ -60,6 +60,6 @@ export function getHistory(startDate,history){
       }
       curr+=1000*60*60*24
    }
-   console.log(timeRange)
+   // console.log(timeRange)
    return timeRange
 }

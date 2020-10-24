@@ -1,0 +1,57 @@
+<table class="calendar">
+    <caption class="calendar-banner">
+        <h1>{{ streak.month }}</h1>
+    </caption>
+    <thead>
+        <!-- <tr>
+            <th class="calendar-day"> Sun </th>
+            <th class="calendar-day"> Mon </th>
+            <th class="calendar-day"> Tue </th>
+            <th class="calendar-day"> Wed </th>
+            <th class="calendar-day"> Thu </th>
+            <th class="calendar-day"> Fri </th>
+            <th class="calendar-day"> Sat </th>
+        </tr> -->
+    </thead>
+    <tbody>
+        <tr>
+            <td class="calendar-cell">1</td>
+            <td class="calendar-cell">2</td>
+            <td class="calendar-cell">3</td>
+            <td class="calendar-cell">4</td>
+            <td class="calendar-cell">5</td>
+            <td class="calendar-cell">6</td>
+            <td class="calendar-cell">7</td>
+        </tr>
+        <tr>
+            <td class="calendar-cell">8</td>
+            <td class="calendar-cell">9</td>
+            <td class="calendar-cell">10</td>
+            <td class="calendar-cell">11</td>
+            <td class="calendar-cell">12</td>
+            <td class="calendar-cell">13</td>
+            <td class="calendar-cell">14</td>
+        </tr>
+        <tr>
+            <td class="calendar-cell">15</td>
+            <td class="calendar-cell">16</td>
+            <td class="calendar-cell">17</td>
+            <td class="calendar-cell">18</td>
+            <td class="calendar-cell">19</td>
+            <td class="calendar-cell">20</td>
+            <td class="calendar-cell">21</td>
+        </tr>
+        <tr>
+            <td class="calendar-cell">22</td>
+            <td class="calendar-cell">23</td>
+            <td class="calendar-cell">24</td>
+            <td class="calendar-cell">25</td>
+            <td class="calendar-cell">26</td>
+            <td class="calendar-cell">27</td>
+            <td class="calendar-cell">28</td>
+        </tr>
+        <tr>
+            <td *ngFor="let day of nDaysLeft" class="calendar-cell"> {{ day }} </td>
+        </tr>
+    </tbody>
+</table>
