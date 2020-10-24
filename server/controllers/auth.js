@@ -23,7 +23,7 @@ exports.usernameValidation = async (req, res, next) => {
    } else {
       message = "Username Invalid";
    }
-   if(message) {
+   if (message) {
       res.status(401);
       res.send(message);
    }
@@ -51,7 +51,7 @@ exports.emailValidation = async (req, res, next) => {
    } else {
       message = "Email ID invalid";
    }
-   if(message) {
+   if (message) {
       res.status(401);
       res.send(message);
    }
@@ -70,7 +70,7 @@ exports.loginValidation = async (req, res, next) => {
       message = "Email ID invalid";
       console.log(message);
    }
-   if(message) {
+   if (message) {
       res.status(401);
       res.send(message);
    }
@@ -104,6 +104,30 @@ exports.getUserDetails = async (req, res, next) => {
    });
 };
 
+exports.updatePassword = async (req, res, next) => {
+   const oldPassword = req.body.oldPassword;
+   const newPassword = req.body.newPassword;
+   if (!newPassword || !oldPassword) {
+      return res.status(503).send({ error: "Malformed request" });
+   }
+   const user = await User.findById(req.session.userId);
+   if (!user) {
+      return res.status(503).send({
+         error: "User not found",
+      });
+   }
+   if (!(await bcrypt.compare(oldPassword, user.password))) {
+      return res.status(403).send({ error: "Invalid Password" });
+   }
+   console.log(newPassword)
+   user.password = await bcrypt.hash(newPassword,12);
+   await user.save();
+
+   res.send({
+       status:"Ok"
+   });
+};
+
 exports.updateUserDetails = async (req, res, next) => {
    const user = await User.findById(req.session.userId);
    if (!user) {
@@ -115,9 +139,9 @@ exports.updateUserDetails = async (req, res, next) => {
       if (req.body.username) {
          user.username = req.body.username;
       }
-      if (req.body.profileImageUrl){
-         user.profileImageUrl = req.body.profileImageUrl
-         delete req.session.tempImage
+      if (req.body.profileImageUrl) {
+         user.profileImageUrl = req.body.profileImageUrl;
+         delete req.session.tempImage;
       }
    }
    await user.save();
@@ -126,7 +150,7 @@ exports.updateUserDetails = async (req, res, next) => {
       email: user.email,
       userId: user._id,
       createdAt: user.createdAt,
-      profileImageUrl: user.profileImageUrl
+      profileImageUrl: user.profileImageUrl,
    });
 };
 
@@ -152,9 +176,9 @@ exports.login = async (req, res) => {
       email: email,
    });
    if (user) {
-      console.log(`${user.username} exists`)
+      console.log(`${user.username} exists`);
       if (await bcrypt.compare(password, user.password)) {
-         console.log('Password Valid')
+         console.log("Password Valid");
          req.session.userId = user._id;
          res.status(200);
          res.send("Ok");
@@ -162,8 +186,8 @@ exports.login = async (req, res) => {
          res.status(401).send("Invalid Password");
       }
    } else {
-      console.log("User does not exist")
-      res.status(401)
+      console.log("User does not exist");
+      res.status(401);
       res.send("Email Not Found");
    }
 };

@@ -17,6 +17,11 @@ export class EditProfileComponent implements OnInit {
    newPassword;
    newPasswordC;
    profileImageUrl;
+   passwordStatusText;
+   passwordStatusStyle={
+      display:'none',
+      color:'green'
+   }
    constructor(public authService: AuthService, private router: Router, public habitService: HabitService, route: ActivatedRoute) {
       this.routeSub = route.params.subscribe(val => {
          if (!this.authService.userDetails) {
@@ -64,7 +69,38 @@ export class EditProfileComponent implements OnInit {
    }
 
    updatePassword(){
+      if (!(this.newPassword.length>0 && this.newPasswordC.length>0 && this.oldPassword.length>0)){
+         // no
+      }
+      else if (this.newPassword!=this.newPasswordC){
+         this.newPassword=this.newPasswordC=this.oldPassword=""
+         this.putStatus('Passwords not equal',500)
+      }
+      else {
+         this.authService.updatePassword(this.oldPassword,this.newPassword)
+         .subscribe((data: string)=>{
+            if (data=='Ok'){
+               this.putStatus('Successfully updated password',200)
+               this.newPassword=this.newPasswordC=this.oldPassword=""
+            }
+            else {
+               console.log(data)
+               this.putStatus(data,500)
+               this.newPassword=this.newPasswordC=this.oldPassword=""
+            }
+         })
+      }
+   }
 
+   putStatus(text: string,status: number){
+      this.passwordStatusStyle.display='block'
+      if (status==200){
+         this.passwordStatusStyle.color = 'green'
+      }
+      else {
+         this.passwordStatusStyle.color = 'red'
+      }
+      this.passwordStatusText = text
    }
 
    ngOnDestroy(){

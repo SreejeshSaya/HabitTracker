@@ -41,6 +41,23 @@ export class AuthService {
          })
       )
    }
+   updatePassword(oldPassword,newPassword){
+      return this.http.post('/api/auth/update-password',{
+         oldPassword,newPassword
+      }).pipe(
+         map((d: any)=>{
+            if(d.status=="Ok"){
+               return "Ok"
+            }
+            else {
+               return "Unknown error"
+            }
+         }),
+         catchError((d: any)=>{
+            return of(d.error.error)
+         })
+      )
+   }
    signUp(username, password, email) {
       return this.http.post(
          '/api/auth/signup',

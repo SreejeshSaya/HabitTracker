@@ -49,10 +49,10 @@ export class UserDetailsComponent implements OnInit {
    }
    updateStats(){
       for (let h of this.habitService.userHabits){
-         if (h.streak>this.bestStreak){
-            this.bestStreak = h.streak
+         if (h.maxStreak>this.bestStreak){
+            this.bestStreak = h.maxStreak
          }
-         this.habitScore+=h.streak;//needs improvement
+         this.habitScore+=h.maxStreak;//needs improvement
       }
       this.dateJoined = new Date(this.authService.userDetails.createdAt)
       this.dateJoinedYear = this.dateJoined.getFullYear()
