@@ -80,7 +80,7 @@ export class HabitManageComponent implements OnInit {
       let month = d.getMonth();
       let i = this.history.length-1;
       let j=0;
-      while(j<3 && i>=0) { // j indicated the number of months seen
+      while(j<3) { // j indicated the number of months seen
          while(i>=0) { // stop when reached end
             if(this.history[i].date.getMonth() === month) { 
                monthStreak.push(this.history[i])
@@ -94,11 +94,6 @@ export class HabitManageComponent implements OnInit {
          monthStreak = [];
          j++;
          month = new Date(d.setMonth(month-1)).getMonth();       
-      }
-      while (j<3){ // add empty months
-         this.histStreak.push({month: month,monthStreak: []})
-         month = new Date(d.setMonth(month-1)).getMonth();
-         j++;
       }
       console.log(this.histStreak)
 
