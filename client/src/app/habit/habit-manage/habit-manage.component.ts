@@ -76,30 +76,31 @@ export class HabitManageComponent implements OnInit {
 
    createStreakCalendar() {
       let monthStreak = [];
-      const l = this.history.length-1;
-      // console.log(history);
       const d = removeTime(new Date());
-      let month = d.getUTCMonth();
-      let j=1;
-      let k 
-      while(j<=3) {
-         for(let i=l-1; i>=0 && i>=(l-(32*j)); i--) {
-            if(this.history[i].date.getUTCMonth() === month) {
+      let month = d.getMonth();
+      let i = this.history.length-1;
+      let j=0;
+      while(j<3 && i>=0) { // j indicated the number of months seen
+         while(i>=0) { // stop when reached end
+            if(this.history[i].date.getMonth() === month) { 
                monthStreak.push(this.history[i])
-               // console.log(this.history[i].date)
             }
-            else {
+            else { // stop when month has changed
                break;
             }
+            i--;
          }
-         // console.log("MonthStreak" + monthStreak.length);
-         // monthStreak.push("Bleh")
          this.histStreak.push({month: month, monthStreak: monthStreak});
          monthStreak = [];
          j++;
-         // console.log("Month" + month);
-         month = new Date(d.setMonth(month-1)).getMonth();        
+         month = new Date(d.setMonth(month-1)).getMonth();       
       }
+      while (j<3){ // add empty months
+         this.histStreak.push({month: month,monthStreak: []})
+         month = new Date(d.setMonth(month-1)).getMonth();
+         j++;
+      }
+      console.log(this.histStreak)
 
       // this.histStreak.forEach((streak) => {
       //    console.log("Month" + streak.month)
