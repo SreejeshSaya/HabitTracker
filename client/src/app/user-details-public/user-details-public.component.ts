@@ -2,6 +2,7 @@ import { Route } from '@angular/compiler/src/core';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { catchError, switchMap } from 'rxjs/operators';
+import { AuthService } from '../auth.service';
 import { PublicService } from '../public.service';
 
 @Component({
@@ -13,7 +14,7 @@ export class UserDetailsPublicComponent implements OnInit {
    isLoading=true;
    publicProfile;
    joinDateYear;
-   constructor(private publicData: PublicService,private router: Router,private route: ActivatedRoute ) {
+   constructor(private authService: AuthService,private publicData: PublicService,private router: Router,private route: ActivatedRoute ) {
 
    }
 
@@ -30,6 +31,7 @@ export class UserDetailsPublicComponent implements OnInit {
       },(err)=>{
          this.isLoading = false
       })
+      this.authService.getUserDetails()
    }
 
 }

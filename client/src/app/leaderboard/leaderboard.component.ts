@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
+import { AuthService } from '../auth.service';
 import { PublicService } from '../public.service';
 
 @Component({
@@ -12,6 +13,7 @@ export class LeaderboardComponent implements OnInit {
    leaderboard;
    loading=true;
    constructor(
+      private authService: AuthService,
       private route: ActivatedRoute,
       private publicData: PublicService,
       private router: Router
@@ -32,5 +34,6 @@ export class LeaderboardComponent implements OnInit {
          this.loading =false
          this.router.navigateByUrl("/")
       })
+      this.authService.getUserDetails()
    }
 }
