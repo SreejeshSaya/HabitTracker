@@ -1,0 +1,28 @@
+<ng-container *ngIf="loading">
+    <h1>Loading</h1>
+</ng-container>
+
+<ng-container *ngIf="!loading && leaderboard">
+    
+    <div class="leaderboard">
+        <h1>Leaderboard</h1>
+        <div class="user-header">
+            <span>User</span>
+            <span>Score</span>
+        </div>
+        <div class="users">
+            <div *ngFor="let user of leaderboard" class="user">
+                <div class="user-detail">
+                    <div class="profile-photo-small" [ngStyle]="{'background-image':'url('+user.profileImageUrl+')'}">
+                    </div>
+                    <a routerLink="/users/{{user._id}}">{{user.username}}</a>
+                </div>
+                <span>{{user.habitScore}}</span>
+            </div>
+        </div>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="!loading && !leaderboard">
+    <h1>Error Loading</h1>
+</ng-container>

@@ -17,7 +17,8 @@ const authRoutes = require("./routes/auth");
 const habitRoutes = require("./routes/habit");
 
 //Additional Middleware
-const {uploadParser} = require("./middleware/upload-parser")
+const { uploadParser } = require("./middleware/upload-parser");
+const { reset } = require("nodemon");
 
 const app = express();
 
@@ -35,13 +36,12 @@ app.use(
 //Content parsers
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(uploadParser)
+app.use(uploadParser);
 
-
-app.use((req,res,next)=>{
-   console.log(req.originalUrl,req.headers,req.body)
-   next()
-})
+app.use((req, res, next) => {
+   console.log(req.originalUrl, req.headers, req.body);
+   next();
+});
 
 //Routes
 app.use("/api/auth", authRoutes);
@@ -57,12 +57,25 @@ if (process.env.NODE_ENV == "production") {
    });
 }
 
+app.use((req, res, next) => {
+   console.log({
+      error: "Not Found",
+      method: req.method,
+      route: req.originalUrl,
+   });
+   res.status(404).send({
+      error: "Not Found",
+      method: req.method,
+      route: req.originalUrl,
+   });
+});
+
 app.use((err, req, res, next) => {
-    console.log("Error: ",err)
-	res.status(503).send({
-        error:err.message
-    });
-})
+   console.log("Error: ", err);
+   res.status(503).send({
+      error: err.message,
+   });
+});
 
 //Connect to database and start server
 mongoose

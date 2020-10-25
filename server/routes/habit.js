@@ -1,6 +1,7 @@
 const {Router} = require("@awaitjs/express")
 const {requireAuth} = require("../controllers/auth")
 const habitControllers = require("../controllers/habit")
+const habit = require("../models/habit")
 
 const router = Router()
 
@@ -13,4 +14,5 @@ router.postAsync("/delete-habit",requireAuth,habitControllers.deleteHabit)
 router.postAsync("/complete-habit-today",requireAuth,habitControllers.completeHabitToday)
 router.getAsync("/user-public-data",habitControllers.getUserPublicData)
 
+router.getAsync("/leaderboard",habitControllers.getLeaderBoard)
 module.exports = router

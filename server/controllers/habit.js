@@ -124,3 +124,9 @@ exports.getUserPublicData = async (req, res, next) => {
       habitScore: user.habitScore
    });
 };
+
+// TODO: Pagination, this currently returns all users in one request
+exports.getLeaderBoard = async function(req,res,next){
+   const users = await User.find({}).sort("-habitScore").select("habitScore username profileImageUrl")
+   res.send(users)
+}

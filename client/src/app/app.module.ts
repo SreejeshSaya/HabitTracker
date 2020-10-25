@@ -21,7 +21,8 @@ import { UserDetailsComponent } from './user-details/user-details.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { ProfileUploadComponent } from './profile-upload/profile-upload.component';
 import { StreakCalendarComponent } from './streak-calendar/streak-calendar.component';
-import { UserDetailsPublicComponent } from './user-details-public/user-details-public.component'
+import { UserDetailsPublicComponent } from './user-details-public/user-details-public.component';
+import { LeaderboardComponent } from './leaderboard/leaderboard.component'
 
 @NgModule({
    declarations: [
@@ -40,6 +41,7 @@ import { UserDetailsPublicComponent } from './user-details-public/user-details-p
       ProfileUploadComponent,
       StreakCalendarComponent,
       UserDetailsPublicComponent,
+      LeaderboardComponent,
    ],
    imports: [
       CommonModule,

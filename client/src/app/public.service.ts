@@ -24,4 +24,8 @@ export class PublicService {
      )
   }
 
+  getLeaderboard(){
+     return this.http.get('/api/leaderboard')
+  }
+
 }
