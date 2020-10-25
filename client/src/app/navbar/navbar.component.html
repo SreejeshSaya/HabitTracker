@@ -1,16 +1,34 @@
 <nav>
    <a class="logo" routerLink="/">Habit Tracker</a>
+
    <ng-template [ngIf]="!(authService.isLoading$ | async)">
-      <div *ngIf="authService.userDetails; then thenBlock; else elseBlock"></div>
-      <ng-template #thenBlock>
-         <a class="username" routerLink="/profile">
-            <div class="profile-photo-small"
-               [ngStyle]="{'background-image':'url('+this.authService.userDetails.profileImageUrl+')'}"></div>
-            <span>{{ authService.userDetails.username }}</span>
-         </a>
-      </ng-template>
-      <ng-template #elseBlock>
-         <a routerLink="/login" class="btn">Login</a>
-      </ng-template>
+      <ng-container
+         *ngIf="authService.userDetails; then thenBlock; else elseBlock"
+      ></ng-container>
+      <div>
+         <ng-template #thenBlock>
+            <div class="right-side">
+               <a class="leaderboard-link" routerLink="/leaderboard">Leaderboard</a>
+               <a class="username" routerLink="/profile">
+                  <div
+                     class="profile-photo-small"
+                     [ngStyle]="{
+                        'background-image':
+                           'url(' +
+                           this.authService.userDetails.profileImageUrl +
+                           ')'
+                     }"
+                  ></div>
+                  <span>{{ authService.userDetails.username }}</span>
+               </a>
+            </div>
+         </ng-template>
+         <ng-template #elseBlock>
+            <div class="right-side">
+               <a class="leaderboard-link" routerLink="/leaderboard">Leaderboard</a>
+               <a routerLink="/login" class="btn">Login</a>
+            </div>
+         </ng-template>
+      </div>
    </ng-template>
 </nav>
