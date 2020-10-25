@@ -1,5 +1,5 @@
 const { model, Schema, Types } = require("mongoose");
-const { removeTime } = require("../utils/dateManager");
+const { removeTime, getMaxStreak } = require("../utils/dateManager");
 const User = require("./user");
 
 const Habit = new Schema({
@@ -39,7 +39,7 @@ const Habit = new Schema({
 });
 
 Habit.methods.updateMax = async function () {
-   // The streak will be atleast once sinc this function is called only when users presses complete habit
+   // The streak will be atleast once since this function is called only when users presses complete habit
    let streak = 1;
 
    //Find the current streak at the time when users presses complete habit today
@@ -47,7 +47,7 @@ Habit.methods.updateMax = async function () {
    let i = this.history.length - 1;
    while (i) {
       let now = removeTime(this.history[i].date);
-      let prev = removeTime(this.history[i].date);
+      let prev = removeTime(this.history[i-1].date);
       if (now - prev != 1000 * 60 * 60 * 24) {
          //stop when the difference between previous and current isnt one
          break;
@@ -71,5 +71,24 @@ Habit.methods.updateMax = async function () {
       this.maxStreak = streak;
    }
 };
+
+Habit.methods.removeCompleteToday = async function(){
+   let currMax = this.maxStreak
+   console.log(this.history)
+   this.history.pop()
+   console.log(this.history)
+   
+   this.maxStreak = getMaxStreak(this.history)
+   if (currMax>this.maxStreak){
+      await User.findOneAndUpdate(
+         {
+            _id: this.user,
+         },
+         {
+            $inc: { habitScore: this.maxStreak-currMax   }, //decrease score since maximum has reduced
+         }
+      );
+   }
+}
 
 module.exports = model("habit", Habit);

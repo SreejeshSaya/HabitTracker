@@ -66,8 +66,8 @@ exports.completeHabitToday = async (req, res, next) => {
    const habit = await Habit.findById(habitId).populate("history");
    console.log("pops", habit);
 
-   if (habit.user!=req.session.userId){
-      res.status(403).send("Invalid user")
+   if (habit.user.toString()!=req.session.userId){
+      return res.status(403).send("Invalid user")
    }
 
    if (!habit) {
@@ -87,6 +87,34 @@ exports.completeHabitToday = async (req, res, next) => {
    await habit.updateMax();
    await habit.save();
    await history.save();
+   res.status(200).send(habit);
+};
+
+exports.removeCompleteToday = async (req, res, next) => {
+   const habitId = req.body.habitId;
+   const habit = await Habit.findById(habitId).populate("history");
+
+   if (habit.user.toString()!=req.session.userId){
+      console.log(habit.user.toString(),req.session.userId)
+      return res.status(403).send("Invalid user")
+   }
+
+   if (!habit) {
+      return res.status(403).send("Habit not found");
+   }
+
+   if (!habit.history[habit.history.length - 1]) {
+      return res.status(503).send("Invalid Request")
+   }
+
+   let lastDate = habit.history[habit.history.length - 1].date
+   console.log(removeTime(lastDate),removeTime(new Date()))
+   if (removeTime(lastDate).valueOf() != removeTime(new Date()).valueOf() ) {
+      return res.status(403).send("Not completed today");
+   }
+
+   await habit.removeCompleteToday();
+   await habit.save()
    res.status(200).send(habit);
 };
 
