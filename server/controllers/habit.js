@@ -65,6 +65,11 @@ exports.completeHabitToday = async (req, res, next) => {
    const habitId = req.body.habitId;
    const habit = await Habit.findById(habitId).populate("history");
    console.log("pops", habit);
+
+   if (habit.user!=req.session.userId){
+      res.status(403).send("Invalid user")
+   }
+
    if (!habit) {
       return res.status(403).send("Habit not found");
    }
@@ -78,6 +83,8 @@ exports.completeHabitToday = async (req, res, next) => {
 
    const history = new History();
    habit.history.push(history);
+   
+   await habit.updateMax();
    await habit.save();
    await history.save();
    res.status(200).send(habit);
@@ -113,5 +120,7 @@ exports.getUserPublicData = async (req, res, next) => {
       createdAt: user.createdAt,
       profileImageUrl: user.profileImageUrl,
       habits: habits,
+      bestStreak: user.bestStreak,
+      habitScore: user.habitScore
    });
 };

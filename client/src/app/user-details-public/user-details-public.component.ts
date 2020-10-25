@@ -13,8 +13,6 @@ export class UserDetailsPublicComponent implements OnInit {
    isLoading=true;
    publicProfile;
    joinDateYear;
-   bestStreak=0;
-   habitScore=0;
    constructor(private publicData: PublicService,private router: Router,private route: ActivatedRoute ) {
 
    }
@@ -29,15 +27,9 @@ export class UserDetailsPublicComponent implements OnInit {
          this.isLoading = false
          this.publicProfile = publicProfile
          this.joinDateYear = (new Date(this.publicProfile.createdAt)).getFullYear()
-         this.getStats()
       },(err)=>{
          this.isLoading = false
       })
    }
-   getStats(){
-      this.publicProfile.habits.forEach(h=>{
-         this.habitScore+=h.maxStreak;
-         this.bestStreak = Math.max(this.bestStreak,h.maxStreak)
-      })
-   }
+
 }

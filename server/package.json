@@ -22,7 +22,8 @@
    "scripts": {
       "test": "echo \"Error: no test specified\" && exit 1",
       "start": "NODE_ENV=production node app.js",
-      "start-dev": "NODE_ENV=development nodemon app.js"
+      "start-dev": "NODE_ENV=development nodemon app.js",
+      "recompute":"node dbhelpers/recompute.js"
    },
    "repository": {
       "type": "git",

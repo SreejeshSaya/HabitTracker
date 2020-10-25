@@ -21,6 +21,14 @@ const User = new Schema({
    profileImageUrl:{
       type: String,
       default: 'https://www.eurogeosurveys.org/wp-content/uploads/2014/02/default_profile_pic.jpg'
+   },
+   bestStreak:{
+       type: Number,
+       default: 0
+   },
+   habitScore:{
+       type: Number,
+       default: 0
    }
 });
 
