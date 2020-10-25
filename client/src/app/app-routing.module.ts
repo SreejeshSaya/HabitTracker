@@ -7,6 +7,7 @@ import { AddHabitComponent } from './add-habit/add-habit.component';
 import { HabitManageComponent } from './habit/habit-manage/habit-manage.component';
 import {UserDetailsComponent }from './user-details/user-details.component'
 import {EditProfileComponent} from './edit-profile/edit-profile.component'
+import { UserDetailsPublicComponent } from './user-details-public/user-details-public.component';
 
 const routes: Routes = [
    {path:"",component:PendingComponent,pathMatch:"full"},
@@ -15,7 +16,8 @@ const routes: Routes = [
    {path:'add-habit',component:AddHabitComponent},
    {path:'habits/:habitId',component:HabitManageComponent},
    {path:'profile',component:UserDetailsComponent},
-   {path:'edit',component:EditProfileComponent}
+   {path:'edit',component:EditProfileComponent},
+   {path: 'users/:userId',component:UserDetailsPublicComponent}
 ];
 
 @NgModule({

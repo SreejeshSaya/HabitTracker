@@ -1,0 +1,31 @@
+<ng-container *ngIf="isLoading">
+    <h1>Loading</h1>
+</ng-container>
+
+<ng-container *ngIf="!isLoading && publicProfile">
+    <div class="block">
+        <div class="profile">
+            <div class="profile-photo"
+                [ngStyle]="{'background-image':'url('+this.publicProfile.profileImageUrl+')'}">
+    
+            </div>
+            <div class="user-details">
+                <h2>{{ this.publicProfile.username }}</h2>
+                <h4>Joined {{this.joinDateYear}} </h4>
+            </div>
+    
+        </div>
+    </div>
+    <div class="block">
+        <h1>Stats</h1>
+        <div class="stats">
+            <p>Best Streak: {{bestStreak}}</p>
+            <p>Habit Score: {{habitScore}}</p>
+            <p>Total Habits: {{ this.publicProfile.habits.length }} </p>
+        </div>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="!isLoading && !publicProfile">
+    <h1>User not found</h1>
+</ng-container>

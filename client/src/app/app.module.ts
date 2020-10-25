@@ -20,7 +20,8 @@ import { ColorPickerComponent } from './color-picker/color-picker.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { ProfileUploadComponent } from './profile-upload/profile-upload.component';
-import { StreakCalendarComponent } from './streak-calendar/streak-calendar.component'
+import { StreakCalendarComponent } from './streak-calendar/streak-calendar.component';
+import { UserDetailsPublicComponent } from './user-details-public/user-details-public.component'
 
 @NgModule({
    declarations: [
@@ -38,6 +39,7 @@ import { StreakCalendarComponent } from './streak-calendar/streak-calendar.compo
       EditProfileComponent,
       ProfileUploadComponent,
       StreakCalendarComponent,
+      UserDetailsPublicComponent,
    ],
    imports: [
       CommonModule,

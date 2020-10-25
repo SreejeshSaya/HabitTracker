@@ -11,5 +11,6 @@ router.postAsync("/update-habit",requireAuth,habitControllers.updateHabit)
 router.getAsync("/get-user-habits",requireAuth,habitControllers.getUserHabits)
 router.postAsync("/delete-habit",requireAuth,habitControllers.deleteHabit)
 router.postAsync("/complete-habit-today",requireAuth,habitControllers.completeHabitToday)
+router.getAsync("/user-public-data",habitControllers.getUserPublicData)
 
 module.exports = router

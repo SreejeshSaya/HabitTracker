@@ -58,8 +58,9 @@ if (process.env.NODE_ENV == "production") {
 }
 
 app.use((err, req, res, next) => {
+    console.log("Error: ",err)
 	res.status(503).send({
-        error:err
+        error:err.message
     });
 })
 
