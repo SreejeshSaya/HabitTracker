@@ -50,7 +50,6 @@ exports.getUserHabits = async (req, res, next) => {
    const habits = await Habit.find({
       user: userId,
    }).populate("history");
-   console.log(userId, habits);
 
    res.send(habits);
 };
@@ -64,7 +63,6 @@ exports.deleteHabit = async (req, res, next) => {
 exports.completeHabitToday = async (req, res, next) => {
    const habitId = req.body.habitId;
    const habit = await Habit.findById(habitId).populate("history");
-   console.log("pops", habit);
 
    if (habit.user.toString()!=req.session.userId){
       return res.status(403).send("Invalid user")
@@ -80,13 +78,13 @@ exports.completeHabitToday = async (req, res, next) => {
       if (removeTime(lastDate) >= removeTime(new Date()))
          return res.status(403).send("Already completed today");
    }
-
    const history = new History();
    habit.history.push(history);
    
    await habit.updateMax();
    await habit.save();
    await history.save();
+   console.log("success complete")
    res.status(200).send(habit);
 };
 

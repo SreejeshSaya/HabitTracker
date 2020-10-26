@@ -54,6 +54,7 @@ Habit.methods.updateMax = async function () {
       } else {
          streak += 1;
       }
+      i--;
    }
 
    //increment the score of the user if streak has increased
