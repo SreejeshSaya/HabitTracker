@@ -39,7 +39,17 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(uploadParser);
 
 app.use((req, res, next) => {
-   console.log(req.originalUrl, req.headers, req.body);
+   console.log(req.method,req.originalUrl, req.headers, req.body);
+   const oldSend = res.send
+   const newSend = function(body){
+      console.log("Sending",res.statusCode,body,'\n')
+      if (typeof(body)=="object"){//avoid calling twice 
+         body = JSON.stringify(body)
+         res.contentType("application/json")
+      }
+      oldSend.call(res,body)
+   }
+   res.send = newSend
    next();
 });
 
@@ -58,11 +68,6 @@ if (process.env.NODE_ENV == "production") {
 }
 
 app.use((req, res, next) => {
-   console.log({
-      error: "Not Found",
-      method: req.method,
-      route: req.originalUrl,
-   });
    res.status(404).send({
       error: "Not Found",
       method: req.method,
@@ -71,7 +76,6 @@ app.use((req, res, next) => {
 });
 
 app.use((err, req, res, next) => {
-   console.log("Error: ", err);
    res.status(503).send({
       error: err.message,
    });
