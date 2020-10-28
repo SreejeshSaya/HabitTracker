@@ -23,6 +23,7 @@ import { ProfileUploadComponent } from './profile-upload/profile-upload.componen
 import { StreakCalendarComponent } from './streak-calendar/streak-calendar.component';
 import { UserDetailsPublicComponent } from './user-details-public/user-details-public.component';
 import { LeaderboardComponent } from './leaderboard/leaderboard.component'
+import { LoadingComponent } from './loading.component';
 
 @NgModule({
    declarations: [
@@ -42,6 +43,7 @@ import { LeaderboardComponent } from './leaderboard/leaderboard.component'
       StreakCalendarComponent,
       UserDetailsPublicComponent,
       LeaderboardComponent,
+      LoadingComponent
    ],
    imports: [
       CommonModule,

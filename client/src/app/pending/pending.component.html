@@ -1,6 +1,4 @@
-<div *ngIf="this.authService.isLoading$ | async">
-   <h1>Loading</h1>
-</div>
+<app-loading *ngIf="this.authService.isLoading$ | async"></app-loading>
 
 <div *ngIf="!(this.authService.isLoading$ | async)" class="container">
    <div class="pending">

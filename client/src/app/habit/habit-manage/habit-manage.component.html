@@ -1,6 +1,5 @@
-<div *ngIf="!habit" >
-    <h1>Loading</h1>
-</div>
+<app-loading *ngIf="!habit" >
+</app-loading>
 
 <div class="habit-large" *ngIf="habit" >
     <h1 [ngStyle]="{'border-top':'0.2rem solid '+selectedColor,'padding-top':'0.5rem'}">Manage Habit</h1>
