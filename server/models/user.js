@@ -29,6 +29,10 @@ const User = new Schema({
    habitScore:{
        type: Number,
        default: 0
+   },
+   averageCompletionDelay: {
+      type: Number,
+      default: 1
    }
 });
 

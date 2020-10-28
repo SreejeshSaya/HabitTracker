@@ -16,11 +16,11 @@ export class UserDetailsComponent implements OnInit {
    habitScore=0;
    dateJoined
    dateJoinedYear;
+   averageCompletionDelay;
    constructor(public authService: AuthService, private router: Router, public habitService: HabitService, route: ActivatedRoute) {
       this.routeSub = route.params.subscribe(val => {
-         if (!this.authService.userDetails) {
-            this.authService.getUserDetails();
-         }
+         this.authService.getUserDetails();
+         
       });
    }
 
@@ -48,12 +48,10 @@ export class UserDetailsComponent implements OnInit {
       });
    }
    updateStats(){
-      for (let h of this.habitService.userHabits){
-         if (h.maxStreak>this.bestStreak){
-            this.bestStreak = h.maxStreak
-         }
-         this.habitScore+=h.maxStreak;//needs improvement
-      }
+      this.bestStreak = this.authService.userDetails.bestStreak
+      this.habitScore = this.authService.userDetails.habitScore
+      this.averageCompletionDelay = this.authService.userDetails.averageCompletionDelay
+      console.log(this.authService.userDetails.habitScore)
       this.dateJoined = new Date(this.authService.userDetails.createdAt)
       this.dateJoinedYear = this.dateJoined.getFullYear()
    }

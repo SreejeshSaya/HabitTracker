@@ -94,14 +94,8 @@ exports.isLoggedIn = async (req, res, next) => {
 };
 
 exports.getUserDetails = async (req, res, next) => {
-   const user = await User.findById(req.session.userId);
-   res.send({
-      username: user.username,
-      email: user.email,
-      userId: user._id,
-      createdAt: user.createdAt,
-      profileImageUrl: user.profileImageUrl,
-   });
+   const user = await User.findById(req.session.userId).select("-password");
+   res.send(user);
 };
 
 exports.updatePassword = async (req, res, next) => {
@@ -129,7 +123,7 @@ exports.updatePassword = async (req, res, next) => {
 };
 
 exports.updateUserDetails = async (req, res, next) => {
-   const user = await User.findById(req.session.userId);
+   const user = await User.findById(req.session.userId).select("-password");
    if (!user) {
       return {
          error: "User not found",
@@ -145,13 +139,7 @@ exports.updateUserDetails = async (req, res, next) => {
       }
    }
    await user.save();
-   res.send({
-      username: user.username,
-      email: user.email,
-      userId: user._id,
-      createdAt: user.createdAt,
-      profileImageUrl: user.profileImageUrl,
-   });
+   res.send(user);
 };
 
 exports.signup = async (req, res, next) => {

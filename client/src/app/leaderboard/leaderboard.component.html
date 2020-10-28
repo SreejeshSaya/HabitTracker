@@ -17,7 +17,7 @@
                     </div>
                     <a routerLink="/users/{{user._id}}">{{user.username}}</a>
                 </div>
-                <span>{{user.habitScore}}</span>
+                <span>{{user.habitScore|number:'1.0-0'}}</span>
             </div>
         </div>
     </div>

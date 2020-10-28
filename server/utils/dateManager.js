@@ -5,8 +5,12 @@ const removeTime = (date) => {
 
 exports.habitEnded = (date) => {
     return removeTime(new Date()) > removeTime(date);
- };
+};
  
+exports.daysDifference = (d1,d2)=>{
+   return Math.floor((d2-d1)/(1000*60*60*24))
+}
+
 exports.getMaxStreak = (history) => {
    let streak = 0;
    let maxStreak = 0;

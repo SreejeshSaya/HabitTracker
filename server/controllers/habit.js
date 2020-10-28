@@ -63,7 +63,6 @@ exports.deleteHabit = async (req, res, next) => {
 exports.completeHabitToday = async (req, res, next) => {
    const habitId = req.body.habitId;
    const habit = await Habit.findById(habitId).populate("history");
-
    if (habit.user.toString()!=req.session.userId){
       return res.status(403).send("Invalid user")
    }
@@ -71,6 +70,8 @@ exports.completeHabitToday = async (req, res, next) => {
    if (!habit) {
       return res.status(403).send("Habit not found");
    }
+
+   const user = await User.findById(habit.user)
 
    if (habit.history[habit.history.length - 1]) {
       let lastDate = new Date(habit.history[habit.history.length - 1].date);
@@ -80,10 +81,12 @@ exports.completeHabitToday = async (req, res, next) => {
    }
    const history = new History();
    habit.history.push(history);
-   
-   await habit.updateMax();
+
+   habit.updateCompletionDetails(user);
+   await habit.updateMax(user);
    await habit.save();
    await history.save();
+   await user.save();
    console.log("success complete")
    res.status(200).send(habit);
 };
@@ -91,7 +94,7 @@ exports.completeHabitToday = async (req, res, next) => {
 exports.removeCompleteToday = async (req, res, next) => {
    const habitId = req.body.habitId;
    const habit = await Habit.findById(habitId).populate("history");
-
+   
    if (habit.user.toString()!=req.session.userId){
       console.log(habit.user.toString(),req.session.userId)
       return res.status(403).send("Invalid user")
@@ -105,14 +108,17 @@ exports.removeCompleteToday = async (req, res, next) => {
       return res.status(503).send("Invalid Request")
    }
 
+   const user = await User.findById(habit.user)
+   
    let lastDate = habit.history[habit.history.length - 1].date
    console.log(removeTime(lastDate),removeTime(new Date()))
    if (removeTime(lastDate).valueOf() != removeTime(new Date()).valueOf() ) {
       return res.status(403).send("Not completed today");
    }
 
-   await habit.removeCompleteToday();
+   await habit.removeCompleteToday(user);
    await habit.save()
+   await user.save()
    res.status(200).send(habit);
 };
 
@@ -124,7 +130,7 @@ exports.getUserPublicData = async (req, res, next) => {
 
    let user;
    try {
-      user = await User.findById(userId);
+      user = await User.findById(userId).select("-password");
    }
    catch(e){ // handle error here instead of the catchall handler in app.js
       
@@ -139,16 +145,7 @@ exports.getUserPublicData = async (req, res, next) => {
    })
       .populate("history")
       .select("history createdAt");
-
-   res.send({
-      userId: userId,
-      username: user.username,
-      createdAt: user.createdAt,
-      profileImageUrl: user.profileImageUrl,
-      habits: habits,
-      bestStreak: user.bestStreak,
-      habitScore: user.habitScore
-   });
+   res.send({...user.toObject(),habits: habits });
 };
 
 // TODO: Pagination, this currently returns all users in one request

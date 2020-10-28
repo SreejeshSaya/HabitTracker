@@ -20,8 +20,9 @@
         <h1>Stats</h1>
         <div class="stats">
             <p>Best Streak: {{this.publicProfile.bestStreak}}</p>
-            <p>Habit Score: {{this.publicProfile.habitScore}}</p>
+            <p>Habit Score: {{this.publicProfile.habitScore | number:'1.0-0'}}</p>
             <p>Total Habits: {{ this.publicProfile.habits.length }} </p>
+            <p>Habit Completion Delay: {{this.publicProfile.averageCompletionDelay | number:'1.1-1'}} days</p>
         </div>
     </div>
 </ng-container>
