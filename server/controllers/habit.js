@@ -1,7 +1,8 @@
 const Habit = require("../models/habit");
 const History = require("../models/history");
-const { removeTime } = require("../utils/dateManager");
+const { removeTime, daysDifference } = require("../utils/dateManager");
 const User = require("../models/user");
+const  {onCompleteToday,onRemoveCompleteToday} = require("../triggers/updatestreak")
 
 exports.addHabit = async (req, res, next) => {
    const userId = req.session.userId;
@@ -26,7 +27,7 @@ exports.updateHabit = async (req, res, next) => {
    const habitText = req.body.text;
    const habitColor = req.body.color;
    const endDate = req.body.endDate;
-   const habit = await Habit.findById(habitId).populate("history");
+   const habit = await Habit.findById(habitId);
    if (!habit) {
       res.setHeader("Content-Type", "text/plain");
       res.status(403).send("Habit not found");
@@ -41,7 +42,7 @@ exports.updateHabit = async (req, res, next) => {
          habit.endDate = endDate;
       }
       await habit.save();
-      res.send(habit.populate());
+      res.send(habit);
    }
 };
 
@@ -49,7 +50,7 @@ exports.getUserHabits = async (req, res, next) => {
    const userId = req.session.userId;
    const habits = await Habit.find({
       user: userId,
-   }).populate("history");
+   });
 
    res.send(habits);
 };
@@ -62,7 +63,7 @@ exports.deleteHabit = async (req, res, next) => {
 
 exports.completeHabitToday = async (req, res, next) => {
    const habitId = req.body.habitId;
-   const habit = await Habit.findById(habitId).populate("history");
+   const habit = await Habit.findById(habitId);
    if (habit.user.toString()!=req.session.userId){
       return res.status(403).send("Invalid user")
    }
@@ -72,20 +73,14 @@ exports.completeHabitToday = async (req, res, next) => {
    }
 
    const user = await User.findById(habit.user)
-
-   if (habit.history[habit.history.length - 1]) {
-      let lastDate = new Date(habit.history[habit.history.length - 1].date);
-      console.log(lastDate, removeTime(lastDate));
-      if (removeTime(lastDate) >= removeTime(new Date()))
-         return res.status(403).send("Already completed today");
+   const lastDate  = habit.getLastCompletedDate()
+   console.log(daysDifference(lastDate,removeTime(new Date())),lastDate,new Date())
+   if (lastDate && daysDifference(lastDate,removeTime(new Date()))==0 ){
+      return res.status(403).send("Already completed today")
    }
-   const history = new History();
-   habit.history.push(history);
 
-   habit.updateCompletionDetails(user);
-   await habit.updateMax(user);
+   onCompleteToday(user,habit)
    await habit.save();
-   await history.save();
    await user.save();
    console.log("success complete")
    res.status(200).send(habit);
@@ -93,7 +88,7 @@ exports.completeHabitToday = async (req, res, next) => {
 
 exports.removeCompleteToday = async (req, res, next) => {
    const habitId = req.body.habitId;
-   const habit = await Habit.findById(habitId).populate("history");
+   const habit = await Habit.findById(habitId);
    
    if (habit.user.toString()!=req.session.userId){
       console.log(habit.user.toString(),req.session.userId)
@@ -110,13 +105,12 @@ exports.removeCompleteToday = async (req, res, next) => {
 
    const user = await User.findById(habit.user)
    
-   let lastDate = habit.history[habit.history.length - 1].date
-   console.log(removeTime(lastDate),removeTime(new Date()))
-   if (removeTime(lastDate).valueOf() != removeTime(new Date()).valueOf() ) {
-      return res.status(403).send("Not completed today");
+   const lastDate = habit.getLastCompletedDate()
+   if (daysDifference(lastDate,removeTime(new Date()))!=0){
+      return res.status(503).send("Not completed today")
    }
 
-   await habit.removeCompleteToday(user);
+   onRemoveCompleteToday(user,habit)
    await habit.save()
    await user.save()
    res.status(200).send(habit);
@@ -143,7 +137,6 @@ exports.getUserPublicData = async (req, res, next) => {
    const habits = await Habit.find({
       user: userId,
    })
-      .populate("history")
       .select("history createdAt");
    res.send({...user.toObject(),habits: habits });
 };

@@ -1,3 +1,4 @@
+const { ObjectID } = require("mongodb");
 const { model, Schema } = require("mongoose");
 
 const User = new Schema({
@@ -22,18 +23,26 @@ const User = new Schema({
       type: String,
       default: 'https://www.eurogeosurveys.org/wp-content/uploads/2014/02/default_profile_pic.jpg'
    },
-   bestStreak:{
-       type: Number,
-       default: 0
-   },
    habitScore:{
        type: Number,
        default: 0
    },
-   averageCompletionDelay: {
-      type: Number,
-      default: 1
-   }
+   streakHistory:[
+      {
+         _id:false,
+         habitId:ObjectID,
+         date: Date,
+         streak: Number
+      }
+   ],
+   punctualityHistory:[
+      {
+         _id:false,
+         date: Date,
+         punctuality: Number,
+         changeCnt:Number
+      }
+   ]
 });
 
 module.exports = model("user", User);

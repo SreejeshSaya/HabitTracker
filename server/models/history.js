@@ -4,6 +4,14 @@ const History = new Schema({
     date:{
         type:Date,
         default: ()=>new Date()
+    },
+    streak:{
+      type: Number,
+      default: 0
+    },
+    punctuality:{
+       type: Number,
+       default: 0
     }
 })
 

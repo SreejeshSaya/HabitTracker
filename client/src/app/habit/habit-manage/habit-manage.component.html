@@ -20,13 +20,6 @@
             [default]="selectedColor">
             </app-color-picker>
         </div>
-        <div class="block">
-            <h1>Stats</h1>
-            <div class="stats">
-               <p>Habit Completion Score: {{this.habit.completionScore | number:'1.0-0'}} </p>
-               <p>Habit Completion Delay: {{ this.habit.averageCompletionDelay | number: '1.1-1' }} days</p>
-            </div>
-         </div>
         <div class="submit">
             <button (click)="updateHabit()" class="btn">Update</button>
             <button  (click)="deleteHabit(habit.index)" class="btn btn-red">Remove Habit</button>
