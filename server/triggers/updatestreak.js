@@ -12,7 +12,7 @@ exports.onCompleteToday =function(user,habit){
    const now = removeTime(new Date())
    const startDate = removeTime(habit.createdAt)
    const diff= daysDifference(startDate,now)
-   const p = Math.floor((habit.history.length+1)/(diff+1)*100)
+   const p = Math.ceil((habit.history.length+1)/(diff+1)*100)
    if (user.streakHistory.length)
       userStreak = user.streakHistory[user.streakHistory.length-1].streak
 
@@ -36,7 +36,7 @@ exports.onCompleteToday =function(user,habit){
       if (last){//same day then update last record
          const avgP = (last.punctuality*last.changeCnt+p)/(last.changeCnt+1) //average update
          console.log("update avg",habit.text,last.punctuality,last.changeCnt,p,avgP)
-         last.punctuality = Math.floor(avgP)
+         last.punctuality = Math.ceil(avgP)
          last.changeCnt+=1
       }
       else {
@@ -58,7 +58,7 @@ exports.onRemoveCompleteToday=function(user,habit){
    }
    
    const  { changeCnt,punctuality } = lastUserPunctualityHistory
-   lastUserPunctualityHistory.punctuality = Math.floor((punctuality*changeCnt - lastHistory.punctuality )/(changeCnt-1))
+   lastUserPunctualityHistory.punctuality = Math.ceil((punctuality*changeCnt - lastHistory.punctuality )/(changeCnt-1))
    lastUserPunctualityHistory.changeCnt-=1
    if (lastUserPunctualityHistory.changeCnt==0){
       user.punctualityHistory.pop() //pop if zero

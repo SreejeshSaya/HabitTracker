@@ -7,6 +7,7 @@ import { concatMap, tap, map, filter, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { getDateString,getHistory, removeTime } from 'src/app/dateManager'
 import {colors} from 'src/app/colors'
+import {makePunctualityGraph,makeStreakGraph} from 'src/app/grapher'
 
 @Component({
    selector: 'app-habit-manage',
@@ -61,6 +62,9 @@ export class HabitManageComponent implements OnInit {
             this.history = getHistory(this.habit.createdAt,this.habit.history)
             this.selectedColor = this.habit.color
             this.createStreakCalendar();
+
+            console.log(makePunctualityGraph(this.habit,this.habit.history,90))
+            console.log(makeStreakGraph(this.habit,this.habit.history,90))
          } else if (!l) {
             this.router.navigateByUrl('/');
          }

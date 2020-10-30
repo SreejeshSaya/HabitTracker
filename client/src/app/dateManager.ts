@@ -87,3 +87,10 @@ export function getHistory(startDate, history) {
    return timeRange
 }
 
+export function daysDifference(d1: Date,d2: Date){
+   return Math.floor((d2.valueOf()-d1.valueOf())/(1000*60*60*24))
+}
+
+
+
+

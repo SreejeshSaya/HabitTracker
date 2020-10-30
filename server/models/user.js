@@ -40,7 +40,8 @@ const User = new Schema({
          _id:false,
          date: Date,
          punctuality: Number,
-         changeCnt:Number
+         changeCnt:Number,
+         prevPunctuality: Number
       }
    ]
 });
