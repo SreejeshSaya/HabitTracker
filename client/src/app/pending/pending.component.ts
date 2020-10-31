@@ -83,4 +83,14 @@ export class PendingComponent implements OnInit {
          console.log("complete error",err)
       })
    }
+   removeCompleteToday({ev,index}){
+      ev.stopPropagation()
+      console.log("commmmmmmmm",index) 
+      this.habitService.removeCompleteToday(index)
+      .subscribe(data=>{
+      },
+      err=>{
+         console.log("complete error",err)
+      })
+   }
 }

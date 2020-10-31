@@ -133,6 +133,24 @@ export class HabitService {
       }) );
    }
 
+   removeCompleteToday(habitIndex){
+      const habit = this.userHabits[habitIndex];
+      const habitId = habit._id
+      habit.state="PENDING"
+      console.log("start update")
+      return this.http.post('/api/remove-complete-today', {
+         habitId
+      }).pipe(tap(newHabit => {
+         console.log("updating habit")
+         this.populateHabit(newHabit,habitIndex)
+         this.userHabits[habitIndex] = newHabit
+         console.log("updated",newHabit)
+      }),catchError(err=>{
+         console.error(err)
+         return "Remove failed"
+      }) );
+   }
+
    getPendingHabits(){
       // return this.isLoading$.pipe(filter(l=>l),
       // switchMap(_=>{

@@ -18,3 +18,8 @@
 .btn-red {
    background-color: red;
 }
+
+.graphs {
+   display: flex;
+   
+}

@@ -24,6 +24,7 @@ import { StreakCalendarComponent } from './streak-calendar/streak-calendar.compo
 import { UserDetailsPublicComponent } from './user-details-public/user-details-public.component';
 import { LeaderboardComponent } from './leaderboard/leaderboard.component'
 import { LoadingComponent } from './loading.component';
+import { GraphComponent } from './graph/graph.component';
 
 @NgModule({
    declarations: [
@@ -43,7 +44,8 @@ import { LoadingComponent } from './loading.component';
       StreakCalendarComponent,
       UserDetailsPublicComponent,
       LeaderboardComponent,
-      LoadingComponent
+      LoadingComponent,
+      GraphComponent
    ],
    imports: [
       CommonModule,

@@ -26,6 +26,8 @@ export class HabitManageComponent implements OnInit {
    colors;
    histStreak = [];
    message = "test";
+   sdata;
+   pdata;
    constructor(
       public router: Router,
       public route: ActivatedRoute,
@@ -62,9 +64,8 @@ export class HabitManageComponent implements OnInit {
             this.history = getHistory(this.habit.createdAt,this.habit.history)
             this.selectedColor = this.habit.color
             this.createStreakCalendar();
-
-            console.log(makePunctualityGraph(this.habit,this.habit.history,90))
-            console.log(makeStreakGraph(this.habit,this.habit.history,90))
+            this.pdata = makePunctualityGraph(this.habit,this.habit.history,90)
+            this.sdata = makeStreakGraph(this.habit,this.habit.history,90)
          } else if (!l) {
             this.router.navigateByUrl('/');
          }
@@ -120,5 +121,9 @@ export class HabitManageComponent implements OnInit {
    }
    colorChange(color){
       this.selectedColor = color 
+   }
+
+   makeStreakGraph(){
+      
    }
 }

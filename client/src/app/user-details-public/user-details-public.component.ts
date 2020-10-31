@@ -14,6 +14,8 @@ export class UserDetailsPublicComponent implements OnInit {
    isLoading=true;
    publicProfile;
    joinDateYear;
+   sdata;
+   pdata;
    constructor(private authService: AuthService,private publicData: PublicService,private router: Router,private route: ActivatedRoute ) {
 
    }
@@ -28,6 +30,8 @@ export class UserDetailsPublicComponent implements OnInit {
          this.isLoading = false
          this.publicProfile = publicProfile
          this.joinDateYear = (new Date(this.publicProfile.createdAt)).getFullYear()
+         this.sdata = this.publicProfile.streakHistory.map(h=>{return {date: new Date(h.date),value: h.streak}})
+         this.pdata = this.publicProfile.punctualityHistory.map(h=>{return {date: new Date(h.date),value: h.punctuality}})
       },(err)=>{
          this.isLoading = false
       })

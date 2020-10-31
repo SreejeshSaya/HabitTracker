@@ -8,6 +8,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class HabitSmallComponent implements OnInit {
    @Input() habit;
    @Output() complete: EventEmitter<any> = new EventEmitter()
+   @Output() removeComplete: EventEmitter<any> = new EventEmitter()
    style
    constructor() {
       

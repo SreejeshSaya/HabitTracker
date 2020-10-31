@@ -17,6 +17,8 @@ export class UserDetailsComponent implements OnInit {
    dateJoined
    dateJoinedYear;
    averageCompletionDelay;
+   sdata;
+   pdata;
    constructor(public authService: AuthService, private router: Router, public habitService: HabitService, route: ActivatedRoute) {
       this.routeSub = route.params.subscribe(val => {
          this.authService.getUserDetails();
@@ -47,6 +49,7 @@ export class UserDetailsComponent implements OnInit {
          }
       });
    }
+   
    updateStats(){
       this.bestStreak = this.authService.userDetails.bestStreak
       this.habitScore = this.authService.userDetails.habitScore
@@ -54,7 +57,11 @@ export class UserDetailsComponent implements OnInit {
       console.log(this.authService.userDetails.habitScore)
       this.dateJoined = new Date(this.authService.userDetails.createdAt)
       this.dateJoinedYear = this.dateJoined.getFullYear()
+      this.sdata = this.authService.userDetails.streakHistory.map(h=>{return {date: new Date(h.date),value: h.streak}})
+      this.pdata = this.authService.userDetails.punctualityHistory.map(h=>{return {date: new Date(h.date),value: h.punctuality}})
+      console.log(this.sdata,this.pdata)
    }
+
    ngOnDestroy(){
       this.authSub.unsubscribe();
       this.routeSub.unsubscribe();

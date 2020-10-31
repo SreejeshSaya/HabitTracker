@@ -44,7 +44,7 @@
             <app-habit-small
                *ngFor="let habit of (userHabits|HabitFilter: currentTab)"
                [habit]="habit"
-               (complete)="completeHabitToday($event)"
+               (removeComplete)="removeCompleteToday($event)"
             >
             </app-habit-small>
          </ng-container>

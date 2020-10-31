@@ -3,7 +3,7 @@
       class="habit-check"
       type="checkbox"
       [checked]="habit.state != 'PENDING'"
-      (click)="complete.emit({ ev: $event, index: habit.index })"
+      (click)="habit.state=='PENDING'?complete.emit({ ev: $event, index: habit.index }):removeComplete.emit({ ev: $event, index: habit.index })"
    />
    <div class="habit-content">
       <div class="habit-name">

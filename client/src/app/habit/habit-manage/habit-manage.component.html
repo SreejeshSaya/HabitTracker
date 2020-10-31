@@ -46,6 +46,20 @@
     </div>
 </div> -->
 
+<div class="block" *ngIf="habit">
+   <h1>Stats</h1>
+   <div class="graphs">
+      <div class="graph">
+         <h2>Streak</h2>
+         <app-graph id="sgraph" [width]="600" [height]="400" [data]="sdata" ></app-graph>
+      </div>
+      <div class="graph">
+         <h2>Punctuality</h2>
+         <app-graph id="pgraph" [width]="600" [height]="400" [data]="pdata" ></app-graph>
+      </div>
+   </div>
+</div>
+
 <div class="streak-history" >
     <!-- <div *ngFor="let streakMonth of histStreak;">
         <app-streak-calendar [monthlyStreak]="streakMonth"></app-streak-calendar>
