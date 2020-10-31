@@ -18,13 +18,12 @@ export function getStreak(history) {
 }
 
 export function getMaxStreak(history: Array<any>) {
-   
    return history.reduce((a,b)=>{
       if (a.streak>b.streak){
          return a
       }
       return b
-   }).streak
+   },0).streak
 }
 
 export function datesEqual(d1, d2) {
