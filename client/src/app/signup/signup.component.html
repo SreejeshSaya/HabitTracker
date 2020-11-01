@@ -4,15 +4,24 @@
     <h1>Create an Account</h1>
     <div class="form">
         <div class="input">
-            <label for="">Username</label>
+            <div class="input-div">
+                <label class="input-label" for="">Username</label>
+                <span class="input-warning" *ngIf="this.usernameWarning">{{ this.warningMessage }}</span>
+            </div>
             <input [(ngModel)]="username" type="text" value="">
         </div>
         <div class="input">
-            <label for="">Email</label>
+            <div class="input-div">
+                <label class="input-label" for="">Email</label>
+                <span class="input-warning" *ngIf="this.emailWarning">{{ this.warningMessage }}</span>
+            </div>
             <input [(ngModel)]="email" type="email" value="">
         </div>
         <div class="input">
-            <label for="">Password</label>
+            <div class="input-div">
+                <label class="input-label" for="">Password</label>
+                <span class="input-warning" *ngIf="this.passwordWarning">{{ this.warningMessage }}</span>
+            </div>
             <input [(ngModel)]="password" type="password" value="">
         </div>
         <div class="submit">

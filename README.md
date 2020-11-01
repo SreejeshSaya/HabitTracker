@@ -29,7 +29,7 @@ View each folder to view more details
 
 1. Graphs for each habit and user V
 2. User wide stats V
-
+3. Password Check
 
 # TODO WEEK2
 

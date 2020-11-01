@@ -10,12 +10,12 @@ exports.usernameValidation = async (req, res, next) => {
    if (validator.isEmpty(username)) {
       message = "Username Required";
    } else if (username.length > charLimit) {
-      message = `Username greater than ${charLimit} characters!`;
+      message = 'Username too long!';
    } else if (validator.matches(username, "^[a-zA-Z0-9]*_?[a-zA-Z0-9]+$")) {
       const user = await User.findOne({ username: username });
       if (user) {
          // Middleware function or a normal function?
-         message = "UserName Exists!";
+         message = "Username Exists!";
       } else {
          console.log(`Username ${username} is valid`);
          next();
@@ -43,13 +43,13 @@ exports.emailValidation = async (req, res, next) => {
       const user = await User.findOne({ email: emailId });
       if (user) {
          // console.log(user)
-         message = `An account already exists with this email ${emailId} `;
+         message = 'Email Exists!';
          console.log(message);
       } else {
          next();
       }
    } else {
-      message = "Email ID invalid";
+      message = "Email Invalid";
    }
    if (message) {
       res.status(401);

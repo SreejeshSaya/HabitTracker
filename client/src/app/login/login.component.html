@@ -6,14 +6,14 @@
       <div class="input">
          <div class="input-div">
             <label class="input-label" for="">Email</label>
-            <span class="input-warning" *ngIf="this.emailWarning">{{ this.emailMessage}}</span>
+            <span class="input-warning" *ngIf="this.emailWarning">{{ this.warningMessage}}</span>
          </div>
          <input [(ngModel)]="email" type="email" value="" /> 
       </div>
       <div class="input">
          <div class="input-div">
             <label class="input-label" for="">Password</label>
-            <span class="input-warning" *ngIf="this.passwordWarning">{{ this.passwordMessage}}</span>
+            <span class="input-warning" *ngIf="this.passwordWarning">{{ this.warningMessage}}</span>
          </div>
          <input [(ngModel)]="password" type="password" value="" />
       </div>

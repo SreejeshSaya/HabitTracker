@@ -1,0 +1,15 @@
+.input-div {
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+.input-label {
+    margin-left: 15px;
+    justify-self: left;
+}
+
+.input-warning {
+    color: red;
+    margin-right: 15px;
+    justify-self: right;
+}
