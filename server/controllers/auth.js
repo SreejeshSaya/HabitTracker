@@ -62,12 +62,12 @@ exports.loginValidation = async (req, res, next) => {
    emailId = req.body.email;
    console.log(emailId);
    if (validator.isEmpty(emailId)) {
-      message = "Field must not be left Empty!";
+      message = "Email Required!";
    } else if (validator.isEmail(emailId)) {
       console.log("Email Valid");
       next();
    } else {
-      message = "Email ID invalid";
+      message = "Email Invalid!";
       console.log(message);
    }
    if (message) {

@@ -4,13 +4,17 @@
    <h1>Log in to Habit Tracker</h1>
    <div class="form">
       <div class="input">
-         <label for="">Email</label>
-         <p *ngIf="this.emailWarning">{{ emailMessage }}</p>
-         <input [(ngModel)]="email" type="email" value="" />
+         <div class="input-div">
+            <label class="input-label" for="">Email</label>
+            <span class="input-warning" *ngIf="this.emailWarning">{{ this.emailMessage}}</span>
+         </div>
+         <input [(ngModel)]="email" type="email" value="" /> 
       </div>
       <div class="input">
-         <label for="">Password</label>
-         <p *ngIf="this.passwordWarning">{{ passwordMessage }}</p>
+         <div class="input-div">
+            <label class="input-label" for="">Password</label>
+            <span class="input-warning" *ngIf="this.passwordWarning">{{ this.passwordMessage}}</span>
+         </div>
          <input [(ngModel)]="password" type="password" value="" />
       </div>
       <div class="submit">

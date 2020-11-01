@@ -10,16 +10,19 @@ import { map } from 'rxjs/operators';
    styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-   email = '';
+   email;
    emailMessage = '';
    emailWarning = false;
-   password = '';
+   password;
    passwordMessage = '';
    passwordWarning= false;
+   // msg;
    isLoading = true;
    routeSub;
    authSub;
    constructor(private authService: AuthService, private router: Router,private route: ActivatedRoute) {
+      this.password = '';
+      this.email = '';
       this.routeSub = route.params.subscribe(val => {
          if (!this.authService.userDetails) {
             this.authService.getUserDetails();
@@ -39,22 +42,24 @@ export class LoginComponent implements OnInit {
    }
 
    onSubmit() {
+      this.emailWarning = false;
+      this.passwordWarning = false;
       if(this.email === '') {
-         this.emailMessage = 'Email Field Required';
+         this.emailMessage = '* Email Required';
          this.emailWarning = true;
       }
       else if (this.password === '') {
-         this.passwordMessage = 'Password Field Required';
+         this.passwordMessage = '* Password Required';
          this.passwordWarning = true;
       }
       else {
-         this.isLoading = true;
-         this.emailWarning = false;
-         this.passwordWarning = false;
-         this.authService.logIn(this.email, this.password).subscribe(
+                  this.authService.logIn(this.email, this.password).subscribe(
             (data) => {
                console.log(data);
                if (data === 'Ok') {
+                  this.isLoading = true;
+                  this.emailWarning = false;
+                  this.passwordWarning = false;
                   console.log('login will redirect');
                   this.router.navigateByUrl('/');
                }
@@ -74,7 +79,21 @@ export class LoginComponent implements OnInit {
             (err) => {
                console.log('Loggin Error')
                console.log(err);
-               alert(err);
+               var msg: string;
+               msg = err.error;
+               if(msg === 'Email Invalid!') {
+                  this.emailMessage = msg;
+                  this.emailWarning = true;
+               }
+               else if(msg === 'Invalid Password') {
+                  this.passwordMessage = msg;
+                  this.passwordWarning = true;
+               }
+               else if(msg === 'Email Not Found') {
+                  alert(`No Account exists with the email id: ${this.email}`)
+               }
+
+               // alert(err);
             }
          );
       }
