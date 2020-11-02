@@ -1,0 +1,25 @@
+<app-loading *ngIf="(isLoading)">
+</app-loading>
+
+<ng-container *ngIf="!isLoading && stats">
+   <div class="stats">
+      <div class="block">
+         <h1>Stats for the last 14 days</h1>
+         <div class="small-sep"></div>
+         <p>Total Habits Created: {{stats.totalhabitsCreated}}</p>
+         <p>{{message}}</p>
+      </div>
+      <div class="graphs block">
+         <h1>Graphs</h1>
+         <div class="small-sep"></div>
+         <h2>Average Punctuality of Users</h2>
+         <app-graph type="areaGraph" id="pgraph" [width]="600" [height]="400" [data]="stats.avgPunctualityUser" ></app-graph>
+         <h2>Average Length of habits</h2>
+         <app-graph type="areaGraph" id="lgraph" [width]="600" [height]="400" [data]="stats.avgLengthHabit" ></app-graph>
+      </div>
+   </div>   
+</ng-container>
+
+<ng-container *ngIf="!isLoading && !stats">
+   <h1>Stats not available</h1>
+</ng-container>

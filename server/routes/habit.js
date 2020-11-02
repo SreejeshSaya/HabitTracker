@@ -17,4 +17,6 @@ router.postAsync("/remove-complete-today",requireAuth,habitControllers.removeCom
 router.getAsync("/user-public-data",habitControllers.getUserPublicData)
 router.getAsync("/leaderboard",habitControllers.getLeaderBoard)
 
+router.getAsync("/public-stats",habitControllers.getPublicStats)
+
 module.exports = router

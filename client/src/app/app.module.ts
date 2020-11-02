@@ -25,6 +25,7 @@ import { UserDetailsPublicComponent } from './user-details-public/user-details-p
 import { LeaderboardComponent } from './leaderboard/leaderboard.component'
 import { LoadingComponent } from './loading.component';
 import { GraphComponent } from './graph/graph.component';
+import { StatisticsComponent } from './statistics/statistics.component';
 
 @NgModule({
    declarations: [
@@ -45,7 +46,8 @@ import { GraphComponent } from './graph/graph.component';
       UserDetailsPublicComponent,
       LeaderboardComponent,
       LoadingComponent,
-      GraphComponent
+      GraphComponent,
+      StatisticsComponent
    ],
    imports: [
       CommonModule,

@@ -28,4 +28,8 @@ export class PublicService {
      return this.http.get('/api/leaderboard')
   }
 
+  getPublicStats(){
+     return this.http.get('/api/public-stats')
+  }
+
 }

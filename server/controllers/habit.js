@@ -2,6 +2,8 @@ const Habit = require("../models/habit");
 const History = require("../models/history");
 const { removeTime, daysDifference } = require("../utils/dateManager");
 const User = require("../models/user");
+const StatHistory = require("../models/stathistory")
+
 const  {onCompleteToday,onRemoveCompleteToday} = require("../triggers/updatestreak")
 
 exports.addHabit = async (req, res, next) => {
@@ -145,4 +147,14 @@ exports.getUserPublicData = async (req, res, next) => {
 exports.getLeaderBoard = async function(req,res,next){
    const users = await User.find({}).sort("-habitScore").select("habitScore username profileImageUrl")
    res.send(users)
+}
+
+exports.getPublicStats = async function(req,res,next){
+   const stats = await StatHistory.findOne({})
+   if (!stats){
+      return res.status(503).send({
+         error:"No stats available"
+      })
+   }
+   res.send(stats)
 }

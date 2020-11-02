@@ -1,7 +1,9 @@
 
 const removeTime = (date) => {
     return new Date(date.toDateString());
+      date.toU
 };
+
 
 exports.habitEnded = (date) => {
     return removeTime(new Date()) > removeTime(date);

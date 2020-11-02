@@ -13,7 +13,12 @@ export function getStreak(history) {
       return 0;
    }
    else {
-      return history[history.length-1].streak
+      const last = history[history.length-1]
+      const diff = removeTime(new Date()).valueOf() - removeTime(last.date).valueOf()
+      if (diff<=1000*60*60*24){
+         return last.streak;
+      }
+      return 0;
    }
 }
 

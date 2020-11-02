@@ -9,6 +9,7 @@ import {UserDetailsComponent }from './user-details/user-details.component'
 import {EditProfileComponent} from './edit-profile/edit-profile.component'
 import { UserDetailsPublicComponent } from './user-details-public/user-details-public.component';
 import { LeaderboardComponent } from './leaderboard/leaderboard.component';
+import { StatisticsComponent } from './statistics/statistics.component';
 
 const routes: Routes = [
    {path:"",component:PendingComponent,pathMatch:"full"},
@@ -19,7 +20,8 @@ const routes: Routes = [
    {path:'profile',component:UserDetailsComponent},
    {path:'edit',component:EditProfileComponent},
    {path: 'users/:userId',component:UserDetailsPublicComponent},
-   {path: 'leaderboard',component:LeaderboardComponent}
+   {path: 'leaderboard',component:LeaderboardComponent},
+   {path: 'statistics',component:StatisticsComponent}
 ];
 
 @NgModule({
