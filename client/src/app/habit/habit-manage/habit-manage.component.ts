@@ -2,7 +2,6 @@ import { Component, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/auth.service';
 import { HabitService } from 'src/app/habit.service';
-import { StreakCalendarComponent } from 'src/app/streak-calendar/streak-calendar.component';
 import { concatMap, tap, map, filter, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { getDateString,getHistory, removeTime } from 'src/app/dateManager'
@@ -90,9 +89,9 @@ export class HabitManageComponent implements OnInit {
             if(this.history[i].date.getMonth() === month) { 
                monthStreak.push(this.history[i])
             }
-            else { // stop when month has changed
-               break;
-            }
+            // else { // stop when month has changed
+            //    break;
+            // }
             i--;
          }
          this.histStreak.push({month: month, monthStreak: monthStreak});
@@ -100,6 +99,7 @@ export class HabitManageComponent implements OnInit {
          j++;
          month = new Date(d.setMonth(month-1)).getMonth();       
       }
+      this.histStreak.reverse();
       console.log(this.histStreak)
 
       // this.histStreak.forEach((streak) => {

@@ -29,6 +29,10 @@ $thin-border: 2px solid $red; */
   /* border-color: black; */
 }
 
+.day-complete {
+  background-color: green;
+}
+
 /* .calendar-cell:hover {
 
 } */

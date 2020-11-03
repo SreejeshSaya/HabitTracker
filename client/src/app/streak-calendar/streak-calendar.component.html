@@ -1,6 +1,6 @@
 <table class="calendar">
     <caption class="calendar-banner">
-        <h1>{{ streak.month }}</h1>
+        <h1>{{ months[streak.month] }}</h1>
     </caption>
     <thead>
         <!-- <tr>
@@ -15,43 +15,43 @@
     </thead>
     <tbody>
         <tr>
-            <td class="calendar-cell">1</td>
-            <td class="calendar-cell">2</td>
-            <td class="calendar-cell">3</td>
-            <td class="calendar-cell">4</td>
-            <td class="calendar-cell">5</td>
-            <td class="calendar-cell">6</td>
-            <td class="calendar-cell">7</td>
+            <td class="calendar-cell" ><div [ngClass]="{'day-complete': dayComplete[0]}">1</div></td>
+            <td class="calendar-cell" ><div [ngClass]="{'day-complete': dayComplete[1]}">2</div></td>
+            <td class="calendar-cell" ><div [ngClass]="{'day-complete': dayComplete[2]}">3</div></td>
+            <td class="calendar-cell" ><div [ngClass]="{'day-complete': dayComplete[3]}">4</div></td>
+            <td class="calendar-cell" ><div [ngClass]="{'day-complete': dayComplete[4]}">5</div></td>
+            <td class="calendar-cell" ><div [ngClass]="{'day-complete': dayComplete[5]}">6</div></td>
+            <td class="calendar-cell" ><div [ngClass]="{'day-complete': dayComplete[6]}">7</div></td>
         </tr>
         <tr>
-            <td class="calendar-cell">8</td>
-            <td class="calendar-cell">9</td>
-            <td class="calendar-cell">10</td>
-            <td class="calendar-cell">11</td>
-            <td class="calendar-cell">12</td>
-            <td class="calendar-cell">13</td>
-            <td class="calendar-cell">14</td>
+            <td class="calendar-cell" ><div [ngClass]="{'day-complete': dayComplete[8]}">8</div></td>
+            <td class="calendar-cell" ><div [ngClass]="{'day-complete': dayComplete[9]}">9</div></td>
+            <td class="calendar-cell" ><div [ngClass]="{'day-complete': dayComplete[10]}">10</div></td>
+            <td class="calendar-cell" ><div [ngClass]="{'day-complete': dayComplete[11]}">11</div></td>
+            <td class="calendar-cell" ><div [ngClass]="{'day-complete': dayComplete[12]}">12</div></td>
+            <td class="calendar-cell" ><div [ngClass]="{'day-complete': dayComplete[13]}">13</div></td>
+            <td class="calendar-cell" ><div [ngClass]="{'day-complete': dayComplete[14]}">14</div></td>
         </tr>
         <tr>
-            <td class="calendar-cell">15</td>
-            <td class="calendar-cell">16</td>
-            <td class="calendar-cell">17</td>
-            <td class="calendar-cell">18</td>
-            <td class="calendar-cell">19</td>
-            <td class="calendar-cell">20</td>
-            <td class="calendar-cell">21</td>
+            <td class="calendar-cell" ><div [ngClass]="{'day-complete': dayComplete[15]}">15</div></td>
+            <td class="calendar-cell" ><div [ngClass]="{'day-complete': dayComplete[16]}">16</div></td>
+            <td class="calendar-cell" ><div [ngClass]="{'day-complete': dayComplete[17]}">17</div></td>
+            <td class="calendar-cell" ><div [ngClass]="{'day-complete': dayComplete[18]}">18</div></td>
+            <td class="calendar-cell" ><div [ngClass]="{'day-complete': dayComplete[19]}">19</div></td>
+            <td class="calendar-cell" ><div [ngClass]="{'day-complete': dayComplete[20]}">20</div></td>
+            <td class="calendar-cell" ><div [ngClass]="{'day-complete': dayComplete[21]}">21</div></td>
         </tr>
         <tr>
-            <td class="calendar-cell">22</td>
-            <td class="calendar-cell">23</td>
-            <td class="calendar-cell">24</td>
-            <td class="calendar-cell">25</td>
-            <td class="calendar-cell">26</td>
-            <td class="calendar-cell">27</td>
-            <td class="calendar-cell">28</td>
+            <td class="calendar-cell" ><div [ngClass]="{'day-complete': dayComplete[22]}">22</div></td>
+            <td class="calendar-cell" ><div [ngClass]="{'day-complete': dayComplete[23]}">23</div></td>
+            <td class="calendar-cell" ><div [ngClass]="{'day-complete': dayComplete[24]}">24</div></td>
+            <td class="calendar-cell" ><div [ngClass]="{'day-complete': dayComplete[25]}">25</div></td>
+            <td class="calendar-cell" ><div [ngClass]="{'day-complete': dayComplete[26]}">26</div></td>
+            <td class="calendar-cell" ><div [ngClass]="{'day-complete': dayComplete[27]}">27</div></td>
+            <td class="calendar-cell" ><div [ngClass]="{'day-complete': dayComplete[28]}">28</div></td>
         </tr>
         <tr>
-            <td *ngFor="let day of nDaysLeft" class="calendar-cell"> {{ day }} </td>
+            <td *ngFor="let day of nDaysLeft" class="calendar-cell" ><div [ngClass]="{'day-complete': dayComplete[day]}">{{ day }}</div></td>
         </tr>
     </tbody>
 </table>
