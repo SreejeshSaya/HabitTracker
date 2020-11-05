@@ -26,6 +26,7 @@ import { LeaderboardComponent } from './leaderboard/leaderboard.component'
 import { LoadingComponent } from './loading.component';
 import { GraphComponent } from './graph/graph.component';
 import { StatisticsComponent } from './statistics/statistics.component';
+import { TagComponent } from './tag/tag.component';
 
 @NgModule({
    declarations: [
@@ -47,7 +48,8 @@ import { StatisticsComponent } from './statistics/statistics.component';
       LeaderboardComponent,
       LoadingComponent,
       GraphComponent,
-      StatisticsComponent
+      StatisticsComponent,
+      TagComponent
    ],
    imports: [
       CommonModule,

@@ -3,3 +3,29 @@
    width: 40rem;
 }
 
+.tags h2 {
+   margin-top: 0;
+}
+
+.add-tag {
+   background-color: white;
+   color: orange;
+   border: 2px solid orange;
+   height: 2rem;
+   font-size: 0.8rem;
+   line-height: 0.1rem;
+   margin-right: 0.5rem;
+   transition: all 0.3s;
+}
+.add-tag:hover{
+   background-color: orange;
+   color: white;
+}
+
+.add-tags {
+   display: flex;
+   vertical-align: center;
+}
+.tags-content{
+   margin-bottom: 0.4rem;
+}

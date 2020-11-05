@@ -15,6 +15,11 @@ export class AddHabitComponent implements OnInit {
    loading: boolean = false;
    routeSub;
    colors;
+   tags = [
+      "hoho",
+      "haha"
+   ]
+   addTagText;
    constructor(public habitService: HabitService,private router:Router, private route:ActivatedRoute) {
       this.routeSub = route.params.subscribe(data=>{
          this.loading =false;
@@ -27,7 +32,7 @@ export class AddHabitComponent implements OnInit {
    addHabit() {
       if (this.habitText) {
          this.loading =true;
-         this.habitService.addHabit(this.habitText,this.selectedColor,this.endDate)
+         this.habitService.addHabit(this.habitText,this.selectedColor,this.endDate,this.tags)
          .subscribe(data=>{
             this.loading =false;
             this.router.navigateByUrl("/")
@@ -41,5 +46,14 @@ export class AddHabitComponent implements OnInit {
 
    colorChange(color){
       this.selectedColor = this.selectedColor==color?"":color;
+   }
+
+   addTag(){
+      this.tags.push(this.addTagText)
+   }
+
+   remTag(pos:number){
+      console.log("aa",pos)
+      this.tags = this.tags.filter((_,i)=>pos!=i)
    }
 }

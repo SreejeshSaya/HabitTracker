@@ -27,6 +27,8 @@ export class HabitManageComponent implements OnInit {
    message = 'test';
    sdata;
    pdata;
+   addTagText;
+   tags = []
    constructor(
       public router: Router,
       public route: ActivatedRoute,
@@ -72,6 +74,7 @@ export class HabitManageComponent implements OnInit {
                   this.habit.createdAt,
                   this.habit.history
                );
+               this.tags = this.habit.tags
                this.selectedColor = this.habit.color;
                this.createStreakCalendar();
                this.pdata = makePunctualityGraph(
@@ -92,7 +95,8 @@ export class HabitManageComponent implements OnInit {
             this.habit.index,
             this.text,
             this.selectedColor,
-            this.endDate
+            this.endDate,
+            this.tags
          )
          .subscribe((d) => {
             this.router.navigateByUrl('/');
@@ -138,4 +142,14 @@ export class HabitManageComponent implements OnInit {
    }
 
    makeStreakGraph() {}
+
+   addTag(){
+      this.tags.push(this.addTagText)
+   }
+
+   remTag(pos:number){
+      console.log("aa",pos)
+      this.tags = this.tags.filter((_,i)=>pos!=i)
+   }
+
 }

@@ -20,6 +20,15 @@
             [default]="selectedColor">
             </app-color-picker>
         </div>
+        <div class="input tags">
+            <h2>Tags</h2>
+            <div class="tags-content">
+                <app-tag *ngFor="let tag of tags; index as i" [text]="tag" (remove)="remTag($event)" [pos]="i"></app-tag>
+            </div>
+            <div class="add-tags">
+                <input [(ngModel)]="addTagText" type="text" name="" id=""> <button (click)="addTag()" class="btn add-tag">Add Tag</button>
+            </div>
+        </div>
         <div class="submit">
             <button (click)="updateHabit()" class="btn">Update</button>
             <button  (click)="deleteHabit(habit.index)" class="btn btn-red">Remove Habit</button>

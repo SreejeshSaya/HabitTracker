@@ -1,0 +1,29 @@
+.tag {
+   color:#111;
+   display: inline-block;
+   padding: 0.1rem 0.3rem;
+   border: 2px solid black;
+   margin-right: 0.2rem;
+   border-radius: 5rem;
+   
+}
+
+
+.tag span {
+   font-size: 0.8rem;
+   display: inline-block;
+   vertical-align: middle;
+}
+.rem-tag {
+   display: inline-block;
+   vertical-align: middle;
+   background: none;
+   padding: 0;
+   margin: 0;
+   margin-left: 0.1rem;
+   font-size: 0.8rem;
+   border: none;
+   color: inherit;
+   font-weight: bold;
+   color: black;
+}

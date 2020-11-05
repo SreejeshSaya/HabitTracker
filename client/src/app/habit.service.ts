@@ -77,9 +77,9 @@ export class HabitService {
       });
    }
 
-   addHabit(habit,color,endDate){
+   addHabit(habit,color,endDate,tags){
       return this.http.post('/api/add-habit', {
-         text: habit,color,endDate
+         text: habit,color,endDate,tags
       }).pipe(tap(res => {
          const nextIndex = this.userHabits.length
          this.populateHabit(res,nextIndex)
@@ -90,10 +90,10 @@ export class HabitService {
       }));
    }
 
-   updateHabit(habitIndex,text,color,endDate){
+   updateHabit(habitIndex,text,color,endDate,tags){
       const habit = this.userHabits[habitIndex]
       return this.http.post('/api/update-habit', {
-         habitId:habit._id,text,color,endDate
+         habitId:habit._id,text,color,endDate,tags
       }).pipe(tap(res => {
          this.populateHabit(res,habitIndex)
          this.userHabits[habitIndex] = res

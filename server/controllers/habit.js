@@ -11,14 +11,17 @@ exports.addHabit = async (req, res, next) => {
    const text = req.body.text;
    const color = req.body.color;
    let endDate = new Date(req.body.endDate);
+   const tags = req.body.tags || []
    endDate = isNaN(endDate.getTime())
       ? new Date(Date.now() + 1000 * 60 * 60 * 24 * 30)
       : endDate;
+
    const habit = new Habit({
       user: userId,
       text: text,
       endDate: endDate,
-      color,
+      color:color,
+      tags: tags
    });
    await habit.save();
    res.send(habit);
@@ -29,6 +32,7 @@ exports.updateHabit = async (req, res, next) => {
    const habitText = req.body.text;
    const habitColor = req.body.color;
    const endDate = req.body.endDate;
+   const habitTags = req.body.tags
    const habit = await Habit.findById(habitId);
    if (!habit) {
       res.setHeader("Content-Type", "text/plain");
@@ -42,6 +46,9 @@ exports.updateHabit = async (req, res, next) => {
       }
       if (endDate && !isNaN(new Date(endDate))) {
          habit.endDate = endDate;
+      }
+      if (habitTags){
+          habit.tags = habitTags
       }
       await habit.save();
       res.send(habit);
