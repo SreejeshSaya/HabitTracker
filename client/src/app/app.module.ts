@@ -27,6 +27,7 @@ import { LoadingComponent } from './loading.component';
 import { GraphComponent } from './graph/graph.component';
 import { StatisticsComponent } from './statistics/statistics.component';
 import { TagComponent } from './tag/tag.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
    declarations: [
@@ -58,6 +59,7 @@ import { TagComponent } from './tag/tag.component';
       HttpClientModule,
       FormsModule,
       ReactiveFormsModule,
+      BrowserAnimationsModule,
    ],
    providers: [],
    bootstrap: [AppComponent],
