@@ -1,6 +1,5 @@
-<nav>
-   <a class="logo" routerLink="/">Habit Tracker</a>
-
+<mat-toolbar color="primary">
+   <span><a class="logo" routerLink="/">Habit Tracker</a></span>
    <ng-template [ngIf]="!(authService.isLoading$ | async)">
       <ng-container
          *ngIf="authService.userDetails; then thenBlock; else elseBlock"
@@ -8,8 +7,8 @@
       <div>
          <ng-template #thenBlock>
             <div class="right-side">
-               <a class="leaderboard-link" routerLink="/statistics">Statistics</a>
-               <a class="leaderboard-link" routerLink="/leaderboard">Leaderboard</a>
+               <a class="leaderboard-link" routerLink="/statistics" mat-button>Statistics</a>
+               <a class="leaderboard-link" routerLink="/leaderboard" mat-button>Leaderboard</a>
                <a class="username" routerLink="/profile">
                   <div
                      class="profile-photo-small"
@@ -26,11 +25,11 @@
          </ng-template>
          <ng-template #elseBlock>
             <div class="right-side">
-               <a class="leaderboard-link" routerLink="/statistics">Statistics</a>
-               <a class="leaderboard-link" routerLink="/leaderboard">Leaderboard</a>
-               <a routerLink="/login" class="btn">Login</a>
+               <a class="leaderboard-link" routerLink="/statistics" mat-button>Statistics</a>
+               <a class="leaderboard-link" routerLink="/leaderboard" mat-button>Leaderboard</a>
+               <a class="btn" routerLink="/login" color="accent" mat-flat-button>Login</a>
             </div>
          </ng-template>
       </div>
    </ng-template>
-</nav>
+ </mat-toolbar>

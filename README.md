@@ -7,8 +7,8 @@ Right now client is basically consists of html files and javascript logic which 
 View each folder to view more details
 
 ## TO DO:
-1. Login Authentication Failure S [Server Side done, client-side pending]
-2. Username and email Validation check S [done]
+1. Login Authentication Failure S [DONE]
+2. Username and email Validation check S [DONE]
 3. habitDetails page V 
 4. calender grid for each habit S
 5. userDetails page  V [almost done]
@@ -18,10 +18,11 @@ View each folder to view more details
 9. Habit Analysis
 
 # TODO WEEK1
+Login and SignUP Validation FRONTEND
 
 ## TODO v2 S
 
-1. Login with error handling S
+1. Login with error handling S [DONE]
 2. Calender S
 3. Tags S
 
@@ -34,4 +35,4 @@ View each folder to view more details
 # TODO WEEK2
 
 ## CSS
-
+1. Improve /profile link 

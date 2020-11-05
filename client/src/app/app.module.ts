@@ -28,6 +28,8 @@ import { GraphComponent } from './graph/graph.component';
 import { StatisticsComponent } from './statistics/statistics.component';
 import { TagComponent } from './tag/tag.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
    declarations: [
@@ -50,7 +52,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       LoadingComponent,
       GraphComponent,
       StatisticsComponent,
-      TagComponent
+      TagComponent      
    ],
    imports: [
       CommonModule,
@@ -60,6 +62,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       FormsModule,
       ReactiveFormsModule,
       BrowserAnimationsModule,
+      MatToolbarModule,
+      MatButtonModule
    ],
    providers: [],
    bootstrap: [AppComponent],
