@@ -23,13 +23,13 @@ import { ProfileUploadComponent } from './profile-upload/profile-upload.componen
 import { StreakCalendarComponent } from './streak-calendar/streak-calendar.component';
 import { UserDetailsPublicComponent } from './user-details-public/user-details-public.component';
 import { LeaderboardComponent } from './leaderboard/leaderboard.component'
-import { LoadingComponent } from './loading.component';
 import { GraphComponent } from './graph/graph.component';
 import { StatisticsComponent } from './statistics/statistics.component';
 import { TagComponent } from './tag/tag.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'; 
 
 @NgModule({
    declarations: [
@@ -49,7 +49,6 @@ import { MatButtonModule } from '@angular/material/button';
       StreakCalendarComponent,
       UserDetailsPublicComponent,
       LeaderboardComponent,
-      LoadingComponent,
       GraphComponent,
       StatisticsComponent,
       TagComponent      
@@ -63,7 +62,8 @@ import { MatButtonModule } from '@angular/material/button';
       ReactiveFormsModule,
       BrowserAnimationsModule,
       MatToolbarModule,
-      MatButtonModule
+      MatButtonModule,
+      MatProgressSpinnerModule
    ],
    providers: [],
    bootstrap: [AppComponent],

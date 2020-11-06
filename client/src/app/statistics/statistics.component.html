@@ -1,5 +1,4 @@
-<app-loading *ngIf="(isLoading)">
-</app-loading>
+<mat-spinner class="loading-spinner" *ngIf="(isLoading)"></mat-spinner>
 
 <ng-container *ngIf="!isLoading && stats">
    <div class="stats">
