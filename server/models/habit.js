@@ -34,7 +34,10 @@ const Habit = new Schema({
          punctuality: Number
       }
    ],
-   
+   isFake:{
+      type:Boolean,
+      default:false
+   }
 });
 
 Habit.methods.getLastCompletedDate=function(){

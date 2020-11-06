@@ -26,6 +26,7 @@ export class StatisticsComponent implements OnInit {
      this.publicService.getPublicStats()
      .subscribe(data=>{
         this.stats = data
+        
         this.getMessage()
         console.log("recv stats",data)
         this.isLoading = false

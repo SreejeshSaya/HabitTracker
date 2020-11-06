@@ -43,7 +43,11 @@ const User = new Schema({
          changeCnt:Number,
          prevPunctuality: Number
       }
-   ]
+   ],
+   isFake:{
+      type: Boolean,
+      default: false
+   }
 });
 
 module.exports = model("user", User);
