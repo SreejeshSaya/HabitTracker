@@ -1,4 +1,4 @@
-<app-loading *ngIf="this.authService.isLoading$ | async"></app-loading>
+<mat-spinner class="loading-spinner" *ngIf="this.authService.isLoading$ | async"></mat-spinner>
 
 <div *ngIf="!(this.authService.isLoading$ | async)" class="container">
    <div class="pending">

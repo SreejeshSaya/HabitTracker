@@ -80,7 +80,14 @@ html {
    display: inline-block;
 }
 
-
+.loading-spinner {
+   position: fixed !important;
+   top: 50%;
+   left: 50%;
+   margin-top: -59px;
+   margin-left: -59px;
+   /* transform: translate(-50%, -50%); */
+}
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

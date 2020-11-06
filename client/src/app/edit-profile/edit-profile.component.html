@@ -1,4 +1,4 @@
-<app-loading *ngIf="(this.authService.isLoading$ | async) || (this.habitService.isLoading$ | async) "></app-loading>
+<mat-spinner class="loading-spinner" *ngIf="(this.authService.isLoading$ | async) || (this.habitService.isLoading$ | async) "></mat-spinner>
 
 <div *ngIf="!(this.authService.isLoading$ | async) && !(this.habitService.isLoading$ | async) ">
    <h1 style="text-align: center">Edit Profile</h1>
