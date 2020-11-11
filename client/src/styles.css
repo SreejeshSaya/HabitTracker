@@ -1,3 +1,11 @@
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+.habit-checkbox .mat-checkbox-inner-container {
+   height: 25px;
+   width: 25px;
+}
+
+
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 * {
    box-sizing: border-box;

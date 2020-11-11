@@ -30,6 +30,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'; 
+import { MatFormFieldModule } from '@angular/material/form-field'; 
+import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox'; 
 
 @NgModule({
    declarations: [
@@ -63,7 +67,11 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
       BrowserAnimationsModule,
       MatToolbarModule,
       MatButtonModule,
-      MatProgressSpinnerModule
+      MatProgressSpinnerModule,
+      MatFormFieldModule,
+      MatInputModule,
+      MatCardModule,
+      MatCheckboxModule
    ],
    providers: [],
    bootstrap: [AppComponent],

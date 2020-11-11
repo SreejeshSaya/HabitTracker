@@ -1,4 +1,33 @@
-<div class="habit">
+<mat-card class="habit">
+   <mat-checkbox 
+      class="habit-checkbox" 
+      [checked]="habit.state != 'PENDING'"
+      (click)="habit.state=='PENDING'?complete.emit({ ev: $event, index: habit.index }):removeComplete.emit({ ev: $event, index: habit.index })"
+   ></mat-checkbox>
+   <!-- <input
+      class="habit-checkbox"
+      type="checkbox"
+      [checked]="habit.state != 'PENDING'"
+      (click)="habit.state=='PENDING'?complete.emit({ ev: $event, index: habit.index }):removeComplete.emit({ ev: $event, index: habit.index })"
+   /> -->
+   <div class="habit-details">
+      <a routerLink="/habits/{{ habit.index }}">
+         <mat-card-title>{{ habit.text }}</mat-card-title>
+         <mat-card-subtitle>
+            Current streak {{ habit.streak }}   {{ habit.daysLeft }} days left
+         </mat-card-subtitle> 
+      </a>
+   </div>
+   <!-- <mat-card-subtitle></mat-card-subtitle> -->
+   <img
+   src="../../../assets/habitStreak.png"
+   alt="You're on a Streak!"
+   class="streak-img"
+   />
+   
+</mat-card>
+
+<!-- <div class="habit">
    <input
       class="habit-check"
       type="checkbox"
@@ -22,4 +51,4 @@
    <div class="time-left" [ngStyle]="{ 'background-color': habit.color }">
       {{ habit.daysLeft }} Days left
    </div>
-</div>
+</div> -->
