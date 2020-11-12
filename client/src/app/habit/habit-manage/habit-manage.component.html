@@ -1,26 +1,51 @@
 <mat-spinner  class="loading-spinner" *ngIf="!habit"></mat-spinner>
 
-
 <div class="habit-large" *ngIf="habit" >
     <h1 [ngStyle]="{'border-top':'0.2rem solid '+selectedColor,'padding-top':'0.5rem'}">Manage Habit</h1>
-    <div class="habit-details">
-        <div class="input">
-            <label for="">Name</label>
-            <input type="text" [(ngModel)]="text">
-        </div>
-        <div class="input">
-            <label for="">End Date</label>
-            <input type="date" [(ngModel)]="endDate">
-        </div>
-        <div class="input">
-            <label for="">Color</label>
-            <app-color-picker
-            [colors]="colors"
-            (colorChange)="colorChange($event)"
-            [default]="selectedColor">
-            </app-color-picker>
-        </div>
+        <div class="habit-details">
+            <div class="input">
+                <mat-form-field appearance="outline">
+                    <mat-label>Name</mat-label>
+                    <input matInput type="text" [(ngModel)]="text">
+                </mat-form-field>
+            </div>
+            <div class="input">
+                <mat-form-field appearance="outline">
+                    <mat-label>End Date</mat-label>
+                    <input matInput type="date" [(ngModel)]="endDate">
+                </mat-form-field>
+            </div>
+            <div class="input">
+                <label for="">Color</label>
+                <app-color-picker
+                [colors]="colors"
+                (colorChange)="colorChange($event)"
+                [default]="selectedColor">
+                </app-color-picker>
+            </div>
         <div class="input tags">
+            <mat-form-field appearance="standard">
+                <mat-chip-list #tagList>
+                    <mat-chip 
+                        *ngFor="let tag of tags; index as i"
+                        [selectable]="selectable"
+                        [removable]="removable"
+                        (removed)="remove(tag)"
+                    >
+                    {{ tag }}
+                    <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                    </mat-chip>
+                    <input placeholder=""
+                        [matChipInputFor]="tagList"
+                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                        [matChipInputAddOnBlur]="addOnBlur"
+                        (matChipInputTokenEnd)="add($event)">
+                </mat-chip-list>
+            </mat-form-field>
+        </div>
+            
+    </div>
+        <!-- <div class="input tags">
             <h2>Tags</h2>
             <div class="tags-content">
                 <app-tag *ngFor="let tag of tags; index as i" [text]="tag" (remove)="remTag($event)" [pos]="i"></app-tag>
@@ -33,7 +58,7 @@
             <button (click)="updateHabit()" class="btn">Update</button>
             <button  (click)="deleteHabit(habit.index)" class="btn btn-red">Remove Habit</button>
         </div>
-    </div>
+    </div> -->
 </div>
 
     <!-- <div class="habit-history">

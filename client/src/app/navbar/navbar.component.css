@@ -11,6 +11,10 @@
    top: 0;
 } */
 
+#sidebar-toggle {
+   box-shadow: none;
+}
+
 .logo {
    display: inline-block;
    color: white;

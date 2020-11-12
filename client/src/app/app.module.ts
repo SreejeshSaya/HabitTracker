@@ -33,7 +33,12 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatFormFieldModule } from '@angular/material/form-field'; 
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
-import { MatCheckboxModule } from '@angular/material/checkbox'; 
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { MatSidenavModule } from '@angular/material/sidenav'; 
+import { MatIconModule } from '@angular/material/icon';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatChipsModule } from '@angular/material/chips';
 
 @NgModule({
    declarations: [
@@ -55,7 +60,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
       LeaderboardComponent,
       GraphComponent,
       StatisticsComponent,
-      TagComponent      
+      TagComponent,
+      SidebarComponent      
    ],
    imports: [
       CommonModule,
@@ -71,7 +77,11 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
       MatFormFieldModule,
       MatInputModule,
       MatCardModule,
-      MatCheckboxModule
+      MatCheckboxModule,
+      MatSidenavModule,
+      MatIconModule,
+      MatDatepickerModule,
+      MatChipsModule
    ],
    providers: [],
    bootstrap: [AppComponent],
