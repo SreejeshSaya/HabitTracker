@@ -1,0 +1,9 @@
+.footer {
+    margin-top: 10rem;
+    height: 10rem;
+    background-color: #111;
+}
+
+.main {
+    min-height: 100vh;
+}

@@ -1,6 +1,7 @@
 export const colors  = [
-   'red',
+   'rgba(255,0,0,0.5)',
    'green',
    'violet',
-   'blue'
+   'blue',
+   'orange'
 ]

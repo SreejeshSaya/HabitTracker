@@ -152,7 +152,7 @@ exports.getUserPublicData = async (req, res, next) => {
 
 // TODO: Pagination, this currently returns all users in one request
 exports.getLeaderBoard = async function(req,res,next){
-   const users = await User.find({}).sort("-habitScore").select("habitScore username profileImageUrl")
+   const users = await User.find({}).sort("-habitScore").select("habitScore username profileImageUrl").limit(50)
    res.send(users)
 }
 
