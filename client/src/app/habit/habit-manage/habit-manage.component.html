@@ -49,7 +49,7 @@
 
     <div class="view-habit-child habit-streak-calendar"> 
         <div *ngFor="let streakMonth of histStreak; index as i" [ngClass]="'calendar-' + i">
-            <app-streak-calendar [monthlyStreak]="streakMonth"></app-streak-calendar>
+            <app-streak-calendar [monthlyStreak]="streakMonth" [completeColor]=habit.color></app-streak-calendar>
         </div>
     </div>
     <div class="view-habit-child habit-statistics">
