@@ -5,6 +5,71 @@
    flex-direction: column;
    width: 30rem;
 }
+
+.leaderboard h1 {
+   margin-top: 2rem;
+   text-align: center;
+   padding-bottom: 0.5rem;
+   padding-left: 2rem;
+   padding-right: 2rem;
+   /* border-bottom: 0.1rem solid rgba(128, 128, 128, 0.644); */
+   width: 100%;
+}
+
+.user-header {
+   width: 100%;
+   display: flex;
+   justify-content: space-between;
+   margin-top: 2rem;
+   margin-bottom: 1.5rem;
+}
+
+.users {
+   width: 100%;
+}  
+
+.user-card {
+   margin: 0.8rem;
+   transition: transform 0.3s ease-out;
+   display: grid;
+   grid-template-columns: auto 10%;
+}
+
+.user .mat-card-header .mat-card-title {
+   margin-bottom: 0px;
+   margin-top: 0.6rem;
+}
+
+.username {
+   text-align: center;
+}
+
+.username a {
+   text-decoration: none;
+   color: black;
+}
+
+.profile-image {
+   background-size: cover;
+}
+
+.user-card span {
+   font-weight: bold;
+   font-size: 1.3rem;
+   margin-top: 0.6rem;
+}
+
+.user:hover{
+   transform: scale(1.05);
+}
+
+/*.leaderboard {
+   margin: auto;
+   display: flex;
+   align-items: center;
+   flex-direction: column;
+   width: 30rem;
+}
 .leaderboard h1 {
    text-align: center;
    padding-bottom: 0.5rem;
@@ -54,4 +119,5 @@
 .user:hover{
    transform: scale(1.1);
 }
-
+ */
+ 

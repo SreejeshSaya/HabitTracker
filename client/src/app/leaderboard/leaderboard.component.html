@@ -3,8 +3,28 @@
 </ng-container>
 
 <ng-container *ngIf="!loading && leaderboard">
-    
     <div class="leaderboard">
+        <h1>Leaderboard</h1>
+        <!-- <div class="user-header">
+            <span>User</span>
+            <span>Score</span>
+        </div> -->
+        <div class="users">
+                <mat-card *ngFor="let user of leaderboard" class="user user-card">
+                    <mat-card-header>
+                        <div mat-card-avatar class="profile-image"
+                            [ngStyle]="{'background-image':'url('+user.profileImageUrl+')'}">
+                        </div>
+                        <mat-card-title class="username">
+                            <a routerLink="/users/{{user._id}}">{{ user.username }}</a>
+                        </mat-card-title>
+                    </mat-card-header>
+                    <span>{{user.habitScore|number:'1.0-0'}}</span>
+                </mat-card>
+        </div>
+    </div>
+    
+    <!-- <div class="leaderboard">
         <h1>Leaderboard</h1>
         <div class="user-header">
             <span>User</span>
@@ -20,7 +40,7 @@
                 <span>{{user.habitScore|number:'1.0-0'}}</span>
             </div>
         </div>
-    </div>
+    </div> -->
 </ng-container>
 
 <ng-container *ngIf="!loading && !leaderboard">
