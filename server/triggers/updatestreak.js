@@ -21,9 +21,11 @@ exports.onCompleteToday =function(user,habit){
       if (lastStreak+1>userStreak){
          user.streakHistory.push({date: new Date(),streak: lastStreak+1,habitId: habit._id})
       }
+      user.habitScore+=lastStreak+1
    }
    else {
       habit.history.push({date: new Date(),streak: 1,punctuality: p})
+        user.habitScore+=1
    }
 
    console.log(new Date(),habit.text,diff,habit.history.length,p)
@@ -63,8 +65,9 @@ exports.onRemoveCompleteToday=function(user,habit){
    if (lastUserPunctualityHistory.changeCnt==0){
       user.punctualityHistory.pop() //pop if zero
    }
-
+   user.habitScore-=lastHistory.streak
    habit.history.pop()
+
 }
 
    

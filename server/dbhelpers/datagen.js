@@ -92,7 +92,7 @@ function createUser(i){
    const email = 'anon'+i+'@habit-tracker.com'
    const password = bcrypt.hashSync(username,12)
    
-   const c = randint(3,6) // atleast 3 months ago
+   const c = randint(1,3) // atleast 1 month ago
    const createDate = new Date(Date.now()-m*c)
    return new User({
       username,email,password,
@@ -104,7 +104,7 @@ function createUser(i){
 function getStartEndDate(user){
    const ustart =user.createdAt.valueOf()
    const uend=  Date.now()
-   const start = randint(ustart,uend-m*3) // atleast 3 months ago
+   const start = randint(ustart,uend) // atleast 3 months ago
    const end = randint(start+d,uend)
    return [new Date(start),new Date(end)]
 }

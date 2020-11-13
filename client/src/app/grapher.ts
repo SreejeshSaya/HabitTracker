@@ -8,6 +8,14 @@ function average(arr: Array<number>) {
    return arr.reduce((a, b) => a + b) / arr.length;
 }
 
+export function tagFreqToPercent(arr:any[]){
+   const s = arr.reduce((agg,t:any)=>agg+t[1],0)
+   console.log(arr,s)
+   return arr.map(([t,v])=>{
+      return [t,(v/s*100).toPrecision(3)]
+   }) 
+}
+
 function linearInterpolate(from: number, to: number, n: number) {
    if (n == 0) {
       return [];

@@ -19,4 +19,8 @@ router.getAsync("/leaderboard",habitControllers.getLeaderBoard)
 
 router.getAsync("/public-stats",habitControllers.getPublicStats)
 
+router.getAsync("/recommend-tags",requireAuth,habitControllers.getRecommendedTags)
+
+router.getAsync("/get-samples",requireAuth,habitControllers.getSamples)
+
 module.exports = router

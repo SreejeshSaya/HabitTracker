@@ -1,5 +1,9 @@
+<div class="block">
+    <button (click)="onRecommendClick()" class="btn">Recommend</button>
+</div>
 <div class="add-habit block" *ngIf="!loading">
    <h1>Add Habit</h1>
+   
    <div class="input">
       <label for="text">Text</label>
       <input [(ngModel)]="habitText" type="text" #text />

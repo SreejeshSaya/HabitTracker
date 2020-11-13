@@ -4,6 +4,7 @@ import { Observable, Subscription } from 'rxjs';
 import { AuthService } from '../auth.service';
 import { HabitService } from '../habit.service';
 import { PublicService } from '../public.service';
+import {tagFreqToPercent} from '../grapher'
 
 @Component({
   selector: 'app-statistics',
@@ -15,6 +16,7 @@ export class StatisticsComponent implements OnInit {
    isLoading=true
    stats;
    message;
+   trendingTags;
    constructor(public authService: AuthService,public publicService: PublicService, private router: Router, public habitService: HabitService, route: ActivatedRoute) {
       this.routeSub = route.params.subscribe(val => {
          this.authService.getUserDetails();
@@ -26,7 +28,7 @@ export class StatisticsComponent implements OnInit {
      this.publicService.getPublicStats()
      .subscribe(data=>{
         this.stats = data
-        
+        this.trendingTags = tagFreqToPercent(this.stats.tagFrequency).slice(0,5)
         this.getMessage()
         console.log("recv stats",data)
         this.isLoading = false
@@ -40,7 +42,8 @@ export class StatisticsComponent implements OnInit {
   }
   getMessage(){
      const index =Math.floor( 0.5*this.stats.avgPunctualityUser.length)
-     this.message = '50% of the users were punctual '+this.stats.avgPunctualityUser[index]+'% of the time'
+     let p:number = this.stats.avgPunctualityUser[index].toPrecision(3)
+     this.message = '50% of the users were punctual '+p+'% of the time'
   }
 
 }

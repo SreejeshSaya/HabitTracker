@@ -4,7 +4,9 @@ const { removeTime, daysDifference } = require("../utils/dateManager");
 const User = require("../models/user");
 const StatHistory = require("../models/stathistory")
 
-const  {onCompleteToday,onRemoveCompleteToday} = require("../triggers/updatestreak")
+const  {onCompleteToday,onRemoveCompleteToday} = require("../triggers/updatestreak");
+const user = require("../models/user");
+const samples = require("../samples")
 
 exports.addHabit = async (req, res, next) => {
    const userId = req.session.userId;
@@ -165,3 +167,40 @@ exports.getPublicStats = async function(req,res,next){
    }
    res.send(stats)
 }
+
+exports.getTrendingTags = async function(req,res,next){
+    const limit = req.query.limit || 100
+    const stats = await StatHistory.findOne({})
+    const tags = stats.tagFrequency.slice(0,limit+1)
+    return tags
+}
+
+exports.getRecommendedTags = async function(req,res,next){
+    const tags = samples.tags 
+
+    const userId = req.session.userId
+    const userHabits = await Habit.find({
+        user:userId
+    }).limit(100)
+
+    const userTags = userHabits.reduce((agg,h)=>{
+        for (let t of h.tags){
+            agg[t]  = (agg[t] || 0) + 1
+        }
+        return agg
+    },{})
+
+    tags.sort((t1,t2)=>{
+        return (userTags[t2] || 0 ) - (userTags[t1] || 0 )
+    })
+    res.send(tags.slice(0,6))
+}
+
+exports.getSamples =async (req,res,next)=>{
+    console.log("here")
+    res.send({
+        tags:samples.tags,
+        tagHabits:samples.tagHabits
+    })
+}
+

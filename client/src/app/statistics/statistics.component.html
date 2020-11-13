@@ -3,11 +3,18 @@
 <ng-container *ngIf="!isLoading && stats">
    <div class="stats">
       <div class="block">
-         <h1>Stats for the last 31 days</h1>
+         <h1>Stats for the last 90 days</h1>
          <div class="small-sep"></div>
          <p>Total Habits Created: {{stats.totalhabitsCreated}}</p>
          <p>{{message}}</p>
       </div>
+      <div class="block">
+        <h1>Top Trending Tags</h1>
+        <div class="small-sep"></div>
+        <div *ngFor="let t of trendingTags">
+            <p>{{t[0]}} was used in {{t[1]}}% of the habits</p>
+        </div>
+     </div>
       <div class="graphs block">
          <h1>Graphs</h1>
          <div class="small-sep"></div>

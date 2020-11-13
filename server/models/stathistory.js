@@ -4,7 +4,8 @@ const StatHistory = new Schema({
    avgLengthHabit:[Number],
    avgPunctualityUser:[Number],
    totalhabitsCreated:Number,
-   updatedAt:Date
+   updatedAt:Date,
+   tagFrequency:Schema.Types.Mixed
 })
 
 module.exports =model("stathistory",StatHistory)
