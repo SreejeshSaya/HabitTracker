@@ -2,8 +2,6 @@
 
 ## An App to track and manage you habits
 
-Right now client is basically consists of html files and javascript logic which is temporary until Angular is used. 
-
 View each folder to view more details
 
 ## TO DO:
@@ -16,27 +14,6 @@ View each folder to view more details
 7. addHabit Features S
 8. user-wide habit stats V
 9. Habit Analysis
-
-# TODO WEEK1
-Login and SignUP Validation FRONTEND
-
-## TODO v2 S
-
-1. Login with error handling S [DONE]
-2. Calender S
-3. Tags S
-
-## TODO v2 V
-
-1. Graphs for each habit and user V
-2. User wide stats V
-3. Password Check
-
-# TODO WEEK2
-
-## CSS
-1. Improve /profile link 
-
 
 -----
 
@@ -60,7 +37,11 @@ Habit manage
 * Improve Calendar component
 * Add tags
 
+Habit Add
+* Make card instead of webpage
+
 User profile
+* Add Angular Material
 
 * Leaderboard
 * Add angular material/implement paginator
@@ -76,7 +57,7 @@ Add
 * Improve color picker component
 * Add colors
 
-User details 
+User Stats 
 * Add angular material
 * Improve graph
 

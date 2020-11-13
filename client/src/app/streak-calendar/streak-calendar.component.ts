@@ -3,7 +3,22 @@ import { Component, OnInit, Input } from '@angular/core';
 @Component({
    selector: 'app-streak-calendar',
    templateUrl: './streak-calendar.component.html',
-   styleUrls: ['./streak-calendar.component.css'],
+   styles: [
+      `.calendar {
+        width: 12rem;
+      }`,
+
+      `.calendar-cell {
+        border-radius: 5px;
+        /* box-shadow: 0 0 2 2 #dddddd; */
+        text-align: center;
+        transition: transform 0.1s ease-out;
+      }`,
+      
+      `.calendar-cell:hover {
+        transform: scale(1.05);
+      }`
+   ]
 })
 export class StreakCalendarComponent implements OnInit {
   nDays;
@@ -12,6 +27,8 @@ export class StreakCalendarComponent implements OnInit {
   dayComplete: Array<boolean>;
   month: number;
   year: number;
+  @Input('completeColor') complete: string;
+  notComplete: string = '#ccc';
   months: Array<string> = [ 
     'January',
     'February',

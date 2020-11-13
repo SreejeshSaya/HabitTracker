@@ -124,7 +124,6 @@ export class HabitManageComponent implements OnInit {
          j++;
          month = new Date(d.setMonth(month - 1)).getMonth();
       }
-      this.histStreak.reverse();
    }
 
    ngOnDestroy() {

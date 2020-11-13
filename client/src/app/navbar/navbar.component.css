@@ -23,7 +23,6 @@
    margin: 0;
    margin-left: 0.5rem;
    padding: 0;
-   font-weight: bold;
    font-size: 1.5rem;
 }
 
@@ -36,7 +35,6 @@
 .username {
    color: white;
    margin-right: 1rem;
-   font-weight: bold;
    text-decoration: none;
    display: flex;
    align-items: center; 
@@ -57,7 +55,6 @@
    padding: 0.5rem 1rem;
    margin-right: 2rem;
    text-decoration: none;
-   font-weight: bold;
    font-size: 80%;
 }
 
