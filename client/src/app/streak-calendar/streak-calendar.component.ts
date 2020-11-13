@@ -12,6 +12,8 @@ export class StreakCalendarComponent implements OnInit {
   dayComplete: Array<boolean>;
   month: number;
   year: number;
+  complete: string = 'green';
+  notComplete: string = '#ccc';
   months: Array<string> = [ 
     'January',
     'February',
