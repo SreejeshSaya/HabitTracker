@@ -7,8 +7,7 @@ $cream: #F6E9DC;
 $thin-border: 2px solid $red; */
 
 .calendar {
-  width: 100px;
-  border-spacing: 10%;
+  width: 12rem;
 }
 
 .calendar-day {
