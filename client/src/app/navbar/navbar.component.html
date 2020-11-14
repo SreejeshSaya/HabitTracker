@@ -2,7 +2,7 @@
    <button mat-mini-fab id="sidebar-toggle" color="primary" (click)="sideBarToggle()" *ngIf="isLoggedIn">
       <mat-icon>menu</mat-icon>
    </button>
-   <span><a class="logo" routerLink="/">Habit Tracker</a></span>
+   <span><a mat-button class="logo" routerLink="/">Habit Tracker</a></span>
    <ng-template [ngIf]="!(authService.isLoading$ | async)">
       <ng-container
          *ngIf="authService.userDetails; then thenBlock; else elseBlock"
