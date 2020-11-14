@@ -30,27 +30,27 @@ Signup page
 * Validation
 
 Habit manage 
-* CSS styling
+* CSS styling [DONE]
 * Graph
-* Implement angular material
+* Implement angular material [DONE]
 * Improve color picker component
 * Improve Calendar component
 * Add tags
 
 Habit Add
-* Make card instead of webpage
+* Make card instead of webpage [OPTIONAL]
 
 User profile
 * Add Angular Material
 
 * Leaderboard
-* Add angular material/implement paginator [ NOTE: Limit to only top 25]
+* Add angular material/implement paginator [NOTE: Limit to only top 25] [LAST-PRIORITY]
 
 Statistics
 * Improve graph
 
 Pending
-* Sidebar
+* Sidebar [OPTIONAL]
 * Implement angular material
 
 Add

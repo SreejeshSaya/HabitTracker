@@ -27,7 +27,5 @@
 
 .container mat-tab-group {
    width: 80%;
-   max-width: 200px;
-   /* max-width: 100px; */
    
 }
