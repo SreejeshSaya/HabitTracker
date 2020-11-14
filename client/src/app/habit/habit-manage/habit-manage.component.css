@@ -18,8 +18,38 @@
    /* background-color: aqua; */
    grid-column: 1 / 2;
    grid-row: 1 / 2;
-
 }
+
+.manage-habit h1{
+   text-align: center;
+}
+
+.habit-detail {
+   width: 65%;
+   margin: auto;
+   display: flex;
+   justify-self: center;
+}
+
+.habit-detail mat-form-field{
+   width: 100%;
+   text-align: center;
+}
+
+.habit-detail app-color-picker {
+   margin-left: 25%;
+}
+
+#end-date {
+   margin-left: 25%;
+   width: 50%;
+}
+
+#habit-date {
+   width: 50%;
+   margin: auto;
+}
+
 
 .habit-streak-calendar {
    grid-column: 2 / 3;

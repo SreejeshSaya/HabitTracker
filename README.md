@@ -44,7 +44,7 @@ User profile
 * Add Angular Material
 
 * Leaderboard
-* Add angular material/implement paginator
+* Add angular material/implement paginator [ NOTE: Limit to only top 25]
 
 Statistics
 * Improve graph

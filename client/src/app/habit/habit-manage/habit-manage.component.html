@@ -4,19 +4,19 @@
     <div class="view-habit-child manage-habit">
         <h1>Manage Habit</h1>
         <div class="habit-details">
-            <div class="input">
+            <div class="habit-detail">
                 <mat-form-field appearance="outline">
-                    <mat-label>Name</mat-label>
+                    <mat-label>Habit</mat-label>
                     <input matInput type="text" [(ngModel)]="text">
                 </mat-form-field>
             </div>
-            <div class="input">
-                <mat-form-field appearance="outline">
+            <div class="habit-detail">
+                <mat-form-field id="end-date" appearance="outline">
                     <mat-label>End Date</mat-label>
                     <input matInput type="date" [(ngModel)]="endDate">
                 </mat-form-field>
             </div>
-            <div class="input">
+            <div class="habit-detail">
                 <label for="">Color</label>
                 <app-color-picker
                 [colors]="colors"
@@ -41,8 +41,8 @@
                 </mat-form-field>
             </div>
             <div class="submit">
-                <button (click)="updateHabit()" class="btn">Update</button>
-                <button  (click)="deleteHabit()" class="btn btn-red">Remove Habit</button>
+                <button mat-raised-button color="accent" (click)="updateHabit()" class="btn">Update</button>
+                <button mat-raised-button color="warn" (click)="deleteHabit()" class="btn btn-red">Remove Habit</button>
             </div>
         </div>
     </div>
