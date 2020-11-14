@@ -1,7 +1,7 @@
 <mat-spinner class="loading-spinner" *ngIf="this.authService.isLoading$ | async"></mat-spinner>
 
 <div class="container" *ngIf="!(this.habitService.isLoading$ | async)">
-   <mat-tab-group mat-align-tabs="center">
+   <mat-tab-group mat-align-tabs="center" style="max-width: 100%; ">
       <mat-tab label="Pending">
          <ng-container *ngIf="(userHabits|HabitFilter: 'PENDING').length==0 ">
             <h1>Empty</h1>
