@@ -1,4 +1,4 @@
-.pending {
+/* .pending {
    display: flex;
    justify-content: space-between;
    align-items: center;
@@ -19,16 +19,15 @@
 .pending .tab.active {
    color: maroon;
    border-color: maroon;
-}
+} */
 
 .container {
-   width: 40rem;
+   width: 45rem;
 }
 
-.habits {
-   margin-top: 3.5rem;
-   display: flex;
-   flex-direction: column;
-   width: 100%;
+.container mat-tab-group {
+   width: 80%;
+   max-width: 200px;
+   /* max-width: 100px; */
+   
 }
-

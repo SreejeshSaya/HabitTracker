@@ -1,5 +1,35 @@
 <mat-spinner class="loading-spinner" *ngIf="this.authService.isLoading$ | async"></mat-spinner>
 
+<div class="container" *ngIf="!(this.habitService.isLoading$ | async)">
+   <mat-tab-group mat-align-tabs="center">
+      <mat-tab label="Pending">
+         <ng-container *ngIf="(userHabits|HabitFilter: 'PENDING').length==0 ">
+            <h1>Empty</h1>
+         </ng-container>
+         <ng-container *ngIf="(userHabits|HabitFilter: 'PENDING').length!=0">
+            <app-habit-small
+               *ngFor="let habit of (userHabits|HabitFilter: 'PENDING')"
+               [habit]="habit"
+               (complete)="completeHabitToday($event)"
+            >
+            </app-habit-small>
+         </ng-container>
+      </mat-tab>
+      <mat-tab label="Completed"><ng-container *ngIf="(userHabits|HabitFilter: 'COMPLETED').length==0 ">
+         <h1>Empty</h1>
+      </ng-container>
+      <ng-container *ngIf="(userHabits|HabitFilter: 'COMPLETED').length!=0">
+         <app-habit-small
+            *ngFor="let habit of (userHabits|HabitFilter: 'COMPLETED')"
+            [habit]="habit"
+            (complete)="completeHabitToday($event)"
+         >
+         </app-habit-small>
+      </ng-container>
+   </mat-tab>
+   </mat-tab-group>
+</div>
+<!-- 
 <div *ngIf="!(this.authService.isLoading$ | async)" class="container">
    <div class="pending">
       <div class="tabs">
@@ -21,7 +51,6 @@
       <a routerLink="/add-habit" class="btn">+</a>
    </div>
 
-   <div *ngIf="this.habitService.isLoading$ | async">Loading</div>
    <div class="habits" *ngIf="!(this.habitService.isLoading$ | async)">
       <ng-container *ngIf="currentTab == 'PENDING'">
          <ng-container *ngIf="(userHabits|HabitFilter: currentTab).length==0 ">
@@ -50,4 +79,4 @@
          </ng-container>
       </ng-container>
    </div>
-</div>
+</div> -->

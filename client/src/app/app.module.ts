@@ -39,6 +39,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
    declarations: [
@@ -81,7 +82,8 @@ import { MatChipsModule } from '@angular/material/chips';
       MatSidenavModule,
       MatIconModule,
       MatDatepickerModule,
-      MatChipsModule
+      MatChipsModule,
+      MatTabsModule
    ],
    providers: [],
    bootstrap: [AppComponent],
