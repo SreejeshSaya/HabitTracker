@@ -41,7 +41,7 @@ export class AddHabitComponent implements OnInit {
          this.habitService.addHabit(this.habitText,this.selectedColor,this.endDate,this.tags)
          .subscribe(data=>{
             this.loading =false;
-            this.router.navigateByUrl("/")
+            // this.router.navigateByUrl("/")
          });
       }
    }

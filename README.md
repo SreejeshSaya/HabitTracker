@@ -38,7 +38,9 @@ Habit manage
 * Add tags
 
 Habit Add
-* Make card instead of webpage [OPTIONAL]
+* Make card instead of webpage [OPTIONAL] Must do Routing part
+* Form Validation
+* Add Angular Material [DONE]
 
 User profile
 * Add Angular Material

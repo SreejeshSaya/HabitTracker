@@ -28,7 +28,11 @@
       </ng-container>
    </mat-tab>
    </mat-tab-group>
+   <!-- <a mat-fab routerLink="/add-habit" class="btn" color="accent"><mat-icon>add</mat-icon></a> -->
+   <!-- <a mat-fab routerLink="dialog" class="btn" color="accent"><mat-icon>add</mat-icon></a> -->
+   <a mat-fab (click)="addNewHabit()" class="btn" color="accent"><mat-icon>add</mat-icon></a>
 </div>
+<router-outlet></router-outlet>
 <!-- 
 <div *ngIf="!(this.authService.isLoading$ | async)" class="container">
    <div class="pending">

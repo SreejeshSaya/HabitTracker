@@ -3,6 +3,8 @@ import { AuthService } from '../auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import {concatMap,map,filter,switchMap } from 'rxjs/operators';
 import { HabitService } from '../habit.service';
+import { AddHabitComponent } from '../add-habit/add-habit.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Pipe({
    name:"HabitFilter",
@@ -26,7 +28,7 @@ export class PendingComponent implements OnInit {
    routeSub;
    currentTab='PENDING';
    userHabits;
-   constructor(public authService: AuthService, private router: Router, public habitService: HabitService, route: ActivatedRoute) {
+   constructor(public authService: AuthService, private router: Router, public habitService: HabitService, route: ActivatedRoute, public dialog: MatDialog) {
       this.routeSub = route.params.subscribe(val => {
          if (!this.authService.userDetails) {
             this.authService.getUserDetails();
@@ -57,6 +59,9 @@ export class PendingComponent implements OnInit {
       });
    }
 
+   addNewHabit() {
+      const addHabit = this.dialog.open(AddHabitComponent);
+   }
 
    switchTab(){
       if (this.currentTab=="PENDING"){

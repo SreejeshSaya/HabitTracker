@@ -1,16 +1,18 @@
-<div class="block">
-    <button (click)="onRecommendClick()" class="btn">Recommend</button>
-</div>
-<div class="add-habit block" *ngIf="!loading">
+<div class="add-habit" *ngIf="!loading">
    <h1>Add Habit</h1>
    
-   <div class="input">
-      <label for="text">Text</label>
-      <input [(ngModel)]="habitText" type="text" #text />
+   <div class="input habit-title">
+      <mat-form-field appearance="outline">
+         <mat-label>Title</mat-label>
+         <input matInput type="text" [(ngModel)]="habitText" />
+      </mat-form-field>
+      <button mat-flat-button [ngStyle]="{'background-color': selectedColor}" defaultColor="primary" (click)="onRecommendClick()" class="btn">Feeling Lucky?</button>
    </div>
-   <div class="input">
-      <label for="text">Ending Date</label>
-      <input [(ngModel)]="endDate" type="date" #text />
+   <div id="habit-date">
+      <mat-form-field appearance="outline">
+         <mat-label>End Date</mat-label>
+         <input matInput type="date" [(ngModel)]="endDate"/>
+      </mat-form-field>
    </div>
    <div class="input">
       <label for="text">Color</label>
@@ -27,11 +29,12 @@
        </div>
    </div>
    <button
+      mat-raised-button
       [ngStyle]="{ 'background-color': selectedColor }"
-      (click)="addHabit()"
-      class="btn">
+      (click)="addHabit()">
       Add
    </button>
 </div>
 
-<mat-spinner class="loading-spinner" *ngIf="this.loading"></mat-spinner>
+
+<!-- <mat-spinner class="loading-spinner" *ngIf="this.loading"></mat-spinner> -->

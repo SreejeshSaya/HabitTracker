@@ -53,6 +53,11 @@ html {
 .input input {
    height: 1.5rem;
 }
+
+.add-habit .mat-form-field-wrapper {
+   padding-bottom: 0;
+}
+
 .submit {
    display: flex;
    justify-content: space-between;

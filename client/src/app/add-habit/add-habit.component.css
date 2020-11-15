@@ -1,6 +1,30 @@
 .add-habit {
-   margin-left: 1rem;
-   width: 40rem;
+   /* margin-left: 1rem; */
+   width: 35rem;
+   height: 35rem;
+   text-align: center;
+   padding: 1rem 1.5rem;
+}
+
+.add-habit .habit-title {
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+}
+
+.habit-title mat-form-field {
+   width: 75%;
+}
+
+.habit-title .btn {
+   margin-left: 1rem;;
+}
+
+#habit-date {
+   /* display: flex; */
+   /* align-items: center; */
+   width: 30%;
+   /* margin-left: 1rem; */
 }
 
 .tags h2 {
