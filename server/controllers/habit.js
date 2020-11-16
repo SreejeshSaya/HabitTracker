@@ -3,7 +3,7 @@ const History = require("../models/history");
 const { removeTime, daysDifference } = require("../utils/dateManager");
 const User = require("../models/user");
 const StatHistory = require("../models/stathistory")
-
+const Sample = require("../models/sample")
 const  {onCompleteToday,onRemoveCompleteToday} = require("../triggers/updatestreak");
 const user = require("../models/user");
 const samples = require("../samples")
@@ -198,9 +198,10 @@ exports.getRecommendedTags = async function(req,res,next){
 
 exports.getSamples =async (req,res,next)=>{
     console.log("here")
+    const samples = await Sample.findOne({})
     res.send({
         tags:samples.tags,
-        tagHabits:samples.tagHabits
+        tagHabits:samples
     })
 }
 

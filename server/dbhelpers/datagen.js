@@ -15,6 +15,7 @@ const StatHistory = require("../models/stathistory");
 const user = require("../models/user");
 const bcrypt = require("bcrypt");
 const habit = require("../models/habit");
+const samples = require("../samples")
 
 function onCompleteToday(user,habit,cDate){
    let lastDate=habit.createdAt,lastStreak=0,userStreak=0;
@@ -59,8 +60,8 @@ function onCompleteToday(user,habit,cDate){
 }
 
 function randint(start,end){//both start end inclusive
-   const diff = end-start
-   return Math.ceil((Math.random()*diff))+start
+   const diff = end+1-start
+   return Math.floor((Math.random()*diff))+start
 }
 
 const m = 1000*60*60*24*30
@@ -84,7 +85,8 @@ const tags=  [
 function randTags(){
    const i = randint(0,tags.length-1)
    const j = randint(i+1,tags.length)
-   return tags.slice(i,j)
+   console.log(i)
+   return tags.slice(i,i+1)
 }
 
 function createUser(i){
@@ -133,11 +135,14 @@ function completeHabit(user,habits){
    }
 }
 function createHabit(user,i,j){
-   const text= 'anon'+i+'-habit'+j
+    const tags = randTags()
+    
+   const text= samples.tagHabits[tags[0]][0]
+//    console.log(tags,text)
    const [startDate,endDate]= getStartEndDate(user)
    const habit = new Habit({
       user,text,createdAt:startDate,endDate:removeTime(endDate),isFake:true,
-      tags:randTags()
+      tags:tags
    })
    
    return habit
