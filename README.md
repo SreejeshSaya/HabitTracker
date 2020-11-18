@@ -18,15 +18,16 @@ View each folder to view more details
     - [x] CSS styling
     - [ ] Graph
     - [x] Implement angular material
-    - [ ] Improve color picker component
+    - [x] Improve color picker component
     - [x] Improve Calendar component
-    - [ ] Add tags
+    - [x] Add tags
 
 - [ ] Habit Add
     - [ ] Make card instead of webpage [OPTIONAL] Must do Routing part
     - [ ] Submission Throttling
     - [ ] Form Validation
     - [x] Add Angular Material
+    - [x] Improve Color picker Component
 
 - [ ] User profile
     - [x] Add Angular Material
@@ -45,12 +46,8 @@ View each folder to view more details
     - [ ] Sidebar [OPTIONAL]
     - [x] Implement angular material
 
-- [ ] Add
-    - [ ] Improve color picker component
-    - [ ] Add colors
-
 - [ ] User Stats 
-    - [ ] Add angular material
+    - [x] Add angular material
     - [ ] Improve graph
 
 ### Intelligent Component
