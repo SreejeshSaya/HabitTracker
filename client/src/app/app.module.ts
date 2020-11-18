@@ -41,6 +41,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
    declarations: [
@@ -85,7 +86,8 @@ import { MatDialogModule } from '@angular/material/dialog';
       MatDatepickerModule,
       MatChipsModule,
       MatTabsModule,
-      MatDialogModule
+      MatDialogModule,
+      MatDividerModule
    ],
    providers: [],
    bootstrap: [AppComponent],

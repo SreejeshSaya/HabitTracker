@@ -57,6 +57,7 @@ export class UserDetailsComponent implements OnInit {
       console.log(this.authService.userDetails.habitScore)
       this.dateJoined = new Date(this.authService.userDetails.createdAt)
       this.dateJoinedYear = this.dateJoined.getFullYear()
+      this.dateJoined = this.dateJoined.toDateString().slice(4);
       this.sdata = this.authService.userDetails.streakHistory.map(h=>{return {date: new Date(h.date),value: h.streak}})
       this.pdata = this.authService.userDetails.punctualityHistory.map(h=>{return {date: new Date(h.date),value: h.punctuality}})
       console.log(this.sdata,this.pdata)

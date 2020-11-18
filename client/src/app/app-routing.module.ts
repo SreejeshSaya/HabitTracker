@@ -18,7 +18,7 @@ const routes: Routes = [
    {path:'add-habit',component:AddHabitComponent},
    {path:'habits/:habitId',component:HabitManageComponent},
    {path:'profile',component:UserDetailsComponent},
-   {path:'edit',component:EditProfileComponent},
+   {path:'edit-profile',component:EditProfileComponent},
    {path: 'users/:userId',component:UserDetailsPublicComponent},
    {path: 'leaderboard',component:LeaderboardComponent},
    {path: 'statistics',component:StatisticsComponent}

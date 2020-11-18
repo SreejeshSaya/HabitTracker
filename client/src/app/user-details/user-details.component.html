@@ -1,6 +1,43 @@
 <mat-spinner class="loading-spinner" *ngIf="(this.authService.isLoading$ | async) || (this.habitService.isLoading$ | async) "></mat-spinner>
 
-<div *ngIf="!(this.authService.isLoading$ | async) && !(this.habitService.isLoading$ | async) ">
+<div *ngIf="!(this.authService.isLoading$ | async) && !(this.habitService.isLoading$ | async) " id="user-profile">
+   <div id="user" class="block">
+      <div id="user-info">
+         <div style="margin-left: 1rem">
+            <h2>{{ this.authService.userDetails.username }}</h2>
+            <h4>Member since {{ this.dateJoined }} </h4>
+         </div>
+         <div class="profile-photo"
+            [ngStyle]="{'background-image':'url('+this.authService.userDetails.profileImageUrl+')'}">
+         </div>
+      </div>
+      <div class="profile-actions">
+         <button mat-raised-button color="accent" class="btn edit-profile" routerLink="/edit-profile">Edit Profile</button>
+         <button mat-flat-button color="warn" class="btn logout-user" (click)="this.authService.logOut()">Logout</button>
+      </div>
+   </div>
+   <div id="user-graphs" class="block">
+      <div class="graph">
+         <h2>BestStreak</h2>
+         <app-graph id="sgraph" [width]="600" [height]="400" [data]="sdata" ></app-graph>
+         <mat-divider></mat-divider>
+      </div>
+      <div class="graph">
+         <h2>Punctuality</h2>
+         <app-graph id="pgraph" [width]="600" [height]="400" [data]="pdata" ></app-graph>
+      </div>
+   </div>
+   <div class="block">
+      <h1>Stats</h1>
+      <div class="stats">
+         <p>Best Streak: {{this.bestStreak}}</p>
+         <p>Habit Score: {{this.habitScore|number:'1.0-0'}}</p>
+         <p>Total Habits: {{ this.habitService.userHabits.length }} </p>
+      </div>
+   </div>
+</div>
+
+<!-- <div *ngIf="!(this.authService.isLoading$ | async) && !(this.habitService.isLoading$ | async) ">
    <div class="block">
       <div class="profile">
          <div class="profile-photo"
@@ -14,7 +51,7 @@
 
       </div>
       <div class="profile-actions">
-         <button class="btn edit-profile" routerLink="/edit">Edit Profile</button>
+         <button class="btn edit-profile" routerLink="/edit-profile">Edit Profile</button>
          <button class="btn btn-red" (click)="this.authService.logOut()">Logout</button>
       </div>
    </div>
@@ -36,4 +73,4 @@
          </div>
       </div>
    </div>
-</div>
+</div> -->
