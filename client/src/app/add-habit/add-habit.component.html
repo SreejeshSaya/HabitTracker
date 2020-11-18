@@ -6,7 +6,7 @@
          <mat-label>Title</mat-label>
          <input matInput type="text" [(ngModel)]="habitText" />
       </mat-form-field>
-      <button mat-flat-button [ngStyle]="{'background-color': selectedColor}" defaultColor="primary" (click)="onRecommendClick()" class="btn">Feeling Lucky?</button>
+      <button mat-button [ngStyle]="{'color': selectedColor}" (click)="onRecommendClick()" class="btn">Feeling Lucky?</button>
    </div>
    <div id="habit-date">
       <mat-form-field appearance="outline">
@@ -14,19 +14,26 @@
          <input matInput type="date" [(ngModel)]="endDate"/>
       </mat-form-field>
    </div>
-   <div class="input">
-      <label for="text">Color</label>
+   <div class="input habit-color">
+      <label for="text">Pick a color :</label>
       <app-color-picker [colors]="colors" (colorChange)="colorChange($event)">
       </app-color-picker>
    </div>
    <div class="input tags">
        <h2>Tags</h2>
-       <div class="tags-content">
+       <mat-chip-list>
+         <mat-chip *ngFor="let tag of tags; index as i" [removable]="removable" (remove)="remTag($event)">
+            {{ tag }}
+            <mat-icon matChipRemove *ngIf='removable'>cancel</mat-icon> 
+         </mat-chip>
+       </mat-chip-list>
+       
+       <!-- <div class="tags-content">
            <app-tag *ngFor="let tag of tags; index as i" [text]="tag" (remove)="remTag($event)" [pos]="i"></app-tag>
        </div>
        <div class="add-tags">
            <input [(ngModel)]="addTagText" type="text" name="" id=""> <button (click)="addTag()" class="btn add-tag">Add Tag</button>
-       </div>
+       </div> -->
    </div>
    <button
       mat-raised-button
