@@ -14,7 +14,7 @@ export class UserDetailsComponent implements OnInit {
    authSub;
    bestStreak=0;
    habitScore=0;
-   dateJoined
+   dateJoined;
    dateJoinedYear;
    averageCompletionDelay;
    sdata;

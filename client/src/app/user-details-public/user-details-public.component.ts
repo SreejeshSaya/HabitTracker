@@ -13,7 +13,8 @@ import { PublicService } from '../public.service';
 export class UserDetailsPublicComponent implements OnInit {
    isLoading=true;
    publicProfile;
-   joinDateYear;
+   dateJoined;
+   dateJoinedYear;
    sdata;
    pdata;
    constructor(private authService: AuthService,private publicData: PublicService,private router: Router,private route: ActivatedRoute ) {
@@ -29,7 +30,9 @@ export class UserDetailsPublicComponent implements OnInit {
          console.log(publicProfile)
          this.isLoading = false
          this.publicProfile = publicProfile
-         this.joinDateYear = (new Date(this.publicProfile.createdAt)).getFullYear()
+         this.dateJoined = new Date(this.authService.userDetails.createdAt)
+         this.dateJoinedYear = this.dateJoined.getFullYear()
+         this.dateJoined = this.dateJoined.toDateString().slice(4);
          this.sdata = this.publicProfile.streakHistory.map(h=>{return {date: new Date(h.date),value: h.streak}})
          this.pdata = this.publicProfile.punctualityHistory.map(h=>{return {date: new Date(h.date),value: h.punctuality}})
       },(err)=>{
