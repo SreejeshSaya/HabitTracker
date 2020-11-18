@@ -11,7 +11,7 @@ import { Component, OnInit, Input } from '@angular/core';
       `.calendar-cell {
         border-radius: 5px;
         /* box-shadow: 0 0 2 2 #dddddd; */
-        height: 1.3rem;
+        height: 1.2rem;
         text-align: center;
         transition: transform 0.1s ease-out;
       }`,
@@ -29,7 +29,7 @@ export class StreakCalendarComponent implements OnInit {
   month: number;
   year: number;
   @Input('completeColor') complete: string;
-  notComplete: string = '#dddddd';
+  notComplete: string = '#fb5b5a';
   months: Array<string> = [ 
     'January',
     'February',

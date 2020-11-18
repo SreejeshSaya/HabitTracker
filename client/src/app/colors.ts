@@ -1,7 +1,7 @@
 export const colors  = [
-   'rgba(255,0,0,0.5)',
-   'green',
-   'violet',
-   'blue',
-   'orange'
+   '#0affcf',
+   '#ff8333',
+   '#9965f4',
+   '#5ad99a',
+   '#d95a9a'
 ]

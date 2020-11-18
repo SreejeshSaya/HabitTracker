@@ -28,7 +28,6 @@
    width: 65%;
    margin: auto;
    display: flex;
-   justify-self: center;
 }
 
 .habit-detail mat-form-field{
@@ -36,8 +35,13 @@
    text-align: center;
 }
 
-.habit-detail app-color-picker {
-   margin-left: 25%;
+.habit-detail.color-picker {
+   flex-direction: column;
+   align-items: center;
+}
+
+.habit-detail.color-picker > * {
+   width: max-content;
 }
 
 #end-date {
