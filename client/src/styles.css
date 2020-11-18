@@ -9,6 +9,11 @@
    font-size: 1.2rem;
 }
 
+.add-habit .tag-list .mat-form-field-underline {
+   /* height: 100px; */
+   bottom: 0;
+}
+
 
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 * {

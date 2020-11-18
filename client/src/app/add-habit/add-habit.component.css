@@ -1,15 +1,25 @@
 .add-habit {
    /* margin-left: 1rem; */
    width: 30rem;
-   height: 28rem;
+   height: 33rem;
    text-align: center;
    padding: 1rem 1.5rem;
+   position: relative;
 }
 
 .add-habit .habit-title {
    display: flex;
    flex-direction: row;
    align-items: center;
+}
+
+.tag-list {
+   width: 100%;
+}
+
+.tag-input {
+   min-width: 100px;
+   max-width: 100%;
 }
 
 .habit-title mat-form-field {
@@ -41,7 +51,15 @@
 
 .tags h2 {
    margin-top: 0;
+   text-align: left
 }
+
+#add-habit-btn {
+   position: absolute;
+   bottom: 0;
+   right: 2%;
+}
+
 
 .add-tag {
    background-color: white;

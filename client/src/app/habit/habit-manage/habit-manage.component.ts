@@ -2,11 +2,13 @@ import { Component, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/auth.service';
 import { HabitService } from 'src/app/habit.service';
+import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import { concatMap, tap, map, filter, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { getDateString, getHistory, removeTime } from 'src/app/dateManager';
 import { colors } from 'src/app/colors';
 import { makePunctualityGraph, makeStreakGraph } from 'src/app/grapher';
+import { MatChipInputEvent } from '@angular/material/chips';
 
 @Component({
    selector: 'app-habit-manage',
@@ -29,6 +31,10 @@ export class HabitManageComponent implements OnInit {
    pdata;
    addTagText;
    tags = []
+   selectable = true;
+   removable = true;
+   addOnBlur = true;
+   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
    constructor(
       public router: Router,
       public route: ActivatedRoute,
@@ -142,13 +148,27 @@ export class HabitManageComponent implements OnInit {
 
    makeStreakGraph() {}
 
-   addTag(){
-      this.tags.push(this.addTagText)
+   addTag(event: MatChipInputEvent){
+      console.log("ADD tag")
+      this.addTagText = event.value;
+      if ((this.addTagText || '').trim()) {
+         this.tags.push(this.addTagText.trim())
+       }
+      if(event.input) {
+         event.input.value = '';
+      }
    }
 
-   remTag(pos:number){
-      console.log("aa",pos)
-      this.tags = this.tags.filter((_,i)=>pos!=i)
+   remTag(tag: string){
+      console.log("Remove", tag)
+      const index = this.tags.indexOf(tag);
+
+      if (index >= 0) {
+        this.tags.splice(index, 1);
+      }
+      console.log("REmoved", this.tags)
+      // console.log("aa",pos)
+      // this.tags = this.tags.filter((_,i)=>pos!=i)
    }
 
 }

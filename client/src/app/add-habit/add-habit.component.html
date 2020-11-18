@@ -19,15 +19,22 @@
       <app-color-picker [colors]="colors" (colorChange)="colorChange($event)">
       </app-color-picker>
    </div>
-   <div class="input tags">
-       <h2>Tags</h2>
-       <mat-chip-list>
-         <mat-chip *ngFor="let tag of tags; index as i" [removable]="removable" (remove)="remTag($event)">
-            {{ tag }}
-            <mat-icon matChipRemove *ngIf='removable'>cancel</mat-icon> 
-         </mat-chip>
-       </mat-chip-list>
-       
+   <div class="tags">
+      <!-- <h2>Tags</h2> -->
+      <mat-form-field class="tag-list">
+         <mat-chip-list #TagList aria-label="Tag selection">
+           <mat-chip *ngFor="let tag of tags; index as i" [selectable]="selectable"
+                    [removable]="removable" (removed)="remTag(tag)">
+             {{tag}}
+             <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+           </mat-chip>
+               <input class="tag-input" placeholder="Add Tag"
+                  [matChipInputFor]="TagList"
+                  [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                  [matChipInputAddOnBlur]="addOnBlur"
+                  (matChipInputTokenEnd)="addTag($event)">
+         </mat-chip-list>
+       </mat-form-field>              
        <!-- <div class="tags-content">
            <app-tag *ngFor="let tag of tags; index as i" [text]="tag" (remove)="remTag($event)" [pos]="i"></app-tag>
        </div>
@@ -36,6 +43,7 @@
        </div> -->
    </div>
    <button
+      id="add-habit-btn"
       mat-raised-button
       [ngStyle]="{ 'background-color': selectedColor }"
       (click)="addHabit()">

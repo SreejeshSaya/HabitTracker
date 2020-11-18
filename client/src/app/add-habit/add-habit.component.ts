@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HabitService } from 'src/app/habit.service';
 import {colors} from 'src/app/colors'
 import { RecommendService } from '../recommend.service';
+import { MatChipInputEvent } from '@angular/material/chips';
 
 @Component({
    selector: 'app-add-habit',
@@ -16,6 +18,11 @@ export class AddHabitComponent implements OnInit {
    loading: boolean = false;
    routeSub;
    colors;
+   visible = true;
+   selectable = true;
+   removable = true;
+   addOnBlur = true;
+   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
    tags = [
       "hoho",
       "haha"
@@ -31,6 +38,7 @@ export class AddHabitComponent implements OnInit {
          this.loading =false;
       })
       this.colors = colors
+      this.selectedColor = colors[2];
    }
 
    ngOnInit(): void {}
@@ -54,13 +62,27 @@ export class AddHabitComponent implements OnInit {
       this.selectedColor = this.selectedColor==color?"":color;
    }
 
-   addTag(){
-      this.tags.push(this.addTagText)
+   addTag(event: MatChipInputEvent){
+      console.log("ADD tag")
+      this.addTagText = event.value;
+      if ((this.addTagText || '').trim()) {
+         this.tags.push(this.addTagText.trim())
+       }
+      if(event.input) {
+         event.input.value = '';
+      }
    }
 
-   remTag(pos:number){
-      console.log("aa",pos)
-      this.tags = this.tags.filter((_,i)=>pos!=i)
+   remTag(tag: string){
+      console.log("Remove", tag)
+      const index = this.tags.indexOf(tag);
+
+      if (index >= 0) {
+        this.tags.splice(index, 1);
+      }
+      console.log("REmoved", this.tags)
+      // console.log("aa",pos)
+      // this.tags = this.tags.filter((_,i)=>pos!=i)
    }
 
    onRecommendClick(){
