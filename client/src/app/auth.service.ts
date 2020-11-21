@@ -58,32 +58,25 @@ export class AuthService {
          })
       )
    }
-   signUp(username, password, email) {
+   signUp(signupCred: {username: string, password: string, email: string}) {
       return this.http.post(
          '/api/auth/signup',
-         {
-            username,
-            password,
-            email,
-         },
+         signupCred,
          {
             responseType: 'text',
          }
       );
    }
 
-   logIn(email, password) {
-      return this.http.post(
-         '/api/auth/login',
-         {
-            email,
-            password,
-         },
-         {
-            responseType: 'text',
-         }
-      );
-   }
+   logIn(loginCred: {email: string, password: string}) {
+         return this.http.post(
+            '/api/auth/login',
+            loginCred,
+            {
+               responseType: 'text',
+            }
+         );
+      }
 
    logOut(){
       if (this.userDetails){

@@ -2,31 +2,32 @@
 
 <div *ngIf="!this.isLoading"  class="container">
     <h1>Create an Account</h1>
-    <div class="form">
-        <div class="input">
-            <div class="input-div">
-                <label class="input-label" for="">Username</label>
-                <span class="input-warning" *ngIf="this.usernameWarning">{{ this.warningMessage }}</span>
-            </div>
-            <input [(ngModel)]="username" type="text" value="">
+    <form (ngSubmit)="onSubmit(signupForm)" #signupForm="ngForm">
+        <div>
+            <mat-form-field appearance="outline">
+                <mat-label>Username</mat-label>
+                <input matInput ngModel required name="username" #username="ngModel" />
+                <mat-error *ngIf="!usernameWarning">Invalid Username</mat-error>
+                <mat-error *ngIf="usernameWarning">{{ warningMessage }}</mat-error>
+            </mat-form-field>
         </div>
-        <div class="input">
-            <div class="input-div">
-                <label class="input-label" for="">Email</label>
-                <span class="input-warning" *ngIf="this.emailWarning">{{ this.warningMessage }}</span>
-            </div>
-            <input [(ngModel)]="email" type="email" value="">
+        <div>
+            <mat-form-field appearance="outline">
+                <mat-label>Email</mat-label>
+                <input matInput ngModel required email name="email" #email="ngModel" />
+                <mat-error *ngIf="!emailWarning">Invalid Email</mat-error>
+                <mat-error *ngIf="emailWarning">{{ warningMessage }}</mat-error>
+            </mat-form-field>
         </div>
-        <div class="input">
-            <div class="input-div">
-                <label class="input-label" for="">Password</label>
-                <span class="input-warning" *ngIf="this.passwordWarning">{{ this.warningMessage }}</span>
-            </div>
-            <input [(ngModel)]="password" type="password" value="">
+        <div>
+            <mat-form-field appearance="outline">
+                <mat-label>Password</mat-label>
+                <input matInput ngModel required name="password" #password="ngModel" />
+            </mat-form-field>
         </div>
         <div class="submit">
-            <button (click)="onSubmit()" class="btn">Signup</button>
-            <a routerLink="/login" class="btn">Already Have an Account?</a>
+            <button mat-raised-button color="primary" class="btn" type="submit" [disabled]="!signupForm.valid">Signup</button>
+            <a mat-button color="accent" routerLink="/login" class="btn">Already Have an Account?</a>
         </div>
-    </div>
+    </form>
 </div>

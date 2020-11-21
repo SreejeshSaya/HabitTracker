@@ -1,25 +1,27 @@
 <mat-spinner class="loading-spinner" *ngIf="this.isLoading"></mat-spinner>
 
-<div *ngIf="!this.isLoading"  class="container">
+<div *ngIf="!this.isLoading" class="container">
    <h1>Log in</h1>
-   <div class="form">
-      <div class="input">
-         <div class="input-div">
-            <label class="input-label" for="">Email</label>
-            <span class="input-warning" *ngIf="this.emailWarning">{{ this.warningMessage}}</span>
-         </div>
-         <input [(ngModel)]="email" type="email" value="" /> 
+   <form (ngSubmit)="onSubmit(loginForm)" #loginForm="ngForm">
+      <div>
+         <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input name="email" matInput ngModel required email #email="ngModel"/>
+            <mat-icon matSuffix>email</mat-icon>
+            <mat-error *ngIf=!emailWarning>Email Invalid</mat-error>
+            <mat-error *ngIf="this.emailWarning">{{ warningMessage }}</mat-error>
+         </mat-form-field>         
       </div>
-      <div class="input">
-         <div class="input-div">
-            <label class="input-label" for="">Password</label>
-            <span class="input-warning" *ngIf="this.passwordWarning">{{ this.warningMessage}}</span>
-         </div>
-         <input [(ngModel)]="password" type="password" value="" />
+      <div>
+         <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input name="password" type="password" matInput ngModel required/>
+            <mat-error *ngIf="passwordWarning">{{ warningMessage }}</mat-error>
+         </mat-form-field>         
       </div>
       <div class="submit">
-         <button (click)="onSubmit()" class="btn">Login</button>
-         <a routerLink="/signup" class="btn">New User?</a>
+         <button mat-raised-button color="primary"  type="submit" class="btn" [disabled]="!loginForm.valid">Login</button>
+         <a mat-button color="accent" routerLink="/signup" class="btn">New User?</a>
       </div>
-   </div>
+   </form>
 </div>

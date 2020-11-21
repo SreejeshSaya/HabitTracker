@@ -6,13 +6,13 @@ View each folder to view more details
 
 ## FINAL TODO
 
-- [ ] Login page
-    - [ ] Add angular material
-    - [ ] Validation 
+- [x] Login page
+    - [x] Add angular material
+    - [x] Validation 
 
-- [ ] Signup page
-    - [ ] Add angular material
-    - [ ] Validation
+- [x] Signup page
+    - [x] Add angular material
+    - [x] Validation
 
 - [ ] Habit manage 
     - [x] CSS styling
@@ -43,12 +43,14 @@ View each folder to view more details
     - [ ] Improve graph
 
 - [ ] Pending
-    - [ ] Sidebar [OPTIONAL]
+    - [-] Sidebar [OPTIONAL]
     - [x] Implement angular material
 
 - [ ] User Stats 
     - [x] Add angular material
     - [ ] Improve graph
+
+- [ ] Footer [Optional]
 
 ### Intelligent Component
 

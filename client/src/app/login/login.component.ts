@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { map } from 'rxjs/operators';
 
 @Component({
@@ -42,51 +42,47 @@ export class LoginComponent implements OnInit {
       })
    }
 
-   onSubmit() {
+   onSubmit(loginForm: NgForm) {
+      console.log(loginForm);
+      console.log(loginForm.value)
       this.emailWarning = false;
       this.passwordWarning = false;
-      if(this.email === '') {
-         this.warningMessage = '* Email Required';
-         this.emailWarning = true;
-      }
-      else if (this.password === '') {
-         this.warningMessage = '* Password Required';
-         this.passwordWarning = true;
-      }
-      else {
-         this.authService.logIn(this.email, this.password)
-         .subscribe(
-            (data) => {
-               console.log(data);
-               if (data === 'Ok') {
-                  this.isLoading = true;
-                  // this.emailWarning = false;
-                  // this.passwordWarning = false;
-                  console.log('login will redirect');
-                  this.router.navigateByUrl('/');
-               }
-            },
-            (err) => {
-               console.log('Loggin Error')
-               console.log(err);
-               let msg: string;
-               msg = err.error;
-               if(msg === 'Email Invalid!') {
-                  this.warningMessage = msg;
-                  this.emailWarning = true;
-               }
-               else if(msg === 'Invalid Password') {
-                  this.warningMessage = msg;
-                  this.passwordWarning = true;
-               }
-               else if(msg === 'Email Not Found') {
-                  this.warningMessage = 'No account exists';
-                  this.emailWarning = true;
-                  // alert(`No Account exists with the email id: ${this.email}`)
-               }
+
+      this.authService.logIn(loginForm.value)
+      .subscribe(
+         (data) => {
+            console.log(data);
+            if (data === 'Ok') {
+               this.isLoading = true;
+               // this.emailWarning = false;
+               // this.passwordWarning = false;
+               console.log('login will redirect');
+               this.router.navigateByUrl('/');
             }
-         );
-      }
+         },
+         (err) => {
+            console.log('Loggin Error')
+            console.log(err);
+            let msg: string;
+            msg = err.error;
+            if(msg === 'Email Invalid!') {
+               this.warningMessage = msg;
+               this.emailWarning = true;
+               loginForm.form.controls.email.setErrors({emailInvalid: true});
+            }
+            else if(msg === 'Invalid Password') {
+               console.log(msg)
+               this.warningMessage = msg;
+               this.passwordWarning = true;
+               loginForm.form.controls.password.setErrors({passwordInvalid: true});
+            }
+            else if(msg === 'Email Not Found') {
+               this.warningMessage = 'No account exists';
+               this.emailWarning = true;
+               loginForm.form.controls.email.setErrors({emailNotFound: true});
+            }
+         }
+      );
    }
 
    // loginDisabled() {

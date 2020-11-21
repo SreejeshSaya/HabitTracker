@@ -1,5 +1,6 @@
 import { Component, OnInit, Pipe } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormsModule, NgForm } from '@angular/forms';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -46,52 +47,45 @@ export class SignupComponent implements OnInit {
       })
    }
 
-   onSubmit() {
+   onSubmit(signupForm: NgForm) {
       this.usernameWarning = false;
       this.emailWarning = false;
       this.passwordWarning = false;
-      if(this.username === '') {
-         this.warningMessage = '* Username Required';
-         this.usernameWarning = true;
-      }
-      else if(this.email === '') {
-         this.warningMessage = '* Email Required';
-         this.emailWarning = true;
-      }
-      else if (this.password === '') {
-         this.warningMessage = '* Password Required';
-         this.passwordWarning = true;
-      }
-      else {
-         this.authService.signUp(this.username, this.password, this.email)
-            .subscribe(
-               (data) => {
-                  if (data == 'Ok') {
-                     this.router.navigateByUrl('/');
-                  }
-               },
-               (err) => {
-                  // console.log(err);
-                  let msg: string;
-                  msg = err.error;
-                  if((msg === 'Username Invalid') || (msg === 'Username too long!')) {
-                     this.warningMessage = msg;
-                     this.usernameWarning = true;
-                  }
-                  if(msg === 'Username Exists!') {
-                     alert(`An Account already exists with username: ${this.username}`);
-                  }
-                  else if(msg === 'Email Invalid') {
-                     this.warningMessage = msg;
-                     this.emailWarning = true;
-                  }
-                  else if(msg === 'Email Exists!') {
-                     alert(`An Account already exists with username: ${this.email}`);
-                  }
-                  // alert(err);
+      console.log(signupForm)
+      console.log(signupForm.value)
+      this.authService.signUp(signupForm.value)
+         .subscribe(
+            (data) => {
+               if (data == 'Ok') {
+                  this.router.navigateByUrl('/');
                }
-            );
-      }
+            },
+            (err) => {
+               // console.log(err);
+               let msg: string;
+               msg = err.error;
+               if((msg === 'Username Invalid') || (msg === 'Username too long!')) {
+                  this.warningMessage = msg;
+                  this.usernameWarning = true;
+                  signupForm.form.controls.username.setErrors({usernameInvalid: true});
+               }
+               if(msg === 'Username Exists!') {
+                  this.warningMessage = msg;
+                  this.usernameWarning = true;
+                  signupForm.form.controls.username.setErrors({usernameExists: true});
+               }
+               else if(msg === 'Email Invalid') {
+                  this.warningMessage = msg;
+                  this.emailWarning = true;
+                  signupForm.form.controls.email.setErrors({emailInvalid: true});
+               }
+               else if(msg === 'Email Exists!') {
+                  this.warningMessage = msg;
+                  this.emailWarning = true;
+                  signupForm.form.controls.email.setErrors({emailInvalid: true});
+               }
+            }
+         );
    }
 
    ngOnDestroy(){
