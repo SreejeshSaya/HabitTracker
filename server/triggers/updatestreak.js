@@ -19,7 +19,7 @@ exports.onCompleteToday =function(user,habit){
    if (daysDifference(lastDate,now)<=1){
       habit.history.push({date: new Date(),streak:lastStreak+1,punctuality: p})
       if (lastStreak+1>userStreak){
-         user.streakHistory.push({date: new Date(),streak: lastStreak+1,habitId: habit._id})
+         user.streakHistory.push({date: new Date(),streak: lastStreak+1,habitId: habit._id,habitText:habit.text})
       }
       user.habitScore+=lastStreak+1
    }
