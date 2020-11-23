@@ -34,7 +34,7 @@ export class UserDetailsPublicComponent implements OnInit {
          this.dateJoinedYear = this.dateJoined.getFullYear()
          this.dateJoined = this.dateJoined.toDateString().slice(4);
          this.sdata = this.publicProfile.streakHistory.map(h=>{return {date: new Date(h.date),value: h.streak}})
-         this.pdata = this.publicProfile.punctualityHistory.map(h=>{return {date: new Date(h.date),value: h.punctuality}})
+         this.pdata = this.publicProfile.punctualityHistory.map(h=>{return {date: new Date(h.date),value: h.punctuality, changeCnt: h.changeCnt}})
       },(err)=>{
          this.isLoading = false
       })

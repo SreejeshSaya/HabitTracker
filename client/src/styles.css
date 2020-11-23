@@ -112,3 +112,25 @@ html {
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.overlay {
+   fill: none;
+   pointer-events: all;
+}
+
+.focus circle {
+   fill: steelblue;
+}
+
+.focus text {
+   font-size: 14px;
+}
+
+.tooltip {
+   fill: white;
+   stroke: #000;
+}
+
+.text-bold {
+   font-weight: bold;
+}

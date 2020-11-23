@@ -22,6 +22,8 @@ export class RecommendService {
             return tags[i];
          }),
          map((tag) => {
+
+            console.log(tag,sample)
             return {
                tag: tag,
                text: sample.tagHabits[tag][0],

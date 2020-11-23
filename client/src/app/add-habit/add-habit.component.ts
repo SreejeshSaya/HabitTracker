@@ -90,7 +90,8 @@ export class AddHabitComponent implements OnInit {
       .subscribe(({text,tag})=>{
          console.log("nabigate",text,tag)
          
-         this.router.navigateByUrl(`/add-habit?text=${text}&tag=${tag}`)
+         this.habitText = text
+         this.tags = [tag]
       })
    }
 }

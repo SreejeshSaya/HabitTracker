@@ -176,7 +176,8 @@ exports.getTrendingTags = async function(req,res,next){
 }
 
 exports.getRecommendedTags = async function(req,res,next){
-    const tags = samples.tags 
+    const samples = await Sample.findOne({})
+    const tags = Object.keys(samples.samples)
 
     const userId = req.session.userId
     const userHabits = await Habit.find({
@@ -199,9 +200,10 @@ exports.getRecommendedTags = async function(req,res,next){
 exports.getSamples =async (req,res,next)=>{
     console.log("here")
     const samples = await Sample.findOne({})
+    const tags = Object.keys(samples.samples)
     res.send({
-        tags:samples.tags,
-        tagHabits:samples
+        tags:tags,
+        tagHabits:samples.samples
     })
 }
 

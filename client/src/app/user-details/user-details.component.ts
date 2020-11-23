@@ -58,8 +58,8 @@ export class UserDetailsComponent implements OnInit {
       this.dateJoined = new Date(this.authService.userDetails.createdAt)
       this.dateJoinedYear = this.dateJoined.getFullYear()
       this.dateJoined = this.dateJoined.toDateString().slice(4);
-      this.sdata = this.authService.userDetails.streakHistory.map(h=>{return {date: new Date(h.date),value: h.streak}})
-      this.pdata = this.authService.userDetails.punctualityHistory.map(h=>{return {date: new Date(h.date),value: h.punctuality}})
+      this.sdata = this.authService.userDetails.streakHistory.map(h=>{return {date: new Date(h.date),value: h.streak, habitText: h.habitText}})
+      this.pdata = this.authService.userDetails.punctualityHistory.map(h=>{return {date: new Date(h.date),value: h.punctuality,changeCnt:h.changeCnt}})
       console.log(this.sdata,this.pdata)
    }
 

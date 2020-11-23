@@ -32,7 +32,8 @@ const User = new Schema({
          _id:false,
          habitId:ObjectID,
          date: Date,
-         streak: Number
+         streak: Number,
+         habitText:String
       }
    ],
    punctualityHistory:[

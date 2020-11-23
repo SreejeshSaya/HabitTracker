@@ -4,7 +4,5 @@ const Sample = new Schema({
     samples:Schema.Types.Mixed
 })
 
-
-
 module.exports =model("sample",Sample)
 
