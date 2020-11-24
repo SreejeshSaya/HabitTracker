@@ -3,8 +3,11 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, throwError, of, BehaviorSubject } from 'rxjs';
 import { catchError, retry, switchMap, tap,map,filter } from 'rxjs/operators';
 import { AuthService } from './auth.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 import  {removeTime,habitEnded,getStreak,getMaxStreak} from './dateManager'
+import { threadId } from 'worker_threads';
+import { ThrowStmt } from '@angular/compiler';
 
 @Injectable({
    providedIn: 'root',
@@ -12,8 +15,12 @@ import  {removeTime,habitEnded,getStreak,getMaxStreak} from './dateManager'
 export class HabitService {
    isLoading$ = new BehaviorSubject<boolean>(true);
    userHabits;
-   pendingLength
-   constructor(private http: HttpClient, private authService: AuthService) {
+   pendingLength;
+
+   pendingQueue:[string,number][]=[];
+   timeoutId:number=-1
+
+   constructor(private snackbar: MatSnackBar,private http: HttpClient, private authService: AuthService) {
       this.authService.isLoading$
       .subscribe(loading => {
          console.log('habit service', loading, this.authService.userDetails);
@@ -111,44 +118,35 @@ export class HabitService {
          responseType: 'text'
       }).pipe(tap(res => {
       }),catchError(err=>{
+         this.snackbar.open("Network Error, Please try again later","dismiss",{duration:2000})
          return "Remove failed"
       }));
    }
 
    completeToday(habitIndex){
       const habit = this.userHabits[habitIndex];
-      const habitId = habit._id
       habit.state="COMPLETED"
-      console.log("start update")
-      return this.http.post('/api/complete-habit-today', {
-         habitId
-      }).pipe(tap(newHabit => {
-         console.log("updating habit")
-         this.populateHabit(newHabit,habitIndex)
-         this.userHabits[habitIndex] = newHabit
-         console.log("updated",newHabit)
-      }),catchError(err=>{
-         console.error(err)
-         return "Remove failed"
-      }) );
+      this.pendingQueue.push(["complete",habitIndex])
+      this.updateTimeout()
+      return of(true)
+   }
+
+   updateTimeout(){
+      if (this.timeoutId!=-1){
+         window.clearTimeout(this.timeoutId)
+      }
+      this.timeoutId = window.setTimeout(()=>{
+         this.timeoutId = -1
+         this.completeUpdates().subscribe()
+      },1000)
    }
 
    removeCompleteToday(habitIndex){
       const habit = this.userHabits[habitIndex];
-      const habitId = habit._id
       habit.state="PENDING"
-      console.log("start update")
-      return this.http.post('/api/remove-complete-today', {
-         habitId
-      }).pipe(tap(newHabit => {
-         console.log("updating habit")
-         this.populateHabit(newHabit,habitIndex)
-         this.userHabits[habitIndex] = newHabit
-         console.log("updated",newHabit)
-      }),catchError(err=>{
-         console.error(err)
-         return "Remove failed"
-      }) );
+      this.pendingQueue.push(["uncomplete",habitIndex])
+      this.updateTimeout()
+      return of(true)
    }
 
    getPendingHabits(){
@@ -165,6 +163,36 @@ export class HabitService {
       //    return of(this.userHabits.filter( h=>h.state=="COMPLETED" ))
       // }))
       return this.userHabits.filter( h=>h.state=="COMPLETED" )
+   }
+
+   completeUpdates(){
+      const pending = this.pendingQueue.map(([s,i])=>[s,i])
+      this.pendingQueue = []
+      const body = pending.map(([type,index])=>{ // a list of update type and habit id
+            return [type,this.userHabits[index]._id]
+      })
+
+      return this.http.post("/api/update-bulk",body).pipe(
+         tap((newHabits:any)=>{
+            newHabits.forEach((h,i)=>{ // update each habit
+               this.populateHabit(h,pending[i][1])
+               this.userHabits[pending[i][1]] = h
+            })
+         }),retry(2),
+         catchError(err=>{
+            this.snackbar.open("Network Error, Please try again later","dismiss",{duration:2000})
+            console.error(err)
+            for (let [s,i] of pending){ // revert to previous state
+               if (s=="complete"){
+                  this.userHabits[i].state="PENDING"
+               }
+               else {
+                  this.userHabits[i].state="COMPLETED"
+               }
+            }
+            return "Remove failed"
+         })
+      )
    }
 
 }

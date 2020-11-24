@@ -23,4 +23,6 @@ router.getAsync("/recommend-tags",requireAuth,habitControllers.getRecommendedTag
 
 router.getAsync("/get-samples",requireAuth,habitControllers.getSamples)
 
+router.postAsync("/update-bulk",requireAuth,habitControllers.completeUpdates)
+
 module.exports = router

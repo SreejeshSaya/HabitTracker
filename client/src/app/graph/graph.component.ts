@@ -32,6 +32,8 @@ export class GraphComponent implements OnInit {
    @Input() data;
    @Input() id;
    @Input() type: "habitStreakGraph"|"habitPunctualityGraph"|"streakGraph"|"punctualityGraph"|"areaGraph"="streakGraph"
+   @Input() color: string = "#aaaaaa"
+   @Input() pointColor: string = "rgba(0,0,0,0.5)"
    constructor() {}
 
    ngOnInit(): void {
@@ -96,7 +98,7 @@ export class GraphComponent implements OnInit {
       .attr("transform", function(d) { return "translate(" + x(d.x0) + "," + y(d.length) + ")"; })
       .attr("width", function(d) { return x(d.x1) - x(d.x0) -1 ; })
       .attr("height", function(d) { return height - y(d.length); })
-      .style("fill", "#aaaaaa")
+      .style("fill", this.color)
    }
 
    drawPunctualityGraph() {
@@ -143,7 +145,7 @@ export class GraphComponent implements OnInit {
 
       svg.append('path').datum(this.data)
       .attr('fill', 'none')
-      .attr('stroke', 'grey')
+      .attr('stroke', this.color)
       .attr('stroke-width', 3)
       .attr(
          'd',
@@ -161,7 +163,7 @@ export class GraphComponent implements OnInit {
       .data(this.data)
       .enter().append("circle")
       .attr("r", 3.5)
-      .attr("fill","rgba(0,0,0,0.5)")
+      .attr("fill",this.pointColor)
       .attr("cx", function(d) { return x(d.date); })
       .attr("cy", function(d) { return y(d.value); })
    
@@ -302,7 +304,7 @@ export class GraphComponent implements OnInit {
 
       svg.append('path').datum(this.data)
       .attr('fill', 'none')
-      .attr('stroke', 'grey')
+      .attr('stroke', this.color)
       .attr('stroke-width', 3)
       .attr(
          'd',
@@ -320,7 +322,7 @@ export class GraphComponent implements OnInit {
       .data(this.data)
       .enter().append("circle")
       .attr("r", 3.5)
-      .attr("fill","rgba(0,0,0,0.5)")
+      .attr("fill",this.pointColor)
       .attr("cx", function(d) { return x(d.date); })
       .attr("cy", function(d) { return y(d.value); })
       
@@ -463,7 +465,7 @@ export class GraphComponent implements OnInit {
 
       svg.append('path').datum(this.data)
       .attr('fill', 'none')
-      .attr('stroke', 'grey')
+      .attr('stroke', this.color)
       .attr('stroke-width', 3)
       .attr(
          'd',
@@ -481,7 +483,7 @@ export class GraphComponent implements OnInit {
       .data(this.data)
       .enter().append("circle")
       .attr("r", 3.5)
-      .attr("fill","rgba(0,0,0,0.5)")
+      .attr("fill",this.pointColor)
       .attr("cx", function(d) { return x(d.date); })
       .attr("cy", function(d) { return y(d.value); })
       
@@ -613,7 +615,7 @@ export class GraphComponent implements OnInit {
 
       svg.append('path').datum(this.data)
       .attr('fill', 'none')
-      .attr('stroke', 'grey')
+      .attr('stroke', this.color)
       .attr('stroke-width', 3)
       .attr(
          'd',
@@ -631,7 +633,7 @@ export class GraphComponent implements OnInit {
       .data(this.data)
       .enter().append("circle")
       .attr("r", 3.5)
-      .attr("fill","rgba(0,0,0,0.5)")
+      .attr("fill",this.pointColor)
       .attr("cx", function(d) { return x(d.date); })
       .attr("cy", function(d) { return y(d.value); })
       

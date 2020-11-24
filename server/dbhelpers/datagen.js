@@ -36,9 +36,11 @@ function onCompleteToday(user,habit,cDate){
       if (lastStreak+1>userStreak){
          user.streakHistory.push({date: cDate,streak: lastStreak+1,habitId: habit._id})
       }
+      user.habitScore+=lastStreak+1
    }
    else {
       habit.history.push({date: cDate,streak: 1,punctuality: p})
+      user.habitScore+=1
    }
 
    if (user.punctualityHistory.length) {

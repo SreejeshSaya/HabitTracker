@@ -25,7 +25,7 @@ exports.onCompleteToday =function(user,habit){
    }
    else {
       habit.history.push({date: new Date(),streak: 1,punctuality: p})
-        user.habitScore+=1
+    user.habitScore+=1
    }
 
    console.log(new Date(),habit.text,diff,habit.history.length,p)

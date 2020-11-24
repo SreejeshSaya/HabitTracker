@@ -6,7 +6,8 @@ const StatHistory = require("../models/stathistory")
 const Sample = require("../models/sample")
 const  {onCompleteToday,onRemoveCompleteToday} = require("../triggers/updatestreak");
 const user = require("../models/user");
-const samples = require("../samples")
+const samples = require("../samples");
+const { off } = require("../models/user");
 
 exports.addHabit = async (req, res, next) => {
    const userId = req.session.userId;
@@ -154,8 +155,19 @@ exports.getUserPublicData = async (req, res, next) => {
 
 // TODO: Pagination, this currently returns all users in one request
 exports.getLeaderBoard = async function(req,res,next){
-   const users = await User.find({}).sort("-habitScore").select("habitScore username profileImageUrl").limit(50)
-   res.send(users)
+   const pageSize = Math.max(0,+req.query.pageSize) || 50
+   const pageNumber = Math.max(0,+req.query.pageNumber) || 1
+   const offset = (pageNumber-1)*pageSize
+   const users = await User.find({}).sort("-habitScore").select("habitScore username profileImageUrl").skip(offset).limit(pageSize)
+   const userSize = await User.countDocuments({})
+   const totalPages = Math.ceil(userSize/pageSize)
+   res.send({
+      pageNumber:pageNumber,
+      pageSize:pageSize,
+      totalPages:totalPages,
+      totalSize:userSize,
+      data:users
+   })
 }
 
 exports.getPublicStats = async function(req,res,next){
@@ -205,5 +217,49 @@ exports.getSamples =async (req,res,next)=>{
         tags:tags,
         tagHabits:samples.samples
     })
+}
+
+exports.completeUpdates = async (req,res,next)=>{
+   const ids = req.body.map(k=>{
+      return k[1]
+   })
+   const habits = await Habit.find({
+      _id:{
+         $in:ids
+      }
+   });
+   const user = await User.findById(req.session.userId)//need to verify
+   let response = []
+   for (let [type,id] of req.body){
+      let habit = habits.find(h=>h.id==id)
+      const lastDate  = habit.getLastCompletedDate();
+      if (type=="complete"){
+         if (lastDate && daysDifference(lastDate,removeTime(new Date()))==0 ){
+            return res.status(403).send({error:habit.text+": already completed"})
+         }
+         onCompleteToday(user,habit)
+      }
+      else {
+         if (lastDate && daysDifference(lastDate,removeTime(new Date()))==0 ){
+            onRemoveCompleteToday(user,habit)
+         }
+         else {
+            return res.status(403).send({error:habit.text+": not completed"})
+         }
+      }
+      response.push(habit)
+   }
+   const bulk = Habit.collection.initializeOrderedBulkOp()
+   for (let h of habits){
+      bulk.find({_id:h._id}).update({
+         $set:h.toObject()
+      })
+   }
+   if (Math.random()>0.5){ //test
+      throw new Error("could not")
+   }
+   await bulk.execute()
+   await user.save()
+   res.send(response)
 }
 

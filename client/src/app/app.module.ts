@@ -42,7 +42,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
-
+import {MatSnackBarModule} from '@angular/material/snack-bar'
 @NgModule({
    declarations: [
       AppComponent,
@@ -87,7 +87,8 @@ import { MatDividerModule } from '@angular/material/divider';
       MatChipsModule,
       MatTabsModule,
       MatDialogModule,
-      MatDividerModule
+      MatDividerModule,
+      MatSnackBarModule
    ],
    providers: [],
    bootstrap: [AppComponent],

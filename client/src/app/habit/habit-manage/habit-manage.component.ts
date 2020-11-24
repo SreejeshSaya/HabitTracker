@@ -74,6 +74,7 @@ export class HabitManageComponent implements OnInit {
                this.habitService.userHabits[this.habitId]
             ) {
                this.habit = this.habitService.userHabits[this.habitId];
+               console.log(this.habit)
                this.text = this.habit.text;
                this.endDate = getDateString(this.habit.endDate);
                this.history = getHistory(
