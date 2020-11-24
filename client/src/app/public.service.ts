@@ -23,7 +23,7 @@ export class PublicService {
    }
 
    getLeaderboard(pageNumber,pageSize) {
-      return this.http.get(`/api/leaderboard?pageNumbe=${pageNumber}r&pageSize=${pageSize}`);
+      return this.http.get(`/api/leaderboard?pageNumber=${pageNumber}&pageSize=${pageSize}`);
    }
 
    getPublicStats() {

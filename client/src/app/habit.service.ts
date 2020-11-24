@@ -6,8 +6,6 @@ import { AuthService } from './auth.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 
 import  {removeTime,habitEnded,getStreak,getMaxStreak} from './dateManager'
-import { threadId } from 'worker_threads';
-import { ThrowStmt } from '@angular/compiler';
 
 @Injectable({
    providedIn: 'root',
