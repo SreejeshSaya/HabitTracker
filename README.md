@@ -34,39 +34,39 @@ View each folder to view more details
 
 - [x] Habit Add
     - [x] Make card instead of webpage [OPTIONAL] Must do Routing part
-    - [ ] Submission Throttling
-    - [ ] Form Validation
+    - [X] Submission Throttling
+    - [|] Form Validation
     - [x] Add Angular Material
     - [x] Improve Color picker Component
 
-- [ ] User profile
+- [X] User profile
+    - [X] Add Angular Material
+    - [X] Get more data
+
+- [X] Leaderboard
+    - [X] Add angular material/implement paginator [NOTE: Limit to only top 25] [LAST-PRIORITY]
+
+- [X] User Public profile
     - [x] Add Angular Material
-    - [ ] Get more data
 
-- [ ] Leaderboard
-    - [ ] Add angular material/implement paginator [NOTE: Limit to only top 25] [LAST-PRIORITY]
-
-- [ ] User Public profile
-    - [x] Add Angular Material
-
-- [ ] Statistics
+- [X] Statistics
     - [x] Improve graph
 
 - [ ] Pending
     - [-] Sidebar [OPTIONAL]
     - [x] Implement angular material
 
-- [ ] User Stats 
+- [X] User Stats 
     - [x] Add angular material
     - [x] Improve graph
 
 ### Intelligent Component
 
-- [ ] Tags
-    - [ ] Recommend best used tags userwide
-    - [ ] Recommend most used tags related to what user has chosen
+- [X] Tags
+    - [|] Recommend best used tags userwide
+    - [X] Recommend most used tags related to what user has chosen
 
-- [ ] Graph
+- [X] Graph
     - [x] Show checkpoint habits when graph changes direction
 
 - [ ] Autofill
