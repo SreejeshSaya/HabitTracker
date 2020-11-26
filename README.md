@@ -13,6 +13,7 @@ View each folder to view more details
 [ ] Footer
 [ ] Add Background [IF POSSIBLE]
 [ ] CSS for User stats 
+[ ] Dark mode
 
 ## FINAL TODO
 
