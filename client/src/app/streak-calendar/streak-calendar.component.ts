@@ -29,7 +29,7 @@ export class StreakCalendarComponent implements OnInit {
   month: number;
   year: number;
   @Input('completeColor') complete: string;
-  notComplete: string = '#fb5b5a';
+  notComplete: string = '#d4d4d4';
   months: Array<string> = [ 
     'January',
     'February',

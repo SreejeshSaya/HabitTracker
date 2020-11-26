@@ -4,6 +4,16 @@
 
 View each folder to view more details
 
+## Misc
+[ ] Remove SideNav button
+[ ] Remove decimals in graphs
+[ ] Remove routing for add-habit
+[ ] Remove default tags
+[ ] CSS for Stats page
+[ ] Footer
+[ ] Add Background [IF POSSIBLE]
+[ ] CSS for User stats 
+
 ## FINAL TODO
 
 - [x] Login page
@@ -14,16 +24,16 @@ View each folder to view more details
     - [x] Add angular material
     - [x] Validation
 
-- [ ] Habit manage 
+- [x] Habit manage 
     - [x] CSS styling
-    - [ ] Graph
+    - [x] Graph
     - [x] Implement angular material
     - [x] Improve color picker component
     - [x] Improve Calendar component
     - [x] Add tags
 
-- [ ] Habit Add
-    - [ ] Make card instead of webpage [OPTIONAL] Must do Routing part
+- [x] Habit Add
+    - [x] Make card instead of webpage [OPTIONAL] Must do Routing part
     - [ ] Submission Throttling
     - [ ] Form Validation
     - [x] Add Angular Material
@@ -40,7 +50,7 @@ View each folder to view more details
     - [x] Add Angular Material
 
 - [ ] Statistics
-    - [ ] Improve graph
+    - [x] Improve graph
 
 - [ ] Pending
     - [-] Sidebar [OPTIONAL]
@@ -48,19 +58,16 @@ View each folder to view more details
 
 - [ ] User Stats 
     - [x] Add angular material
-    - [ ] Improve graph
-
-- [ ] Footer [Optional]
+    - [x] Improve graph
 
 ### Intelligent Component
 
 - [ ] Tags
-
     - [ ] Recommend best used tags userwide
     - [ ] Recommend most used tags related to what user has chosen
 
 - [ ] Graph
-    - [ ] Show checkpoint habits when graph changes direction
+    - [x] Show checkpoint habits when graph changes direction
 
 - [ ] Autofill
     - [ ] Make sure habit title has no bad words
