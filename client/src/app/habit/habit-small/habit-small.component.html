@@ -4,12 +4,7 @@
       [checked]="habit.state != 'PENDING'"
       (click)="habit.state=='PENDING'?complete.emit({ ev: $event, index: habit.index }):removeComplete.emit({ ev: $event, index: habit.index })"
    ></mat-checkbox>
-   <!-- <input
-      class="habit-checkbox"
-      type="checkbox"
-      [checked]="habit.state != 'PENDING'"
-      (click)="habit.state=='PENDING'?complete.emit({ ev: $event, index: habit.index }):removeComplete.emit({ ev: $event, index: habit.index })"
-   /> -->
+   
    <div class="habit-details">
       <a routerLink="/habits/{{ habit.index }}">
          <mat-card-title>{{ habit.text }}</mat-card-title>
@@ -18,7 +13,7 @@
          </mat-card-subtitle> 
       </a>
    </div>
-   <!-- <mat-card-subtitle></mat-card-subtitle> -->
+
    <div>
       <img
       src="../../../assets/habitStreak.png"

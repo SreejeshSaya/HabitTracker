@@ -168,8 +168,6 @@ export class HabitManageComponent implements OnInit {
         this.tags.splice(index, 1);
       }
       console.log("REmoved", this.tags)
-      // console.log("aa",pos)
-      // this.tags = this.tags.filter((_,i)=>pos!=i)
    }
 
 }

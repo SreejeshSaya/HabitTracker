@@ -1,8 +1,6 @@
 .habit {
    display: grid;
    grid-template-columns: 8% auto 10%;
-   /* justify-content: center; */
-   /* align-content: center; */
    margin: 0.8rem;
 }
 
@@ -38,54 +36,3 @@
 .habit-details mat-card-subtitle {
     margin-bottom: 0;
 }
-
-/* .habit {
-   padding: 0.1rem 1rem;
-   margin: 0.5rem;
-   width: 100%;
-   align-items: center;
-   display: grid;
-   grid-template-columns: 5% auto 30%;
-}
-
-/* Insert CSS for checkbox here
-
-.habit-content {
-   display: grid;
-   padding-left: 10px;
-   grid-template-columns: auto auto;
-   justify-content: left;
-}
-
-.streakImg {
-   width: 25%;
-   justify-self: left;
-   margin-left: 10px;
-}
-
-.habit .time-left{
-   justify-self: center;
-   padding: 0.4rem 1rem;
-   font-size: 1.2rem;
-   color: white;
-   border-radius: 2rem;
-   margin-right: 2rem;
-}
-
-.habit-check {
-   margin: 10px;
-}
-
-.habit-content p {
-   font-size: 1.2rem;
-   margin: 0;
-}
-
-.habit-content p:hover {
-   cursor: pointer;
-}
-
-
-.habit-content span {
-   font-size: 0.8rem;
-} */
