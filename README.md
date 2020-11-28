@@ -14,7 +14,7 @@ View each folder to view more details
 [ ] Add Background [IF POSSIBLE]
 [ ] CSS for User stats 
 [ ] Dark mode
-[ ] Style Calendar heading
+[x] Style Calendar heading
 [ ] Style Empty in pending list
 [ ] 404 Not Found
  

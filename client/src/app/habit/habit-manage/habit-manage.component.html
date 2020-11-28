@@ -40,20 +40,6 @@
                             (matChipInputTokenEnd)="addTag($event)">
                     </mat-chip-list>
                 </mat-form-field>
-                <!-- <mat-form-field appearance="standard">
-                    <mat-chip-list #tagList>
-                        <mat-chip 
-                            *ngFor="let tag of tags; index as i"
-                            [selectable]="selectable"
-                            [removable]="removable"
-                            (removed)="remove(tag)"
-                        >
-                        {{ tag }}
-                        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-                        </mat-chip>
-                        <input placeholder="">
-                    </mat-chip-list>
-                </mat-form-field> -->
             </div>
             <div class="submit">
                 <button mat-raised-button color="accent" (click)="updateHabit()" class="btn">Update</button>
@@ -62,11 +48,15 @@
         </div>
     </div>
 
-    <div class="view-habit-child habit-streak-calendar"> 
-        <div *ngFor="let streakMonth of histStreak; index as i" [ngClass]="'calendar-' + i">
-            <app-streak-calendar [monthlyStreak]="streakMonth" [completeColor]=habit.color></app-streak-calendar>
+    <div class="view-habit-child">
+        <h1 id="streak-calendar-heading">History</h1>
+        <div class=" habit-streak-calendar">
+            <div *ngFor="let streakMonth of histStreak; index as i" [ngClass]="'calendar-' + i">
+                <app-streak-calendar [monthlyStreak]="streakMonth" [completeColor]=habit.color></app-streak-calendar>
+            </div>
         </div>
     </div>
+
     <div class="view-habit-child habit-statistics">
         <div class="block" *ngIf="habit">
             <h1>Stats</h1>

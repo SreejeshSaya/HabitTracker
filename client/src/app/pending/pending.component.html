@@ -4,7 +4,7 @@
    <mat-tab-group mat-align-tabs="center">
       <mat-tab label="Pending">
          <ng-container *ngIf="(userHabits|HabitFilter: 'PENDING').length==0 ">
-            <h1>Empty</h1>
+            <h1 class="empty-tab">Woohoo! You've completed all your habits today.</h1>
          </ng-container>
          <ng-container *ngIf="(userHabits|HabitFilter: 'PENDING').length!=0">
             <app-habit-small
@@ -16,7 +16,7 @@
          </ng-container>
       </mat-tab>
       <mat-tab label="Completed"><ng-container *ngIf="(userHabits|HabitFilter: 'COMPLETED').length==0 ">
-         <h1>Empty</h1>
+         <h1 class="empty-tab">You haven't completed any habits yet. Check out the pending tab to see what you have today</h1>
       </ng-container>
       <ng-container *ngIf="(userHabits|HabitFilter: 'COMPLETED').length!=0">
          <app-habit-small
@@ -28,59 +28,6 @@
       </ng-container>
    </mat-tab>
    </mat-tab-group>
-   <!-- <a mat-fab routerLink="/add-habit" class="btn" color="accent"><mat-icon>add</mat-icon></a> -->
-   <!-- <a mat-fab routerLink="dialog" class="btn" color="accent"><mat-icon>add</mat-icon></a> -->
    <a mat-fab (click)="addNewHabit()" class="btn" color="accent"><mat-icon>add</mat-icon></a>
 </div>
 <router-outlet></router-outlet>
-<!-- 
-<div *ngIf="!(this.authService.isLoading$ | async)" class="container">
-   <div class="pending">
-      <div class="tabs">
-         <button
-            (click)="currentTab = 'PENDING'"
-            [class.active]="currentTab == 'PENDING'"
-            class="btn tab"
-         >
-            Pending
-         </button>
-         <button
-            (click)="currentTab = 'COMPLETED'"
-            [class.active]="currentTab == 'COMPLETED'"
-            class="btn tab"
-         >
-            Completed
-         </button>
-      </div>
-      <a routerLink="/add-habit" class="btn">+</a>
-   </div>
-
-   <div class="habits" *ngIf="!(this.habitService.isLoading$ | async)">
-      <ng-container *ngIf="currentTab == 'PENDING'">
-         <ng-container *ngIf="(userHabits|HabitFilter: currentTab).length==0 ">
-            <h1>Empty</h1>
-         </ng-container>
-         <ng-container *ngIf="(userHabits|HabitFilter: currentTab).length!=0">
-            <app-habit-small
-               *ngFor="let habit of (userHabits|HabitFilter: currentTab)"
-               [habit]="habit"
-               (complete)="completeHabitToday($event)"
-            >
-            </app-habit-small>
-         </ng-container>
-      </ng-container>
-      <ng-container *ngIf="currentTab == 'COMPLETED'">
-        <ng-container *ngIf="(userHabits|HabitFilter: currentTab).length==0 ">
-            <h1>Empty</h1>
-         </ng-container>
-         <ng-container *ngIf="(userHabits|HabitFilter: currentTab).length!=0">
-            <app-habit-small
-               *ngFor="let habit of (userHabits|HabitFilter: currentTab)"
-               [habit]="habit"
-               (removeComplete)="removeCompleteToday($event)"
-            >
-            </app-habit-small>
-         </ng-container>
-      </ng-container>
-   </div>
-</div> -->

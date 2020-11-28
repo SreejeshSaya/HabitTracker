@@ -54,6 +54,10 @@
    margin: auto;
 }
 
+#streak-calendar-heading {
+   position: relative;
+   text-align: center
+}
 
 .habit-streak-calendar {
    grid-column: 2 / 3;

@@ -1,26 +1,3 @@
-/* .pending {
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
-   width: 100%;
-   padding: 0.5rem 0.5rem;
-   border-radius: 2rem;
-}
-
-
-.pending .tab {
-   background-color: white;
-   border-radius: 0px;
-   border-bottom: 3px solid white;
-   padding-bottom: 0.5rem;
-   font-size: 1.5rem;
-   color: black;
-}
-.pending .tab.active {
-   color: maroon;
-   border-color: maroon;
-} */
-
 .container {
    width: 45rem;
    display: flex;
@@ -32,10 +9,14 @@
 .container mat-tab-group {
    width: 80%;
    margin-left: 10%;
-   
 }
 
 .btn {
    margin-top: 1.5rem;
    margin-left: 1.5rem;
+}
+
+.empty-tab {
+   margin-top: 10%;
+   text-align: center
 }
