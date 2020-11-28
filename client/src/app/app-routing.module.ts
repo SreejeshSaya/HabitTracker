@@ -15,7 +15,7 @@ const routes: Routes = [
    {path:"",component:PendingComponent,pathMatch:"full"},
    {path:'login',component:LoginComponent},
    {path:'signup',component:SignupComponent},
-   {path:'add-habit',component:AddHabitComponent},
+  //  {path:'add-habit',component:AddHabitComponent},
    {path:'habits/:habitId',component:HabitManageComponent},
    {path:'profile',component:UserDetailsComponent},
    {path:'edit-profile',component:EditProfileComponent},

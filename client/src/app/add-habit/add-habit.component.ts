@@ -23,10 +23,7 @@ export class AddHabitComponent implements OnInit {
    removable = true;
    addOnBlur = true;
    readonly separatorKeysCodes: number[] = [ENTER, COMMA];
-   tags = [
-      "hoho",
-      "haha"
-   ]
+   tags: string[] = [];
    addTagText;
    constructor(public habitService: HabitService,private router:Router, private route:ActivatedRoute,public recommender:RecommendService) {
       this.routeSub = route.queryParams.subscribe(data=>{

@@ -6,7 +6,9 @@
          <mat-label>Title</mat-label>
          <input matInput type="text" [(ngModel)]="habitText" />
       </mat-form-field>
-      <button mat-button [ngStyle]="{'color': selectedColor}" (click)="onRecommendClick()" class="btn">Feeling Lucky?</button>
+      <button mat-stroked-button
+      [ngStyle]="{'color': selectedColor}" 
+      (click)="onRecommendClick()" class="btn">Feeling Lucky?</button>
    </div>
    <div id="habit-date">
       <mat-form-field appearance="outline">
@@ -45,6 +47,7 @@
    <button
       id="add-habit-btn"
       mat-raised-button
+      style="color: white"
       [ngStyle]="{ 'background-color': selectedColor }"
       (click)="addHabit()">
       Add

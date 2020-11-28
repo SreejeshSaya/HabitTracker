@@ -5,16 +5,19 @@
 View each folder to view more details
 
 ## Misc
-[ ] Remove SideNav button
+[x] Remove SideNav button
 [ ] Remove decimals in graphs
-[ ] Remove routing for add-habit
-[ ] Remove default tags
+[x] Remove routing for add-habit
+[x] Remove default tags
 [ ] CSS for Stats page
 [ ] Footer
 [ ] Add Background [IF POSSIBLE]
 [ ] CSS for User stats 
 [ ] Dark mode
-
+[ ] Style Calendar heading
+[ ] Style Empty in pending list
+[ ] 404 Not Found
+ 
 ## FINAL TODO
 
 - [x] Login page
