@@ -1,6 +1,5 @@
 #user-profile {
    display: grid;
-   /* grid-template-columns: auto auto auto auto; */
    grid-template-columns: 50% 50%;
    grid-template-rows: 40% 60%;
 }
@@ -61,11 +60,9 @@
 }
 .profile-actions .edit-profile {
    margin-left: 5%;
-   /* align-self: center; */
 }
 
 .profile-actions .logout-user {
-   /* align-self: flex-end; */
    margin-right: 5%;
 }
 

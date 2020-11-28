@@ -33,9 +33,7 @@ export class HabitService {
 
    parseUserHabits(){
       this.userHabits.forEach((habit,index)=>{
-         // console.log("fffff",habit)
          this.populateHabit(habit,index)
-         // console.log("fffff",habit)
       })
    }
 
@@ -58,7 +56,6 @@ export class HabitService {
       }
       else{
          const lastDate = habit.history[habit.history.length-1].date
-         // console.log(habit,lastDate)
          if (removeTime(lastDate)>=removeTime(new Date()) ){
             habit.state= "COMPLETED"
          }
@@ -148,18 +145,10 @@ export class HabitService {
    }
 
    getPendingHabits(){
-      // return this.isLoading$.pipe(filter(l=>l),
-      // switchMap(_=>{
-      //    return of(this.userHabits.filter( h=>h.state=="PENDING" ))
-      // }))
       return this.userHabits.filter( h=>h.state=="PENDING" )
    }
 
    getCompletedHabits(){
-      // return this.isLoading$.pipe(filter(l=>l),
-      // switchMap(_=>{
-      //    return of(this.userHabits.filter( h=>h.state=="COMPLETED" ))
-      // }))
       return this.userHabits.filter( h=>h.state=="COMPLETED" )
    }
 

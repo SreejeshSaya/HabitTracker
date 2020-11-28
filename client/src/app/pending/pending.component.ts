@@ -80,7 +80,6 @@ export class PendingComponent implements OnInit {
 
    completeHabitToday({ev,index}){
       ev.stopPropagation()
-      console.log("commmmmmmmm",index) 
       this.habitService.completeToday(index)
       .subscribe(data=>{
       },
@@ -90,7 +89,6 @@ export class PendingComponent implements OnInit {
    }
    removeCompleteToday({ev,index}){
       ev.stopPropagation()
-      console.log("commmmmmmmm",index) 
       this.habitService.removeCompleteToday(index)
       .subscribe(data=>{
       },
