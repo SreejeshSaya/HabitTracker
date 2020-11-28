@@ -25,7 +25,6 @@ import { UserDetailsPublicComponent } from './user-details-public/user-details-p
 import { LeaderboardComponent } from './leaderboard/leaderboard.component'
 import { GraphComponent } from './graph/graph.component';
 import { StatisticsComponent } from './statistics/statistics.component';
-import { TagComponent } from './tag/tag.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
@@ -34,7 +33,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { SidebarComponent } from './sidebar/sidebar.component';
 import { MatSidenavModule } from '@angular/material/sidenav'; 
 import { MatIconModule } from '@angular/material/icon';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -62,9 +60,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar'
       UserDetailsPublicComponent,
       LeaderboardComponent,
       GraphComponent,
-      StatisticsComponent,
-      TagComponent,
-      SidebarComponent      
+      StatisticsComponent,    
    ],
    imports: [
       CommonModule,
