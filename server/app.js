@@ -5,6 +5,8 @@ const db = require("./utils/db");
 const mongoose = require("mongoose");
 const fs = require("fs");
 
+require("dotenv").config({debug: true})
+
 // Mongo Session
 const MongoDBStore = require("connect-mongodb-session")(session);
 const store = new MongoDBStore({
