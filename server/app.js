@@ -1,3 +1,5 @@
+require("dotenv").config({debug: true})
+
 const express = require("express");
 const bodyParser = require("body-parser");
 const session = require("express-session");
@@ -5,7 +7,7 @@ const db = require("./utils/db");
 const mongoose = require("mongoose");
 const fs = require("fs");
 
-require("dotenv").config({debug: true})
+
 
 // Mongo Session
 const MongoDBStore = require("connect-mongodb-session")(session);
