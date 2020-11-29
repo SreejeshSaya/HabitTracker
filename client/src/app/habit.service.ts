@@ -112,6 +112,9 @@ export class HabitService {
       }, {
          responseType: 'text'
       }).pipe(tap(res => {
+         for (let i=index;i<this.userHabits.length;i++){
+            this.userHabits[i].index-=1;
+         }
       }),catchError(err=>{
          this.snackbar.open("Network Error, Please try again later","dismiss",{duration:2000})
          return "Remove failed"

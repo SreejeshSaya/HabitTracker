@@ -5,6 +5,7 @@ import { HabitService } from 'src/app/habit.service';
 import {colors} from 'src/app/colors'
 import { RecommendService } from '../recommend.service';
 import { MatChipInputEvent } from '@angular/material/chips';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
    selector: 'app-add-habit',
@@ -25,7 +26,7 @@ export class AddHabitComponent implements OnInit {
    readonly separatorKeysCodes: number[] = [ENTER, COMMA];
    tags: string[] = [];
    addTagText;
-   constructor(public habitService: HabitService,private router:Router, private route:ActivatedRoute,public recommender:RecommendService) {
+   constructor(public habitService: HabitService,private router:Router, private route:ActivatedRoute,public recommender:RecommendService,public dialogRef: MatDialogRef<AddHabitComponent>) {
       this.routeSub = route.queryParams.subscribe(data=>{
          console.log("here",data)
          this.habitText = data.text
@@ -42,10 +43,9 @@ export class AddHabitComponent implements OnInit {
 
    addHabit() {
       if (this.habitText) {
-         this.loading =true;
          this.habitService.addHabit(this.habitText,this.selectedColor,this.endDate,this.tags)
          .subscribe(data=>{
-            this.loading =false;
+            this.dialogRef.close()
             // this.router.navigateByUrl("/")
          });
       }
