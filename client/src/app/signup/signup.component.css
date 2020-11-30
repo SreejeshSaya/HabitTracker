@@ -13,3 +13,7 @@
     margin-right: 15px;
     justify-self: right;
 }
+
+form {
+   width: 25rem;
+}

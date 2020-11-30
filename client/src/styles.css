@@ -134,3 +134,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .text-bold {
    font-weight: bold;
 }
+
+mat-form-field {
+   width: 100%;
+}

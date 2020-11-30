@@ -3,6 +3,9 @@ import { Component, OnInit, Input } from '@angular/core';
 @Component({
    selector: 'app-streak-calendar',
    templateUrl: './streak-calendar.component.html',
+   styleUrls:[
+      './streak-calender.component.css'
+   ],
    styles: [
       `.calendar {
         width: 12rem;
@@ -18,7 +21,7 @@ import { Component, OnInit, Input } from '@angular/core';
       
       `.calendar-cell:hover {
         transform: scale(1.05);
-      }`
+      }`,
    ]
 })
 export class StreakCalendarComponent implements OnInit {

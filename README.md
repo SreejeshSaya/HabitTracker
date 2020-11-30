@@ -17,6 +17,7 @@ View each folder to view more details
 [x] Style Calendar heading
 [ ] Style Empty in pending list
 [ ] 404 Not Found
+[ ] Fix graph tick labels
  
 ## FINAL TODO
 
