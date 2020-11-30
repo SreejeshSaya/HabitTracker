@@ -1,7 +1,6 @@
 
 const removeTime = (date) => {
     return new Date(date.toDateString());
-      date.toU
 };
 
 

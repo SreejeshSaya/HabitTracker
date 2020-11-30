@@ -6,16 +6,27 @@ View each folder to view more details
 
 ## Misc
 [x] Remove SideNav button
+
 [ ] Remove decimals in graphs
+
 [x] Remove routing for add-habit
+
 [x] Remove default tags
+
 [ ] CSS for Stats page
-[ ] Footer
+
+[x] Footer
+
 [ ] Add Background [IF POSSIBLE]
+
 [ ] CSS for User stats 
+
 [ ] Dark mode
+
 [x] Style Calendar heading
+
 [ ] Style Empty in pending list
+
 [ ] 404 Not Found
  
 ## FINAL TODO
@@ -72,8 +83,3 @@ View each folder to view more details
 
 - [X] Graph
     - [x] Show checkpoint habits when graph changes direction
-
-- [ ] Autofill
-    - [ ] Make sure habit title has no bad words
-    - [ ] Auto fill tags when user types things
-
