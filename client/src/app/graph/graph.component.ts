@@ -55,6 +55,51 @@ export class GraphComponent implements OnInit {
       }
       
    }
+   
+   drawAreaGraph(){
+      var margin = { top: 10, right: 30, bottom: 30, left: 60 },
+      width = this.width - margin.left - margin.right,
+      height = this.height - margin.top - margin.bottom;
+
+      var svg = d3.select(`#${this.id}`)
+      .append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+      .attr("transform","translate(" + margin.left + "," + margin.top + ")");
+
+      var x = d3.scaleLinear()
+      .domain([0,d3.max(this.data)])
+      .range([ 0, width ]);
+
+      svg.append("g")
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.axisBottom(x));
+
+      var histogram = d3.histogram()
+      .value(d=>d)   // I need to give the vector of value
+      .domain(x.domain())  // then the domain of the graphic
+      .thresholds(x.ticks(50)); // then the numbers of bins
+
+      var bins = histogram(this.data);
+      console.log(this.data,bins,x.domain())
+    // Add Y axis
+      var y = d3.scaleLinear()
+      .domain([0, d3.max(bins, function(d) { return d.length; }) ])
+      .range([ height, 0 ]);
+
+      svg.append("g")
+      .call(d3.axisLeft(y));
+      svg.selectAll("rect")
+      .data(bins)
+      .enter()
+      .append("rect")
+      .attr("x", 1)
+      .attr("transform", function(d) { return "translate(" + x(d.x0) + "," + y(d.length) + ")"; })
+      .attr("width", function(d) { return x(d.x1) - x(d.x0) -1 ; })
+      .attr("height", function(d) { return height - y(d.length); })
+      .style("fill", this.color)
+   }
 
    drawPunctualityGraph() {
       var margin = { top: 10, right: 30, bottom: 30, left: 60 },
