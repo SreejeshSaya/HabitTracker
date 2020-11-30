@@ -1,41 +1,51 @@
 <mat-spinner class="loading-spinner" *ngIf="(this.authService.isLoading$ | async) || (this.habitService.isLoading$ | async) "></mat-spinner>
 
 <div *ngIf="!(this.authService.isLoading$ | async) && !(this.habitService.isLoading$ | async) ">
-   <h1 style="text-align: center">Edit Profile</h1>
-   <div class="block">
-      <div class="form">
-         <h2>User Details</h2>
-         <app-profile-upload (onUploadImage)="onUploadImage($event)"
-            imageUrl="{{profileImageUrl}}"></app-profile-upload>
-         <div class="input">
-            <label for="">Username</label>
-            <input [(ngModel)]="username" type="text" value=""  />
-         </div>
-         <div class="submit">
-            <button (click)="this.updateDetails()" class="btn">Update Details</button>
+   <h1 style="text-align: center; margin-top:1rem">Edit Profile</h1>
+   <div id="edit-profile-main">
+      <div class="block">
+         <div class="form">
+            <h2>User Details</h2>
+            <app-profile-upload id="image-upload" (onUploadImage)="onUploadImage($event)"
+               imageUrl="{{profileImageUrl}}"></app-profile-upload>
+            <div class="input">
+               <mat-form-field appearance="fill">
+                  <mat-label>Username</mat-label>
+                  <input matInput [(ngModel)]="username" type="text" value=""  />
+               </mat-form-field>
+            </div>
+            <div class="submit">
+               <button mat-raised-button (click)="this.updateDetails()" color="accent" class="btn">Update Details</button>
+            </div>
          </div>
       </div>
-   </div>
-   <div class="block">
-      <div class="form">
-         <h2>Password</h2>
-         <div class="submit-status" [ngStyle]="passwordStatusStyle" >
-            {{this.passwordStatusText}}
-         </div>
-         <div class="input">
-            <label for="">Old Password</label>
-            <input  [(ngModel)]="oldPassword" type="password" value="" />
-         </div>
-         <div class="input">
-            <label for="">New Password</label>
-            <input  [(ngModel)]="newPassword" type="password" value="" />
-         </div>
-         <div class="input">
-            <label for="">Repeat New Password</label>
-            <input  [(ngModel)]="newPasswordC" type="password" value="" />
-         </div>
-         <div class="submit">
-            <button (click)="this.updatePassword()" class="btn btn-red">Update Password</button>
+      <div class="block">
+         <div class="form">
+            <h2>Password</h2>
+            <div class="submit-status" [ngStyle]="passwordStatusStyle" >
+               {{this.passwordStatusText}}
+            </div>
+            <div class="input">
+               <mat-form-field appearance="fill">
+                  <mat-label>Old Password</mat-label>
+                  <input  matInput [(ngModel)]="oldPassword" type="password" value="" />
+               </mat-form-field>
+            </div>
+            <div class="input">
+               <mat-form-field appearance="fill">
+                  <mat-label>New Password</mat-label>
+                  <input matInput [(ngModel)]="newPassword" type="password" value="" />
+               </mat-form-field>
+            </div>
+            <div class="input">
+               <mat-form-field appearance="fill">
+                  <mat-label>Repeat New Password</mat-label>
+                  <input  matInput [(ngModel)]="newPasswordC" type="password" value="" />
+               </mat-form-field>
+            </div>
+            <div class="submit">
+               <button mat-raised-button color="accent" (click)="this.updatePassword()" class="btn btn-red">Update Password</button>
+            </div>
          </div>
       </div>
    </div>

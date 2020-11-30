@@ -1,5 +1,3 @@
-const { getUserHabits } = require("../controllers/habit");
-
 const tags=  [
     'Excercise',
     'Coding',
@@ -67,7 +65,8 @@ module.exports = async function(){
     tags.forEach(t=>samples[t]=[])
     habits.forEach(h=>{
         h.tags.forEach(t=>{
-            if (samples[t]<10){
+            if (tags.includes(t) && samples[t].length<10 && !samples[t].includes(h.text)){
+                console.log(t,h.text)
                 samples[t].push(h.text)
             }
         })

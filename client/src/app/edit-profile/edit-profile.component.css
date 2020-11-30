@@ -1,7 +1,22 @@
-.form h2{
-   margin-top:0;
+#edit-profile-main {
+   display: grid;
+   grid-template-columns: 50% 50%;
+   /* justify-items: center; */
 }
 
-.submit-status{
-   margin: 1rem 0;
+.form {
+   display: block;
+   margin:auto
+}
+
+.block h2 {
+   text-align: center
+}
+
+.btn {
+   margin:auto
+}
+
+#image-upload {
+   margin:auto
 }

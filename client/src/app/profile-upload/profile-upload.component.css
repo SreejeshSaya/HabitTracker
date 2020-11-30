@@ -1,13 +1,12 @@
 .profile-upload {
+   /* margin: auto; */
    margin-bottom: 1rem;
    display: flex;
    flex-direction: column;
-   align-items: flex-start;
-   width: 12rem;
+   align-items: center;
+   /* width: 12rem; */
 }
 
 .btn-choose{
    margin-top: 0.5rem;
-   background-color: green;
-   padding: 0.3rem 1rem;
 }
