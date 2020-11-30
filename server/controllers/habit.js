@@ -255,9 +255,7 @@ exports.completeUpdates = async (req,res,next)=>{
          $set:h.toObject()
       })
    }
-   if (Math.random()>0.5){ //test
-      throw new Error("could not")
-   }
+   
    await bulk.execute()
    await user.save()
    res.send(response)

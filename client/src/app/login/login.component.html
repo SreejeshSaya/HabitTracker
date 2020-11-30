@@ -4,7 +4,7 @@
    <h1>Log in</h1>
    <form (ngSubmit)="onSubmit(loginForm)" #loginForm="ngForm">
       <div>
-         <mat-form-field appearance="outline">
+         <mat-form-field appearance="outline" >
             <mat-label>Email</mat-label>
             <input name="email" matInput ngModel required email #email="ngModel"/>
             <mat-icon matSuffix>email</mat-icon>
@@ -13,7 +13,7 @@
          </mat-form-field>         
       </div>
       <div>
-         <mat-form-field appearance="outline">
+         <mat-form-field appearance="outline" >
             <mat-label>Password</mat-label>
             <input name="password" type="password" matInput ngModel required/>
             <mat-error *ngIf="passwordWarning">{{ warningMessage }}</mat-error>

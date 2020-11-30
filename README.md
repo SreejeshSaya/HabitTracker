@@ -28,6 +28,7 @@ View each folder to view more details
 [ ] Style Empty in pending list
 
 [ ] 404 Not Found
+[ ] Fix graph tick labels
  
 ## FINAL TODO
 

@@ -45,7 +45,7 @@ export class AddHabitComponent implements OnInit {
       if (this.habitText) {
          this.habitService.addHabit(this.habitText,this.selectedColor,this.endDate,this.tags)
          .subscribe(data=>{
-            this.dialogRef.close()
+            this.dialogRef.close("added habit")
             // this.router.navigateByUrl("/")
          });
       }

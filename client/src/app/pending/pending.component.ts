@@ -28,6 +28,7 @@ export class PendingComponent implements OnInit {
    routeSub;
    currentTab='PENDING';
    userHabits;
+   tabIndex;
    constructor(public authService: AuthService, private router: Router, public habitService: HabitService, route: ActivatedRoute, public dialog: MatDialog) {
       this.routeSub = route.params.subscribe(val => {
          if (!this.authService.userDetails) {
@@ -60,7 +61,12 @@ export class PendingComponent implements OnInit {
    }
 
    addNewHabit() {
-      const addHabit = this.dialog.open(AddHabitComponent);
+      const addHabit = this.dialog.open(AddHabitComponent,{restoreFocus: false});
+      addHabit.afterClosed().subscribe((res)=>{
+         if (res=="added habit"){
+            this.tabIndex = 0;
+         }
+      })
    }
 
    switchTab(){
@@ -87,6 +93,7 @@ export class PendingComponent implements OnInit {
          console.log("complete error",err)
       })
    }
+
    removeCompleteToday({ev,index}){
       ev.stopPropagation()
       this.habitService.removeCompleteToday(index)
